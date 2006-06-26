@@ -7,7 +7,7 @@ alias du="du -h -c"
 alias bash="/bin/bash --login"
 alias konsole="konsole --ls"
 alias slrn="slrn --kill-log $HOME/.slrn/kill_log.log"
-alias startx="startx -- -nolisten tcp -deferglyphs 16 -dpi 96 2> /tmp/startx.log"
+alias startx="startx -- -nolisten tcp -deferglyphs 16 -dpi 96 2> /tmp/startx.log ; exit"
 alias fetf="fetchmail -F pop.mail.yahoo.it popmail.email.it pop3.live.com" 
 alias fetco="fetchmail -c"
 alias gmail="mutt -f imaps://forod.g@imap.gmail.com:993"
@@ -27,11 +27,9 @@ alias skype="skype --disable-cleanlooks -style GTK"
 alias orphans="pacman -Qtdq"
 alias svim="sudo vim"
 # rsync alias to sync with kortirion over ssh
-alias ssrsync="rsync -avz --progress --inplace --delete-after --rsh='ssh -p8888'"
-# ttytter script for important persons
-alias mf_vip="ttytter -rc=-mf -readline=0 -script ~/.ttytter-mf-vip"
+alias ssrsync="rsync -avz --progress --inplace --delete-after --rsh='ssh -p8898'"
 # sync ScrapBook folder and other stuff
-alias scrapsync="rsync -avz --progress --inplace --delete-after --rsh='ssh -p8888' kortirion:/mnt/documents/learning/ ."
+alias scrapsync="rsync -avz --progress --inplace --delete-after --rsh='ssh -p8898' kortirion:/mnt/documents/learning/ ."
 
 # Set the keycodes for the extra keys that aren't usually recognized by
 # the kernel
@@ -53,6 +51,11 @@ mkmv() {
     mv "$1" "$2"
 }
 
+startX() {
+	nohup &> /dev/null startx -- -nolisten tcp -deferglyphs 16 -dpi 96 2> ~/.xsession-errors
+	disown
+	logout
+}
 
 # No one should read/write/execute my files by default
 #umask 0077
@@ -91,6 +94,13 @@ if [[ `whoami` == "root" ]]; then
 	export PS1=".:\$(date +%d/%m/%Y):. \w \n ${bred} >: ${bnc}"
 else
 	export PS1=".:\$(date +%d/%m/%Y):. \w \n >: "
+fi
+
+# cgroup stuff
+if [ "$PS1" ] ; then
+	mkdir -m 0700 /cgroup/$$
+	echo $$ > /cgroup/$$/tasks
+	echo 1 > /cgroup/$$/notify_on_release
 fi
 
 #if [ "$TERM" = "linux" ]
