@@ -787,7 +787,7 @@ autorunApps =
     --"xscreensaver",
     "xbindkeys",
     "xcompmgr -c -C -r10 -o.70 -D5 &",
-    --"xset m 0.1 2",
+    "xset m 1 2",
     "urxvtd -q -o -f",
 }
 if autorun then
