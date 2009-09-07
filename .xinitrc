@@ -13,9 +13,9 @@
 
 
 
-#exec awesome
+exec awesome
 #exec openbox-session
-exec startkde
+#exec startkde
 # exec gnome-session
 #exec /mnt/documents/Script/awesome_autostart.sh
 #exec /mnt/documents/Script/dwm_start.sh
