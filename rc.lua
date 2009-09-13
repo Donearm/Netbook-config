@@ -12,7 +12,7 @@ require("wicked")
 -- Home directory
 home = os.getenv("HOME")
 -- Themes define colours, icons, and wallpapers
-theme_path = home .. "/.config/awesome/themes/barrefaeli01"
+theme_path = home .. "/.config/awesome/themes/dead_tree"
 -- Actually load theme
 beautiful.init(theme_path)
 -- Define if we want to see naughty notifications
@@ -32,7 +32,7 @@ editor_cmd = terminal .. " -e " .. editor
 -- Some variables
 browser_nav = "firefox -P navigation --no-remote"
 browser_mad = "firefox -P maidens --no-remote"
-music = "gmusicbrowser"
+music = "qmpdclient"
 musicPlay = "gmusicbrowser -remotecmd PlayPause"
 musicStop = "gmusicbrowser -remotecmd Stop"
 musicPrev = "gmusicbrowser -remotecmd PrevSongInPlaylist"
@@ -82,6 +82,7 @@ floatapps =
 	["feh"] = true,
 	["gcolor2"] = true,
 	["gmusicbrowser"] = true,
+    ["qmpdclient"] = true,
     ["Firefox:Dialog"] = true,
     ["skype"] = true,
     ["hp-toolbox"] = true,
@@ -412,7 +413,7 @@ mymainmenu = awful.menu.new({ items = { { "awesome", myawesomemenu, image(home .
                                         { "firefox (maidens)", "firefox -P maidens --no-remote", image("/usr/share/pixmaps/firefox.png") },
                                         { "chromium", "chromium-browser --enable-plugins", image("/usr/share/pixmaps/chromium-browser.png") },
                                         { "thunar", "thunar", image(home .. "/.icons/thunar-logo.png") },
-                                        { "Music", "gmusicbrowser", image("/usr/share/pixmaps/gmusicbrowser.png") },
+                                        { "Music", music, image("/usr/share/pixmaps/qmpdclient22.png") },
                                         --{ "Pidgin", "pidgin", image("/usr/share/icons/hicolor/16x16/apps/pidgin.png") },
                                         { "Skype", "skype", image("/usr/share/pixmaps/skype.png") },
                                         { "HP Toolbox", "hp-toolbox", image("/usr/share/hplip/data/images/32x32/hp_logo.png") },
