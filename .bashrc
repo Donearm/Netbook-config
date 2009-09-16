@@ -28,6 +28,7 @@ alias skype="skype --disable-cleanlooks -style GTK"
 # Feh alias for loading all the images in the directory
 #alias fehall="feh --scale-down -S filename ."
 alias orphans="pacman -Qtdq"
+alias svim="sudo vim"
 
 # Set the keycodes for the extra keys that aren't usually recognized by
 # the kernel

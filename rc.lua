@@ -43,6 +43,7 @@ musicMute = "amixer set LineOut 0%"
 filemanager = "thunar"
 mail = "urxvtc -e mutt -y"
 lockScreen = "xscreensaver-command -lock"
+networkManager = "wicd-client -n" -- my network manager of choice
 spacer = " " -- well, just a spacer
 
 -- Alt is Mod1
@@ -86,6 +87,7 @@ floatapps =
     ["Firefox:Dialog"] = true,
     ["skype"] = true,
     ["hp-toolbox"] = true,
+    ["wicd-client.py"] = true,
 	["evince"] = true
 }
 
@@ -474,6 +476,10 @@ netdownicon.image = image(home .. "/.icons/down_arrow.png")
 
 wifiicon = widget({ type = "imagebox", name = "wifiicon", align = "right" })
 wifiicon.image = image(home .. "/.icons/Icon-wifi.png")
+wifiicon:buttons({
+    button({ }, 1, function () awful.util.spawn(networkManager) end),
+    button({ }, 3, function () awful.util.spawn(networkManager) end)
+})
 wifiwidget = widget({ type = "textbox", name = "wifiwidget", align = "right" })
 --wifiInfo("wlan0")
 
@@ -791,6 +797,7 @@ autorunApps =
     "xcompmgr -c -C -r10 -o.70 -D5 &",
     "xset m 1 2",
     "urxvtd -q -o -f",
+    --"wicd-client &",
 }
 if autorun then
     for app = 1, #autorunApps do
