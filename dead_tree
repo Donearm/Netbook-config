@@ -7,12 +7,12 @@ theme = {}
 theme.font          = "DejaVu Sans 8"
 
 theme.bg_normal     = "#252525"
-theme.bg_focus      = "#a2bc57"
-theme.bg_urgent     = "#289c00"
+theme.bg_focus      = "#85bdbc"
+theme.bg_urgent     = "#4a77b2"
 theme.bg_minimize   = "#444444"
 
 --theme.fg_normal     = "#848484"
-theme.fg_normal     = "#a2bc57"
+theme.fg_normal     = "#85bdbc"
 theme.fg_focus      = "#252525"
 theme.fg_urgent     = "#252525"
 theme.fg_minimize   = "#ffffff"

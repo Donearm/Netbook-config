@@ -421,7 +421,7 @@ mymainmenu = awful.menu.new({ items = { { "awesome", myawesomemenu, image(home .
                                         { "HP Toolbox", "hp-toolbox", image("/usr/share/hplip/data/images/32x32/hp_logo.png") },
                                         --{ "Avidemux", "avidemux2_gtk", image("/usr/share/pixmaps/avidemux.png") },
                                         --{ "Gimp", "gimp", image("/usr/share/gimp/2.0/images/gimp-logo.png") },
-                                        --{ "Gcolor", "gcolor2", image("/usr/share/pixmaps/gcolor2/icon.png") },
+                                        { "Gcolor", "gcolor2", image("/usr/share/pixmaps/gcolor2/icon.png") },
                                         { "Gtkam", "gtkam", image("/usr/share/pixmaps/gtkam.png") }
                                       }
                             })
@@ -439,7 +439,7 @@ cpuwidget02 = widget({ type = "textbox", name = "cpuwidget02", align = "right" }
 wicked.register(cpuwidget02, wicked.widgets.cpu,
 	' <span color="#fbfbfb">[</span>$2%<span color="#fbfbfb">]</span>')
 cpuicon = widget({ type = "imagebox", name = "cpuicon", align = "right" })
-cpuicon.image = image(home .. "/.icons/intel_cpu.png")
+cpuicon.image = image(home .. "/.icons/intel_atom.png")
 
 -- Motherboard icon
 --moboicon = widget({ type = "imagebox", name = "moboicon", align = "right" })
@@ -475,7 +475,7 @@ netdownicon = widget({ type = "imagebox", name = "nextdownicon", align = "right"
 netdownicon.image = image(home .. "/.icons/down_arrow.png")
 
 wifiicon = widget({ type = "imagebox", name = "wifiicon", align = "right" })
-wifiicon.image = image(home .. "/.icons/Icon-wifi.png")
+wifiicon.image = image(home .. "/.icons/WiFiTrack.png")
 wifiicon:buttons({
     button({ }, 1, function () awful.util.spawn(networkManager) end),
     button({ }, 3, function () awful.util.spawn(networkManager) end)
@@ -484,7 +484,7 @@ wifiwidget = widget({ type = "textbox", name = "wifiwidget", align = "right" })
 --wifiInfo("wlan0")
 
 batteryicon = widget({ type = "imagebox", name = "batteryicon", align = "right" })
-batteryicon.image = image(home .. "/.icons/battery_charging.png")
+batteryicon.image = image(home .. "/.icons/BatteryTicker.png")
 batterywidget = widget({ type = "textbox", align = "right" })
 --batteryInfo("BAT0")
 --wicked.register(batterywidget, batteryInfo, "BAT0", 60)
