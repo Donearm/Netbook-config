@@ -688,6 +688,10 @@ globalkeys = awful.util.table.join(
     -- reactivate all widgets
     awful.key({ modkey,           }, "z", function() io.popen(home .. "/Script/awesome_widgets.sh stop") end),
     awful.key({ modkey, "Shift"   }, "z", function() io.popen(home .. "/Script/awesome_widgets.sh start") end),
+	
+	-- Alt+t: disable touchpad; Win+Alt+t: enable touchpad
+	awful.key({ alt },				 "t", function() io.popen(home .. "/Script/script_touchpad.sh off") end),
+	awful.key({ modkey, alt		  }, "t", function() io.popen(home .. "/Script/script_touchpad.sh on") end),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
