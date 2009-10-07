@@ -96,11 +96,11 @@ floatapps =
 -- Use the screen and tags indices.
 apptags =
 {
-	["OpenOffice.org 3.0"] = { screen = 1, tag = 4  },
+	--["OpenOffice.org 3.1"] = { screen = 1, tag = 4  },
     ["gimp"] = { screen = 1, tag = 4 },
     ["Pidgin"] = { screen = 1, tag = 4 },
     ["Chats"] = { screen = 1, tag = 4 },
-    ["Firefox"] = { screen = 1, tag = 2 },
+    --["Firefox"] = { screen = 1, tag = 2 },
 }
 
 -- Define if we want to use titlebar on all applications.
@@ -430,7 +430,7 @@ mymainmenu = awful.menu.new({ items = { { "awesome", myawesomemenu, image(home .
 
 
 -- Launchbox
-mylauncher = awful.widget.launcher({ image = image(home .. "/.icons/arch-logo-black.png"),
+mylauncher = awful.widget.launcher({ image = image(home .. "/.icons/arch-logo.png"),
                                      menu = mymainmenu })
 -- Cpu widget
 cpuwidget01 = widget({ type = "textbox", name = "cpuwidget01", align = "right" })
