@@ -37,9 +37,9 @@ musicPlay = "gmusicbrowser -remotecmd PlayPause"
 musicStop = "gmusicbrowser -remotecmd Stop"
 musicPrev = "gmusicbrowser -remotecmd PrevSongInPlaylist"
 musicNext = "gmusicbrowser -remotecmd NextSongInPlaylist"
-musicLowerVolume = "amixer set LineOut 2dB-"
-musicRaiseVolume = "amixer set LineOut 2dB+"
-musicMute = "amixer set LineOut 0%"
+musicLowerVolume = "amixer set Master 2dB-"
+musicRaiseVolume = "amixer set Master 2dB+"
+musicMute = "amixer set Master 0%"
 filemanager = "thunar"
 mail = "urxvtc -e mutt -y"
 lockScreen = "xscreensaver-command -lock"
@@ -120,7 +120,7 @@ end
 
 -- Volume function
 cardid  = 0
-channel = "LineOut"
+channel = "Master"
 function volume(mode, widget)
 	if mode == "update" then
               local fd = io.popen("amixer -c " .. cardid .. " -- sget " .. channel)
