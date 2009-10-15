@@ -1,6 +1,7 @@
 "2.1 (created: 2009/05/21 13:13:06)
 
 set complete=l
+set defsearch=
 set runtimepath=/home/gianluca//.vimperator
 set wildoptions=auto
 source! /home/gianluca/.vimperatorrc.local
