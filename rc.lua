@@ -108,6 +108,22 @@ function setFont(font, text)
     return '<span font_desc="'..font..'">'..text..'</span>'
 end
 
+-- Wifi naughty message
+function wifiMessage(adapter)
+    local f = io.open("/sys/class/net/"..adapter.."/wireless/link")
+    local wifiStrength = f:read()
+    f:close()
+    if wifiStrength == "0" then
+        naughty.notify({ title = "Wifi message",
+            text = "No wireless connectivity!",
+            timeout = 3,
+            position = "top_right",
+            fg = beautiful.fg_focus,
+            bg = beautiful.bg_focus
+        })
+	end
+end
+
 -- Wifi signal
 function wifiInfo(adapter)
     local f = io.open("/sys/class/net/"..adapter.."/wireless/link")
@@ -230,6 +246,18 @@ function volInfo()
 
     --volumewidget.text = setFg(beautiful.fg_normal, "Vol:")..volume
     volumewidget.text = setFg(beautiful.fg_normal, volume)
+end
+
+-- Wifi info message
+local wifiinfo = nil
+local offset = 0
+
+function removeWifiInfo()
+	if wifiinfo ~= nil then
+		naughty.destroy(wifiinfo)
+		wifiinfo = nil
+		offset = 0
+	end
 end
 
 -- Calendar functions
@@ -379,10 +407,10 @@ vicious.register(netdownwidget, vicious.widgets.net,
 -- Wifi widget
 wifiicon = widget({ type = "imagebox"})
 wifiicon.image = image(home .. "/.icons/WiFiTrack.png")
-wifiicon:buttons({
+wifiicon:buttons(awful.util.table.join(
     awful.button({ }, 1, function () awful.util.spawn(networkManager) end),
     awful.button({ }, 3, function () awful.util.spawn(networkManager) end)
-})
+))
 wifiwidget = widget({ type = "textbox"})
 vicious.register(wifiwidget, vicious.widgets.wifi, "${rate}", 60, 'wlan0')
 
@@ -435,15 +463,14 @@ mypromptbox = widget({ type = "textbox" })
 datebox = widget({ type = "textbox"})
 datebox:add_signal("mouse::enter", function () addCalendar(0) end)
 datebox:add_signal("mouse::leave", function () removeCalendar() end)
-datebox.buttons = awful.util.table.join(
+datebox:buttons(awful.util.table.join(
     awful.button({ }, 4, function () addCalendar(-1) end),
     awful.button({ }, 5, function () addCalendar(1) end)
-)
+))
 vicious.register(datebox, vicious.widgets.date, setFg('white', "  %T  "))
 
-
--- Create a systray
-mysystray = widget({ type = "systray" })
+-- Create a systray 
+mysystray = widget({ type = "systray" }) 
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -594,15 +621,9 @@ globalkeys = awful.util.table.join(
     awful.key({ alt },               "m",   function () awful.util.spawn(music) end),
     awful.key({ modkey },            "f",   function () awful.util.spawn(browser_mad) end),
     awful.key({ modkey, alt       }, "f",   function () awful.util.spawn(browser_nav) end),
-    awful.key({ none }, "XF86AudioPlay",    function () awful.util.spawn(musicPlay) end),
-    awful.key({ none }, "XF86AudioStop",    function () awful.util.spawn(musicStop) end),
-    awful.key({ none }, "XF86AudioPrev",    function () awful.util.spawn(musicPrev) end),
-    awful.key({ none }, "XF86AudioNext",    function () awful.util.spawn(musicNext) end),
     awful.key({ none }, "XF86AudioLowerVolume", function () awful.util.spawn(soundLowerVolume) end),
     awful.key({ none }, "XF86AudioRaiseVolume", function () awful.util.spawn(soundRaiseVolume) end),
     awful.key({ none }, "XF86AudioMute",    function () awful.util.spawn(soundMute) end),
-    awful.key({ none }, "XF86Sleep",    function () awful.util.spawn(lockScreen) end),
-    awful.key({ none }, "XF86Mail",     function () awful.util.spawn(mail) end),
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
@@ -740,6 +761,8 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "Gimp" },
       properties = { tag = tags[1][4] } },
+	{ rule = { class = "Wicd-client.py" },
+	  properties = { floating = true } },
     { rule = { class = "feh" },
       properties = { floating = true } },
     { rule = { class = "gcolor2" },
@@ -879,4 +902,10 @@ end)
 --wifitimer = timer { timeout = 30 }
 --wifitimer:add_signal("timeout", function() wifiInfo("wlan0") end)
 --wifitimer:start()
+
+-- Timer for wifi signal
+wifisignal = timer { timeout = 60 }
+wifisignal:add_signal("timeout", function() wifiMessage("wlan0") end)
+wifisignal:start()
+		
 -- vim: set filetype=lua tabstop=4 shiftwidth=4:
