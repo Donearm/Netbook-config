@@ -108,6 +108,15 @@ function setFont(font, text)
     return '<span font_desc="'..font..'">'..text..'</span>'
 end
 
+-- Twitter prompt
+function twitPrompt()
+	awful.prompt.run({ prompt = "Tweet: " },
+	mypromptbox[mouse.screen].widget,
+	function (expr)
+		awful.util.spawn("curl -u user:password -d status=\""..awful.util.escape(expr).."\" -d source=awesomewm -k http://twitter.com/statuses/update.xml"
+	) end)
+end
+
 -- Wifi naughty message
 function wifiMessage(adapter)
     local f = io.open("/sys/class/net/"..adapter.."/wireless/link")
@@ -372,10 +381,10 @@ cpuicon = widget({ type = "imagebox" })
 cpuicon.image = image(home .. "/.icons/intel_atom.png")
 cpuwidget01 = widget({ type = "textbox" })
 vicious.register(cpuwidget01, vicious.widgets.cpu,
-	' <span color="#fbfbfb">[</span>$1%<span color="#fbfbfb">]</span>')
+	' <span color="#fbfbfb">[</span>$1%<span color="#fbfbfb">]</span>', 3)
 cpuwidget02 = widget({ type = "textbox" })
 vicious.register(cpuwidget02, vicious.widgets.cpu,
-	' <span color="#fbfbfb">[</span>$2%<span color="#fbfbfb">]</span>')
+	' <span color="#fbfbfb">[</span>$2%<span color="#fbfbfb">]</span>', 3)
 
 -- Motherboard icon
 --moboicon = widget({ type = "imagebox", name = "moboicon", align = "right" })
@@ -386,10 +395,10 @@ vicious.register(cpuwidget02, vicious.widgets.cpu,
 --gpuicon.image = image(home .. "/.icons/nvidia-black.png")
 
 -- Memory widget
-memwidget = widget({ type = "textbox"})
-vicious.register(memwidget, vicious.widgets.mem, " $1%")
 memicon = widget({ type = "imagebox"})
 memicon.image = image(home .. "/.icons/ram_drive.png")
+memwidget = widget({ type = "textbox"})
+vicious.register(memwidget, vicious.widgets.mem, " $1%", 10)
 
 -- Network widget
 netupicon = widget({ type = "imagebox"})
@@ -399,10 +408,10 @@ netdownicon.image = image(home .. "/.icons/down_arrow.png")
 netupwidget = widget({ type = "textbox"})
 -- the last 3 options are interval-in-seconds, properties-name, padding
 vicious.register(netupwidget, vicious.widgets.net,
-	'${wlan0 up_kb}', nil, nil, 3)
+	'${wlan0 up_kb}', nil, nil, 2)
 netdownwidget = widget({ type = "textbox"})
 vicious.register(netdownwidget, vicious.widgets.net,
-	'${wlan0 down_kb}', nil, nil, 3)
+	'${wlan0 down_kb}', nil, nil, 2)
 
 -- Wifi widget
 wifiicon = widget({ type = "imagebox"})
@@ -412,27 +421,28 @@ wifiicon:buttons(awful.util.table.join(
     awful.button({ }, 3, function () awful.util.spawn(networkManager) end)
 ))
 wifiwidget = widget({ type = "textbox"})
-vicious.register(wifiwidget, vicious.widgets.wifi, "${rate}", 60, 'wlan0')
+vicious.register(wifiwidget, vicious.widgets.wifi, 
+	"${rate}"..'<span color="#fbfbfb">|</span>'.."${link}%", 60, 'wlan0')
 
 -- Battery widget
 batteryicon = widget({ type = "imagebox"})
 batteryicon.image = image(home .. "/.icons/BatteryTicker.png")
 batterywidget = widget({ type = "textbox"})
 --batteryInfo("BAT0")
-vicious.register(batterywidget, vicious.widgets.bat, '$2', 60, 'BAT0')
+vicious.register(batterywidget, vicious.widgets.bat, '$2', 50, 'BAT0')
 
 -- Temperatures
 cputemp = widget({ type = 'textbox'})
-vicious.register(cputemp, getCpuTemp, "$1", 30)
+vicious.register(cputemp, getCpuTemp, "$1", 40)
 
 --mobotemp = widget({ type = 'textbox'})
---vicious.register(mobotemp, getMoboTemp, "$1", 30)
+--vicious.register(mobotemp, getMoboTemp, "$1", 40)
 
 --gputemp = widget({ type = 'textbox'})
---vicious.register(gputemp, getGpuTemp, "$1", 30)
+--vicious.register(gputemp, getGpuTemp, "$1", 40)
  
 --sdatemp = widget({ type = 'textbox'})
---vicious.register(sdatemp, getSdaTemp, "$1", 30)
+--vicious.register(sdatemp, getSdaTemp, "$1", 40)
 
 -- Volume widget
 volumeicon = widget({ type = "imagebox"})
@@ -441,7 +451,7 @@ volumeicon.image = image(home .. "/.icons/speaker.png")
 volumewidget = widget({ type = "textbox"})
 -- enable caching
 vicious.enable_caching(vicious.widgets.volume)
-vicious.register(volumewidget, vicious.widgets.volume, "$1%", 2, "Master")
+vicious.register(volumewidget, vicious.widgets.volume, "$1%", 20, "Master")
 volumewidget:buttons(awful.util.table.join(
     awful.button({ }, 4, function() awful.util.spawn(soundRaiseVolume) end),
     awful.button({ }, 5, function() awful.util.spawn(soundLowerVolume) end),
@@ -453,7 +463,7 @@ volumewidget:buttons(awful.util.table.join(
 --gmailicon.image = image(home .. "/.icons/gmail-black.png")
 --gmailwidget = widget({ type = "textbox" })
 --gmailwidget.text = getGmailUnread
---vicious.register(gmailwidget, getGmailUnread, nil, 60)
+--vicious.register(gmailwidget, getGmailUnread, nil, 600)
 
 -- {{{ Wibox
 -- Set the default text in textbox
@@ -645,6 +655,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
+	-- Twitter post
+	awful.key({ modkey			  }, "F5",	function () twitPrompt() end),
 
     -- Mod4+s set the window sticky; pressing it again leave the window
     -- only on the current tag
@@ -773,7 +785,7 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "skype" },
       properties = { floating = true } },
-    { rule = { class = "hp-toolbox" },
+    { rule = { class = "Hp-toolbox" },
       properties = { floating = true } },
     { rule = { class = "evince" },
       properties = { floating = true } },
@@ -781,6 +793,8 @@ awful.rules.rules = {
       properties = { tag = tags[1][4] } },
     { rule = { class = "Chats" },
       properties = { tag = tags[1][4] } },
+	{ rule = { name = "Firefox Preferences" },
+	  properties = { floating = true } },
     }
 
 
@@ -904,7 +918,7 @@ end)
 --wifitimer:start()
 
 -- Timer for wifi signal
-wifisignal = timer { timeout = 60 }
+wifisignal = timer { timeout = 90 }
 wifisignal:add_signal("timeout", function() wifiMessage("wlan0") end)
 wifisignal:start()
 		
