@@ -379,12 +379,10 @@ mylauncher = awful.widget.launcher({ image = image(home .. "/.icons/arch-logo.pn
 -- Cpu widget
 cpuicon = widget({ type = "imagebox" })
 cpuicon.image = image(home .. "/.icons/intel_atom.png")
-cpuwidget01 = widget({ type = "textbox" })
-vicious.register(cpuwidget01, vicious.widgets.cpu,
-	' <span color="#fbfbfb">[</span>$1%<span color="#fbfbfb">]</span>', 3)
-cpuwidget02 = widget({ type = "textbox" })
-vicious.register(cpuwidget02, vicious.widgets.cpu,
-	' <span color="#fbfbfb">[</span>$2%<span color="#fbfbfb">]</span>', 3)
+cpuwidget = widget({ type = "textbox" })
+vicious.register(cpuwidget, vicious.widgets.cpu,
+	' <span color="#fbfbfb">[</span>$2%<span color="#fbfbfb">] [</span>$3%<span color="#fbfbfb">]</span>', 3)
+
 
 -- Motherboard icon
 --moboicon = widget({ type = "imagebox", name = "moboicon", align = "right" })
@@ -576,8 +574,7 @@ for s = 1, screen.count() do
 			netupicon,
 			memwidget,
 			memicon,
-			cpuwidget02,
-			cpuwidget01,
+			cpuwidget,
 			cputemp,
 			cpuicon,
 			mytasklist[s],
