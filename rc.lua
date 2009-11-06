@@ -449,7 +449,7 @@ volumeicon.image = image(home .. "/.icons/speaker.png")
 volumewidget = widget({ type = "textbox"})
 -- enable caching
 vicious.enable_caching(vicious.widgets.volume)
-vicious.register(volumewidget, vicious.widgets.volume, "$1%", 20, "Master")
+vicious.register(volumewidget, vicious.widgets.volume, "$1%", 7, "Master")
 volumewidget:buttons(awful.util.table.join(
     awful.button({ }, 4, function() awful.util.spawn(soundRaiseVolume) end),
     awful.button({ }, 5, function() awful.util.spawn(soundLowerVolume) end),
@@ -776,15 +776,15 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gcolor2" },
       properties = { floating = true } },
-    { rule = { class = "ario" },
-      properties = { floating = true } },
+    --{ rule = { class = "Ario" },
+      --properties = { floating = true } },
     { rule = { class = "Firefox:Dialog" },
       properties = { floating = true } },
-    { rule = { class = "skype" },
+    { rule = { class = "Skype" },
       properties = { floating = true } },
     { rule = { class = "Hp-toolbox" },
       properties = { floating = true } },
-    { rule = { class = "evince" },
+    { rule = { class = "Evince" },
       properties = { floating = true } },
     { rule = { class = "Pidgin" },
       properties = { tag = tags[1][4] } },
