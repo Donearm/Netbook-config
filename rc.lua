@@ -30,7 +30,8 @@ editor_cmd = terminal .. " -e " .. editor
 
 
 -- Some variables
-browser_nav = "firefox -P navigation --no-remote"
+--browser_nav = "firefox -P navigation --no-remote"
+browser_nav = "chromium-browser --enable-plugins"
 browser_mad = "firefox -P maidens --no-remote"
 music = "ario"
 musicPlay = "gmusicbrowser -remotecmd PlayPause"
