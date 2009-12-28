@@ -33,7 +33,7 @@ editor_cmd = terminal .. " -e " .. editor
 --browser_nav = "firefox -P navigation --no-remote"
 browser_nav = "chromium-browser --enable-plugins"
 browser_mad = "firefox -P maidens --no-remote"
-music = "ario"
+music = "gmm" -- my music player of choice
 musicPlay = "gmusicbrowser -remotecmd PlayPause"
 musicStop = "gmusicbrowser -remotecmd Stop"
 musicPrev = "gmusicbrowser -remotecmd PrevSongInPlaylist"
@@ -361,10 +361,11 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, image(home .. "/
                                         { "open terminal", terminal, image("/usr/share/pixmaps/rxvt-unicode.png") },
                                         { "firefox (navigation)", "firefox -P navigation --no-remote", image("/usr/share/pixmaps/firefox.png") },
                                         { "firefox (maidens)", "firefox -P maidens --no-remote", image("/usr/share/pixmaps/firefox.png") },
-                                        { "chromium", "chromium-browser --enable-plugins", image("/usr/share/pixmaps/chromium-browser.png") },
+                                        { "chromium", "chromium --enable-plugins", image("/usr/share/icons/hicolor/48x48/apps/chromium.png") },
                                         { "thunar", "thunar", image(home .. "/.icons/thunar-logo.png") },
-                                        { "Music", music, image("/usr/share/ario/art/ario.png") },
-                                        --{ "Pidgin", "pidgin", image("/usr/share/icons/hicolor/16x16/apps/pidgin.png") },
+                                        --{ "Music", music, image("/usr/share/ario/art/ario.png") },
+										{ "Music", music, image("/usr/share/icons/hicolor/48x48/apps/gmm.png") },
+                                        { "Pidgin", "pidgin", image("/usr/share/icons/hicolor/16x16/apps/pidgin.png") },
                                         { "Skype", "skype", image("/usr/share/pixmaps/skype.png") },
                                         { "HP Toolbox", "hp-toolbox", image("/usr/share/hplip/data/images/32x32/hp_logo.png") },
                                         --{ "Avidemux", "avidemux2_gtk", image("/usr/share/pixmaps/avidemux.png") },
@@ -779,6 +780,8 @@ awful.rules.rules = {
       properties = { floating = true } },
     --{ rule = { class = "Ario" },
       --properties = { floating = true } },
+	{ rule = { name = "musicmanager" },
+	  properties = { floating = true } },
     { rule = { class = "Firefox:Dialog" },
       properties = { floating = true } },
     { rule = { class = "Skype" },
