@@ -808,6 +808,7 @@ autorunApps =
     "xcompmgr -c -C -r10 -o.70 -D5 &",
     "xset m 1 2",
     "urxvtd -q -o -f",
+	"choqok",
 }
 if autorun then
     for app = 1, #autorunApps do
