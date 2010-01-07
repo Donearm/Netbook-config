@@ -30,7 +30,7 @@ alias skype="skype --disable-cleanlooks -style GTK"
 alias orphans="pacman -Qtdq"
 alias svim="sudo vim"
 # rsync alias to sync with kortirion over ssh
-alias ssrsync="rsync -avz --progress --inplace --rsh='ssh -p8888'"
+alias ssrsync="rsync -avz --progress --inplace --delete-after --rsh='ssh -p8888'"
 
 # Set the keycodes for the extra keys that aren't usually recognized by
 # the kernel
