@@ -30,7 +30,7 @@ termcapinfo xterm 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen\007'
 
 
 #caption always "%{=b dw}:%{-b dw}:%{=b dk}[ %{-b db}%{-b dc}screen %{=b dk}] [ %= %?%{-b dc}%-Lw%?%{+b dk}(%{+b db}%n:%t%{+b dk})%?(%u)%?%{-b db}%?%{-b dc}%+Lw%? %{=b dk}]%{-b dw}:%{+b db}:"
-caption always "%{=b dg}%{-b kg}:%{+b kg}: %{-b kg}%D %d.%m %c %{+b kg}:%{-b kg}:%= %{=m kg}%-w%{+u kg}%n %h %t%{-}%{=m kg}%+w " 
+caption always "%{=b dc}%{-b kc}:%{+b kc}: %{-b kc}%D %d.%m %c %{+b kc}:%{-b kc}:%= %{=m kc}%-w%{+u kc}%n %h %t%{-}%{=m kc}%+w " 
 
 # Create some windows right at start
 #screen -l -ln -t bash 0
