@@ -7,7 +7,7 @@ alias du="du -h -c"
 alias bash="/bin/bash --login"
 alias konsole="konsole --ls"
 alias slrn="slrn --kill-log $HOME/.slrn/kill_log.log"
-alias startx="startx -- -nolisten tcp -deferglyphs 16 -dpi 134 2> /tmp/startx.log"
+alias startx="startx -- -nolisten tcp -deferglyphs 16 -dpi 96 2> /tmp/startx.log"
 alias fetf="fetchmail -F pop.mail.yahoo.it popmail.email.it pop3.live.com" 
 alias fetco="fetchmail -c"
 alias gmail="mutt -f imaps://forod.g@imap.gmail.com:993"
@@ -31,6 +31,8 @@ alias orphans="pacman -Qtdq"
 alias svim="sudo vim"
 # rsync alias to sync with kortirion over ssh
 alias ssrsync="rsync -avz --progress --inplace --delete-after --rsh='ssh -p8888'"
+# ttytter script for important persons
+alias mf_vip="ttytter -rc=-mf -readline=0 -script ~/.ttytter-mf-vip"
 
 # Set the keycodes for the extra keys that aren't usually recognized by
 # the kernel
