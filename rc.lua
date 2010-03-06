@@ -31,7 +31,7 @@ editor_cmd = terminal .. " -e " .. editor
 
 -- Some variables
 --browser_nav = "firefox -P navigation --no-remote"
-browser_nav = "chromium --enable-plugins"
+browser_nav = "firefox -P navigation --no-remote"
 browser_mad = "firefox -P maidens --no-remote"
 music = "gmm" -- my music player of choice
 musicPlay = "gmusicbrowser -remotecmd PlayPause"
@@ -808,7 +808,6 @@ autorunApps =
     "xcompmgr -c -C -r10 -o.70 -D5 &",
     "xset m 1 2",
     "urxvtd -q -o -f",
-	"choqok",
 }
 if autorun then
     for app = 1, #autorunApps do
