@@ -464,6 +464,9 @@ volumewidget:buttons(awful.util.table.join(
 --gmailwidget = widget({ type = "textbox" })
 --gmailwidget.text = getGmailUnread
 --vicious.register(gmailwidget, getGmailUnread, nil, 600)
+--
+-- login infos should be in ~/.netrc
+--vicious.register(gmailwidget, vicious.widgets.gmail, "${count}", 181)
 
 -- {{{ Wibox
 -- Set the default text in textbox
