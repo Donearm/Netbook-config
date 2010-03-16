@@ -433,7 +433,7 @@ vicious.register(batterywidget, vicious.widgets.bat, '$2', 50, 'BAT0')
 
 -- Temperatures
 cputemp = widget({ type = 'textbox'})
-vicious.register(cputemp, getCpuTemp, "$1", 40)
+vicious.register(cputemp, vicious.widgets.thermal, "$1°C", 40, "thermal_zone0")
 
 --mobotemp = widget({ type = 'textbox'})
 --vicious.register(mobotemp, getMoboTemp, "$1", 40)
