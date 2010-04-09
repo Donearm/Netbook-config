@@ -33,6 +33,8 @@ alias svim="sudo vim"
 alias ssrsync="rsync -avz --progress --inplace --delete-after --rsh='ssh -p8888'"
 # ttytter script for important persons
 alias mf_vip="ttytter -rc=-mf -readline=0 -script ~/.ttytter-mf-vip"
+# sync ScrapBook folder and other stuff
+alias scrapsync="rsync -avz --progress --inplace --delete-after --rsh='ssh -p8888' kortirion:/mnt/documents/learning/ ."
 
 # Set the keycodes for the extra keys that aren't usually recognized by
 # the kernel
