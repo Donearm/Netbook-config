@@ -406,6 +406,7 @@ netupicon.image = image(home .. "/.icons/up_arrow.png")
 netdownicon = widget({ type = "imagebox" })
 netdownicon.image = image(home .. "/.icons/down_arrow.png")
 netupwidget = widget({ type = "textbox"})
+vicious.enable_caching(vicious.widgets.net)
 -- the last 3 options are interval-in-seconds, properties-name, padding
 vicious.register(netupwidget, vicious.widgets.net,
 	'${wlan0 up_kb}', nil, nil, 2)
@@ -421,6 +422,7 @@ wifiicon:buttons(awful.util.table.join(
     awful.button({ }, 3, function () awful.util.spawn(networkManager) end)
 ))
 wifiwidget = widget({ type = "textbox"})
+vicious.enable_caching(vicious.widgets.wifi)
 vicious.register(wifiwidget, vicious.widgets.wifi, 
 	"${rate}"..'<span color="#fbfbfb">|</span>'.."${link}%", 60, 'wlan0')
 
