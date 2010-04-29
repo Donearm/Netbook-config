@@ -66,8 +66,6 @@ layouts =
     awful.layout.suit.tile.top,
     awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier,
@@ -328,7 +326,8 @@ tags.setup = {
     { name = "1", layout = layouts[1] },
     { name = "2", layout = layouts[1] },
     { name = "3", layout = layouts[1] },
-    { name = "4", layout = layouts[1] }
+    { name = "4", layout = layouts[1] },
+	{ name = "5", layout = layouts[1] }
 }
 -- Define tags table.
 for s = 1, screen.count() do
