@@ -363,7 +363,6 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, image(home .. "/
                                         { "chromium", "chromium --enable-plugins", image("/usr/share/icons/hicolor/48x48/apps/chromium.png") },
                                         { "thunar", "thunar", image(home .. "/.icons/thunar-logo.png") },
                                         --{ "Music", music, image("/usr/share/ario/art/ario.png") },
-										{ "Music", music, image("/usr/share/icons/hicolor/48x48/apps/gmm.png") },
                                         { "Pidgin", "pidgin", image("/usr/share/icons/hicolor/16x16/apps/pidgin.png") },
                                         { "Skype", "skype", image("/usr/share/pixmaps/skype.png") },
                                         { "HP Toolbox", "hp-toolbox", image("/usr/share/hplip/data/images/32x32/hp_logo.png") },
