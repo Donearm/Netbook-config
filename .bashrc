@@ -16,9 +16,6 @@ alias bajkal="mutt -f imap://in.virgilio.it"
 alias email_it="mutt -f imap://imapmail.email.it/INBOX"
 alias alsamixer="alsamixer -V all"
 alias feh="feh --fontpath /usr/share/fonts/TTF/"
-alias vcs="vcs -j -c 4 -u nirari -H 200 -O bg_heading=lavender \
--O bg_sign=lavender -O bg_contact=lavender \
--O font_heading=DejaVu-Sans-Condensed-Bold"
 alias yogurt="yaourt"
 # Skype using gtk instead of qt
 alias skype="skype --disable-cleanlooks -style GTK"
