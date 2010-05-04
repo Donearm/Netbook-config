@@ -11,7 +11,9 @@
 # not needed since Xorg 7.4
 #xmodmap .Xmodmap
 
-
+# start ttytter inside screen but only if it's not already running
+/mnt/documents/Script/ttytter_screen_startup.sh
+#screen -dm -c ~/.screenrc-ttytter &
 
 exec awesome
 #exec openbox-session
