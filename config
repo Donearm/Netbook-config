@@ -10,7 +10,7 @@ ReadTags		= yes
 # Directory in which you store music files, if you specify it, you will be able
 # to quickly go to this directory with the '-m' parameter or the 'm' command.
 # This can also point to a playlist.
-MusicDir		= "/home/gianluca/Music"
+MusicDir		= "/home/gianluca/documents/Music"
 
 # How to sort? FileName is the only option for now.
 Sort			= FileName
@@ -107,7 +107,7 @@ ShowTime		= IfAvailable
 
 # Theme file. This can be absolute path or relative to
 # /usr/share/moc/themes/ (depends on installation prefix) or ~/.moc/themes/
-# Theme			= example_theme
+ Theme			= nightly_theme 
 
 # The theme used when running on on xterm
 # XTermTheme		= transparent-background
