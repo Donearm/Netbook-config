@@ -57,7 +57,6 @@ toggle_menu =		TAB		h
 toggle_layout =		L
 add_file =			l
 clear_playlist =	C
-remove_dead_entries =		Y
 add_directory =		A
 volume_down_1 =		<
 volume_up_1 =		>
@@ -93,8 +92,8 @@ volume_60 =		M-6
 volume_70 =		M-7
 volume_80 =		M-8
 volume_90 =		M-9
-mark_start =	'
-mark_end =		"
+#mark_start =	'
+#mark_end =		"
 
 # Key binding for directories: defaults are Shift-number
 # shift 1 = ! = Fastdir1
@@ -111,7 +110,7 @@ go_to_fast_dir10 =	)
 
 plist_add_stream =	^u
 toggle_mixer =		x
-toggle_softmixer =	^w
+#toggle_softmixer =	^w
 history_up =		UP
 history_down =		DOWN
 plist_move_up =		i
@@ -119,15 +118,15 @@ plist_move_down =	u
 theme_menu =		T
 
 
-toggle_equalizer =			E
-equalizer_refresh =			e
-equalizer_prev =			W
-equalizer_next =			w
-toggle_make_mono =			J
-show_lyrics =				^l
+#toggle_equalizer =			E
+#equalizer_refresh =			e
+#equalizer_prev =			W
+#equalizer_next =			w
+#toggle_make_mono =			J
+#show_lyrics =				^l
 playlist_full_paths =		P
-enqueue_file =				z
-clear_queue =				Z
+#enqueue_file =				z
+#clear_queue =				Z
 
 exec_command1 =		F1
 exec_command2 =		F2
