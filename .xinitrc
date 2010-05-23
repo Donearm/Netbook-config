@@ -8,8 +8,7 @@
 
 #source /etc/X11/Xsession 2> /tmp/startx.log
 
-# not needed since Xorg 7.4
-#xmodmap .Xmodmap
+xmodmap .Xmodmap
 
 # start ttytter inside screen but only if it's not already running
 /mnt/documents/Script/ttytter_screen_startup.sh
