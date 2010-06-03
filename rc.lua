@@ -404,7 +404,7 @@ netupicon.image = image(home .. "/.icons/up_arrow.png")
 netdownicon = widget({ type = "imagebox" })
 netdownicon.image = image(home .. "/.icons/down_arrow.png")
 netupwidget = widget({ type = "textbox"})
-vicious.enable_caching(vicious.widgets.net)
+vicious.cache(vicious.widgets.net)
 -- the last 3 options are interval-in-seconds, properties-name, padding
 vicious.register(netupwidget, vicious.widgets.net,
 	'${wlan0 up_kb}', nil, nil, 2)
@@ -420,7 +420,7 @@ wifiicon:buttons(awful.util.table.join(
     awful.button({ }, 3, function () awful.util.spawn(networkManager) end)
 ))
 wifiwidget = widget({ type = "textbox"})
-vicious.enable_caching(vicious.widgets.wifi)
+vicious.cache(vicious.widgets.wifi)
 vicious.register(wifiwidget, vicious.widgets.wifi, 
 	"${rate}"..'<span color="#fbfbfb">|</span>'.."${link}%", 60, 'wlan0')
 
@@ -450,7 +450,7 @@ volumeicon.image = image(home .. "/.icons/speaker.png")
 
 volumewidget = widget({ type = "textbox"})
 -- enable caching
-vicious.enable_caching(vicious.widgets.volume)
+vicious.cache(vicious.widgets.volume)
 vicious.register(volumewidget, vicious.widgets.volume, "$1%", 7, "Master")
 volumewidget:buttons(awful.util.table.join(
     awful.button({ }, 4, function() awful.util.spawn(soundRaiseVolume) end),
