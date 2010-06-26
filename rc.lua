@@ -327,7 +327,8 @@ tags.setup = {
     { name = "2", layout = layouts[1] },
     { name = "3", layout = layouts[1] },
     { name = "4", layout = layouts[1] },
-	{ name = "5", layout = layouts[1] }
+	{ name = "5", layout = layouts[1] },
+	{ name = "6", layout = layouts[1] }
 }
 -- Define tags table.
 for s = 1, screen.count() do
