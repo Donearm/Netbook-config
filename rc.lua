@@ -41,7 +41,7 @@ musicNext = "gmusicbrowser -remotecmd NextSongInPlaylist"
 soundLowerVolume = "amixer set Master 5%-"
 soundRaiseVolume = "amixer set Master 5%+"
 soundMute = "amixer set Master 0%"
-filemanager = "thunar"
+filemanager = "emelfm2"
 mail = "urxvtc -e mutt -y"
 lockScreen = "xscreensaver-command -lock"
 networkManager = "wicd-client -n" -- my network manager of choice
@@ -361,8 +361,7 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, image(home .. "/
                                         { "open terminal", terminal, image("/usr/share/pixmaps/rxvt-unicode.png") },
                                         { "firefox (navigation)", "firefox -P navigation --no-remote", image("/usr/share/pixmaps/firefox.png") },
                                         { "firefox (maidens)", "firefox -P maidens --no-remote", image("/usr/share/pixmaps/firefox.png") },
-                                        { "chromium", "chromium --enable-plugins", image("/usr/share/icons/hicolor/48x48/apps/chromium.png") },
-                                        { "thunar", "thunar", image(home .. "/.icons/thunar-logo.png") },
+                                        { "emelfm2", filemanager, image("/usr/share/pixmaps/emelfm2.png") },
                                         --{ "Music", music, image("/usr/share/ario/art/ario.png") },
                                         { "Pidgin", "pidgin", image("/usr/share/icons/hicolor/16x16/apps/pidgin.png") },
                                         { "Skype", "skype", image("/usr/share/pixmaps/skype.png") },
