@@ -1,0 +1,17 @@
+script ~/.config/jumanji/scripts/input_hinting_mode.js
+plugin application/x-shockwave-flash
+set download_dir ~
+set download_command urxvtc -e sh -c "wget --load-cookies  ~/.config/jumanji/cookies '%s' -O %s";
+set homepage http://git.pwmt.org/?p=jumanji.git;a=blob;f=config.def.h;h=6a12c7284bfeb48afac38999e1742f7485fdb073;hb=HEAD
+searchengine ggl http://www.google.com/search?q=%s
+
+set default_bgcolor	#252525
+set default_fgcolor	#85bdbc
+set statusbar_fgcolor #85bdbc
+set statusbar_ssl_bgcolor #4a77b2
+set completion_g_bgcolor #252525
+set inputbar_fgcolor #85bdbc
+set inputbar_bgcolor #252525
+set tabbar_fgcolor #85bdbc
+set tabbar_focus_fgcolor #ffffff
+set completion_hl_bgcolor #85bdbc
