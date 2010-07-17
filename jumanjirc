@@ -1,5 +1,5 @@
 script ~/.config/jumanji/scripts/input_hinting_mode.js
-plugin application/x-shockwave-flash
+
 set download_dir ~
 set download_command urxvtc -e sh -c "wget --load-cookies  ~/.config/jumanji/cookies '%s' -O %s";
 set homepage http://git.pwmt.org/?p=jumanji.git;a=blob;f=config.def.h;h=6a12c7284bfeb48afac38999e1742f7485fdb073;hb=HEAD
@@ -15,3 +15,5 @@ set inputbar_bgcolor #252525
 set tabbar_fgcolor #85bdbc
 set tabbar_focus_fgcolor #ffffff
 set completion_hl_bgcolor #85bdbc
+
+map <C-q> quitall
