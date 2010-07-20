@@ -1,8 +1,9 @@
-script ~/.config/jumanji/scripts/input_hinting_mode.js
+#script ~/.config/jumanji/scripts/input_hinting_mode.js
+script ~/.config/jumanji/scripts/dwb2_hints.js
 
 set download_dir ~
 set download_command urxvtc -e sh -c "wget --load-cookies  ~/.config/jumanji/cookies '%s' -O %s";
-set homepage http://git.pwmt.org/?p=jumanji.git;a=blob;f=config.def.h;h=6a12c7284bfeb48afac38999e1742f7485fdb073;hb=HEAD
+set homepage http://www.google.it
 searchengine ggl http://www.google.com/search?q=%s
 
 set default_bgcolor	#252525
