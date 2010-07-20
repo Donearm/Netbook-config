@@ -4,6 +4,7 @@ set complete=l
 set defsearch=
 set runtimepath=/home/gianluca//.vimperator
 set wildoptions=auto
+set focuscontent=on
 source! /home/gianluca/.vimperatorrc.local
 
 " vim: set ft=vimperator:
