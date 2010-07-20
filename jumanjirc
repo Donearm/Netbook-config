@@ -5,6 +5,7 @@ set download_dir ~
 set download_command urxvtc -e sh -c "wget --load-cookies  ~/.config/jumanji/cookies '%s' -O %s";
 set homepage http://www.google.it
 searchengine ggl http://www.google.com/search?q=%s
+searchengine arch https://bbs.archlinux.org/search.php?q=%s
 
 set default_bgcolor	#252525
 set default_fgcolor	#85bdbc
