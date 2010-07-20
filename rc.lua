@@ -808,7 +808,8 @@ autorunApps =
 {
     --"xscreensaver",
     "xbindkeys",
-    "xcompmgr -c -C -r10 -o.70 -D5 &",
+    --"xcompmgr -c -C -r10 -o.70 -D5 &",
+	"cairo-compmgr &",
     "xset m 1 2",
     "urxvtd -q -o -f",
 }
