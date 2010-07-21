@@ -30,9 +30,9 @@ editor_cmd = terminal .. " -e " .. editor
 
 
 -- Some variables
---browser_nav = "firefox -P navigation --no-remote"
 browser_nav = "firefox -P navigation --no-remote"
 browser_mad = "firefox -P maidens --no-remote"
+browser_light = "jumanji"	-- lighter web browser
 music = "gmm" -- my music player of choice
 musicPlay = "gmusicbrowser -remotecmd PlayPause"
 musicStop = "gmusicbrowser -remotecmd Stop"
@@ -633,6 +633,7 @@ globalkeys = awful.util.table.join(
     awful.key({ alt },               "m",   function () awful.util.spawn(music) end),
     awful.key({ modkey },            "f",   function () awful.util.spawn(browser_mad) end),
     awful.key({ modkey, alt       }, "f",   function () awful.util.spawn(browser_nav) end),
+	awful.key({ alt },				 "j",   function () awful.util.spawn(browser_light) end),
     awful.key({ none }, "XF86AudioLowerVolume", function () awful.util.spawn(soundLowerVolume) end),
     awful.key({ none }, "XF86AudioRaiseVolume", function () awful.util.spawn(soundRaiseVolume) end),
     awful.key({ none }, "XF86AudioMute",    function () awful.util.spawn(soundMute) end),
@@ -645,10 +646,6 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "z", function() io.popen(home .. "/Script/awesome_widgets.sh stop") end),
     awful.key({ modkey, "Shift"   }, "z", function() io.popen(home .. "/Script/awesome_widgets.sh start") end),
 	
-	-- Alt+t: disable touchpad; Win+Alt+t: enable touchpad
-	awful.key({ alt },				 "t", function() io.popen(home .. "/Script/script_touchpad.sh off") end),
-	awful.key({ modkey, alt		  }, "t", function() io.popen(home .. "/Script/script_touchpad.sh on") end),
-
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
     awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
