@@ -69,10 +69,9 @@
 #"xvkbd -sendevent -text "\[Alt_L]\[Left]""
 #m:0x0 + b:8
 
-# Disable wifi with Fn+<F2>
-"/etc/acpi/eee-wifi-on-off.sh off"
-	m:0x0 + c:157
-	XF86WLAN
+# Simulate mouse left click with Ctrl+F12
+#"xte 'mouseclick 1'"
+#	Control + F12
 
 ##################################
 # End of xbindkeys configuration #
