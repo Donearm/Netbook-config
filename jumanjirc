@@ -7,6 +7,8 @@ set homepage http://www.google.it
 searchengine ggl http://www.google.com/search?q=%s
 searchengine arch https://bbs.archlinux.org/search.php?q=%s
 
+set proxy 127.0.0.1:8118
+
 set default_bgcolor	#252525
 set default_fgcolor	#85bdbc
 set statusbar_fgcolor #85bdbc
