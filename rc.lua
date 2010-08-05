@@ -793,9 +793,9 @@ awful.rules.rules = {
     { rule = { class = "Evince" },
       properties = { floating = true } },
     { rule = { class = "Pidgin" },
-      properties = { tag = tags[1][4] } },
+      properties = { tag = tags[1][6] } },
     { rule = { class = "Chats" },
-      properties = { tag = tags[1][4] } },
+      properties = { tag = tags[1][6] } },
 	{ rule = { name = "Firefox Preferences" },
 	  properties = { floating = true } },
     }
