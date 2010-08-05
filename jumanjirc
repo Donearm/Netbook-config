@@ -5,7 +5,6 @@ set download_dir ~
 set download_command urxvtc -e sh -c "wget --load-cookies  ~/.config/jumanji/cookies '%s' -O %s";
 set homepage http://www.google.it
 searchengine ggl http://www.google.com/search?q=%s
-searchengine arch https://bbs.archlinux.org/search.php?q=%s
 
 set proxy 127.0.0.1:8118
 
