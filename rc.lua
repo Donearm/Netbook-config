@@ -41,6 +41,7 @@ musicNext = "gmusicbrowser -remotecmd NextSongInPlaylist"
 soundLowerVolume = "amixer set Master 5%-"
 soundRaiseVolume = "amixer set Master 5%+"
 soundMute = "amixer set Master 0%"
+soundToggleSpeakers = "amixer set Speaker toggle"
 filemanager = "emelfm2"
 mail = "urxvtc -e mutt -y"
 lockScreen = "xscreensaver-command -lock"
@@ -455,7 +456,8 @@ vicious.register(volumewidget, vicious.widgets.volume, "$1%", 7, "Master")
 volumewidget:buttons(awful.util.table.join(
     awful.button({ }, 4, function() awful.util.spawn(soundRaiseVolume) end),
     awful.button({ }, 5, function() awful.util.spawn(soundLowerVolume) end),
-    awful.button({ }, 3, function() awful.util.spawn(soundMute) end)
+    awful.button({ }, 3, function() awful.util.spawn(soundMute) end),
+	awful.button({ }, 1, function() awful.util.spawn(soundToggleSpeakers) end)
     ))
 
 -- Gmail widget
