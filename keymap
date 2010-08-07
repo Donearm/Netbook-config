@@ -110,7 +110,7 @@ go_to_fast_dir10 =	)
 
 plist_add_stream =	^u
 toggle_mixer =		x
-#toggle_softmixer =	^w
+toggle_softmixer =	^w
 history_up =		UP
 history_down =		DOWN
 plist_move_up =		i
@@ -120,10 +120,10 @@ theme_menu =		T
 
 #toggle_equalizer =			E
 #equalizer_refresh =			e
-#equalizer_prev =			W
-#equalizer_next =			w
+equalizer_prev =			W
+equalizer_next =			w
 #toggle_make_mono =			J
-#show_lyrics =				^l
+show_lyrics =				^l
 playlist_full_paths =		P
 #enqueue_file =				z
 #clear_queue =				Z

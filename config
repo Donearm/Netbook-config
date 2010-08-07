@@ -1,13 +1,13 @@
 # This is a configuration file for the MOC player. It should be named 'config'
-# and placed in directory ~/.moc/
-# Comments begins with '#'.
-# You can use quotes and escape ('\') in parameters
+# and placed in the directory ~/.moc/
+# Comments begin with '#'.
+# You can use quotes and escape ('\') in parameters.
 
 
 # Show file titles (title, author, album) instead of file names.
 ReadTags		= yes
 
-# Directory in which you store music files, if you specify it, you will be able
+# Directory in which you store music files. If you specify it you will be able
 # to quickly go to this directory with the '-m' parameter or the 'm' command.
 # This can also point to a playlist.
 MusicDir		= "/home/gianluca/documents/Music"
@@ -16,7 +16,7 @@ MusicDir		= "/home/gianluca/documents/Music"
 Sort			= FileName
 
 # Show errors in the streams, for example CRC errors or broken frames in mp3
-# files
+# files.
 ShowStreamErrors	= no
 
 # Ignore CRC errors in MP3 files. Most players do that, so the default value is
@@ -29,15 +29,15 @@ Repeat			= no
 # Turn on shuffle.
 Shuffle			= no
 
-# Turn on AutoNext
+# Turn on AutoNext.
 AutoNext		= yes
 
-# Default FormatString
+# Default FormatString:
 # %n - Track number
 # %a - Artist
 # %A - Album
 # %t - Title
-# %(X:TRUE:FALSE) - ternary expression - if X exists, do TRUE, otherwaise
+# %(X:TRUE:FALSE) - ternary expression - if X exists, do TRUE, otherwise
 #                   FALSE. '\' - escape character (must be double, because of 
 #                   config interpreter). man zshmisc for more info.
 FormatString		= "%(n:%n :)%(a:%a - :)%(t:%t:)%(A: \(%A\):)"
@@ -55,38 +55,62 @@ InputBuffer		= 512
 Prebuffering		= 64
 
 # Use this HTTP proxy server for internet streams. If not set, the
-# environmential variables http_proxy and ALL_PROXY will be used if present.
+# environment variables http_proxy and ALL_PROXY will be used if present.
 #HTTPProxy		= my_proxy:port
 
-# Sound driver - OSS, ALSA, JACK, or null (only for debugging)
-# You can enter more than one driver separated by a coma. The first working
+# Sound driver - OSS, ALSA, JACK, or null (only for debugging).
+# You can enter more than one driver separated by a comma. The first working
 # driver will be used.
 SoundDriver		= JACK, ALSA, OSS
 
-# Jack output settings
+# Jack output settings.
 JackOutLeft		= "alsa_pcm:playback_1"
 JackOutRight		= "alsa_pcm:playback_2"
 
-# OSS output device
+# OSS output device.
 OSSDevice		= /dev/dsp
 
-# OSS Mixer device
+# OSS Mixer device.
 OSSMixerDevice		= /dev/mixer
 
-# OSS Mixer channel: pcm or master
+# OSS Mixer channel: pcm or master.
 OSSMixerChannel		= pcm
 
-# Second OSS Mixer channel: pcm or master
+# Second OSS Mixer channel: pcm or master.
 OSSMixerChannel2	= master
 
-# ALSA mixer device
+# ALSA mixer device.
 AlsaMixer 		= Master
 
-# Second ALSA mixer device
+# Second ALSA mixer device.
 AlsaMixer2		= PCM
 
-# ALSA output device
+# ALSA output device.
 AlsaDevice		= default
+
+# Save software mixer state?
+# If enabled, a file 'softmixer' will
+# be created in '~/.moc/' storing the 
+# mixersetting set when the server is shut-down.
+# Note that there is a 'hidden' 'Amplification'
+# setting in that file.
+# Amplification (0-200) is used to scale
+# the mixer setting (0-100). This results
+# in a higher signal amplitude but may also
+# produce clipping.
+#Softmixer_SaveState = yes
+
+# Save equalizer state?
+# If enabled, a file 'equalizer' will
+# be created in '~/.moc/' storing the
+# equalizer settings when the server is shut-down.
+# There is a 'hidden' 'Mixin' setting in that file.
+# Mixin (0.0-1.0) is used to determine how much of
+# the original signal is used after equalizing.
+# 0 means to only use the equalized sound, 1
+# effectively disabled the mixer.
+# Default is 0.25
+#Equalizer_SaveState = yes
 
 # Show files with dot at the beginning?
 ShowHiddenFiles		= no
@@ -95,29 +119,38 @@ ShowHiddenFiles		= no
 # in the current directory.
 StartInMusicDir		= yes
 
-# Hide file name extensions
+# Hide file name extensions.
 HideFileExtension	= no
 
 # Show file format in menu.
 ShowFormat		= yes
 
 # Show file time in menu. Possible options: yes, no, IfAvailable - show the
-# time only when it was read before (often works faster)
+# time only when it was read before (often works faster).
 ShowTime		= IfAvailable
 
 # Theme file. This can be absolute path or relative to
 # /usr/share/moc/themes/ (depends on installation prefix) or ~/.moc/themes/
  Theme			= nightly_theme 
 
-# The theme used when running on on xterm
+# The theme used when running on an xterm.
 # XTermTheme		= transparent-background
 
+# Should MOC try to autoload the default lyrics file for an audio?  (The
+# default lyrics file is a text file with the same file name as the audio
+# file name with any trailing "extension" removed.)
+# AutoLoadLyrics	= yes
+
 # MOC directory - where pid file, socket, and state files are stored.
-# You can use ~ at the begining
+# You can use ~ at the beginning.
 # MOCDir		= ~/.moc
 
 # Use mmap() to read files. mmap() is much slower on NFS.
 UseMmap			= no
+
+# Use MIME to identify audio files.  This can make for slower loading
+# of playlists but is more accurate than using "extensions".
+#UseMimeMagic	= no
 
 # Assume this encoding for ID3 version 1/1.1 tags (mp3 files). Unlike ID3v2
 # UTF-8 is not used here and MOC can't guess how tags are encoded. Another
@@ -128,14 +161,17 @@ UseMmap			= no
 # Use librcc to fix ID3 version 1/1.1 tags encoding.
 #UseRCC				= yes
 
+# Use librcc to filenames and directory names encoding.
+#UseRCCForFilesystem			= yes
+
 # Remember the playlist after exit?
 SavePlaylist		= yes
 
-# When using more than one client (interface) at a time, do the share the
+# When using more than one client (interface) at a time, do they share the
 # playlist?
 SyncPlaylist		= yes
 
-# Choose a keymap file (relative to ~/.moc/ or absolute path)
+# Choose a keymap file (relative to ~/.moc/ or absolute path).
 # Example keymap with description is included (keymap.example).
 Keymap			= keymap
 
@@ -143,8 +179,8 @@ Keymap			= keymap
 # some terminals.
 ASCIILines		= no
 
-# FastDirs, these allow you jump directly to a directory, the key bindings are
-# in the keymap file.
+# FastDirs, these allow you to jump directly to a directory, the key bindings
+# are in the keymap file.
 #Fastdir1 = /mp3/rock
 #Fastdir2 = /mp3/electronic
 #Fastdir3 = /mp3/rap
@@ -163,7 +199,7 @@ ASCIILines		= no
 # stroke.
 #SilentSeekTime		= 5
 
-# Resample method to use. There are few methods of resampling sound supported
+# Resample method to use. There are a few methods of resampling sound supported
 # by libresamplerate. The default is the fastest (linear). Better description
 # is here: http://www.mega-nerd.com/libsamplerate/api_misc.html#Converters
 #
@@ -172,25 +208,25 @@ ASCIILines		= no
 # SincBestQuality - really slow (I know you probably have an xx GHz processor,
 #			but it's not enough to not see this in the top output :)
 #			The worst case Signal-to-Noise Ratio is 97dB.
-# SincMediumQuality - much faster
-# SincFastest - the fastest bandlimited interpolation
+# SincMediumQuality - much faster.
+# SincFastest - the fastest bandlimited interpolation.
 #
 # Poor quality, but much faster methods:
 #
-# ZeroOrderHold - really poor quality, but it's really fast
-# Linear - a bit better and a bit slower
+# ZeroOrderHold - really poor quality, but it's really fast.
+# Linear - a bit better and a bit slower.
 #
 #ResampleMethod		= Linear
 
 # Always use this sample rate when opening the audio device (and resample the
-# sound is necessary). When set to 0 the device is opened with the file's rate.
+# sound if necessary). When set to 0 the device is opened with the file's rate.
 #ForceSampleRate	= 48000
 
 # By default even if the sound card reports that it can output 24bit samples
 # MOC converts 24bit PCM to 16bit. This option set to yes allows MOC to use
 # 24bit output (for example MP3 decoder uses this format). This is disabled
 # in the default configuration because there were reports that it prevents
-# from playing MP3 files on some soundcards.
+# MP3 files from playing on some soundcards.
 #Allow24bitOutput	= no
 
 # Use realtime priority for output buffer thread. This will prevent gaps while
@@ -205,22 +241,22 @@ TagsCacheSize		= 256
 # Number items in the playlist.
 #PlaylistNumbering	= yes
 
-# Main window layoutis can be configured. You can change the position and the
-# size of the menus (directory and playlist). You have 3 layouts ant switch
+# Main window layouts can be configured. You can change the position and the
+# size of the menus (directory and playlist). You have 3 layouts and switch
 # between then using the 'l' key (standard mapping). By default only 2 layouts
 # are configured.
 #
-# The format is as folows:
-# Each menu is described in format NAME:POSITION_X,POSITION_Y,WIDTH,HEIGHT
-# NAME is directory or playlist
-# Other parameters define position and size of the menu. They can be absolute
-# numbers (like 10) or a percent value of the screen size (like 45%).
+# The format is as follows:
+# Each menu is described in the format NAME:POSITION_X,POSITION_Y,WIDTH,HEIGHT
+# NAME is directory or playlist.
+# The other parameters define position and size of the menu. They can be
+# absolute numbers (like 10) or a percent value of the screen size (like 45%).
 # WIDTH and HEIGHT can have value of FILL which means fill the screen from
 # the menu's position to the border.
 # Separate menu descriptions using a space.
 # Menus may overlap.
 # You must describe at least one menu (default is to fill the whole window).
-# There must be at least one layout (Layout1) defined. Other can be empty ("").
+# There must be at least one layout (Layout1) defined. Others can be empty ("").
 #
 # Examples:
 #
@@ -230,7 +266,7 @@ TagsCacheSize		= 256
 # Layout2 = ""
 # Layout3 = ""
 #
-# The scrren is split into two parts: playlist at the top and the directory
+# The screen is split into two parts: playlist at the top and the directory
 # menu at the bottom. Playlist will occupy 10 lines and the directory menu
 # the rest.
 # Layout1 = "playlist:0,0,100%,10 directory:0,10,100%,FILL"
@@ -251,9 +287,11 @@ CanStartInPlaylist	= yes
 
 # Executing external commands (1 - 10) invoked with key commands (F1 - F10 by
 # default).
-# Some arguments are substituted befor executing:
+# Some arguments are substituted before executing:
 # %f - file path
 # %i - title made from tags
+# %S - start block mark (in seconds)
+# %E - end block mark (in seconds)
 #
 # Data from tags:
 # %t - title
@@ -262,27 +300,30 @@ CanStartInPlaylist	= yes
 # %n - track
 # %m - time of the file (in seconds)
 #
-# Parameters above applys to the currently selected file. If you change them to
-# capital letters, they are taken from the currently played file.
+# Parameters above apply to the currently selected file. If you change them to
+# capital letters, they are taken from the file currently playing.
 #
-# Programms are run using execv(), not a shell, so you can't do things like
+# Programs are run using execv(), not a shell, so you can't do things like
 # redirecting the output to a file. The command string is split using blank
 # characters as separators, the first element is the command to be executed
-# and the rest are parameters, so if you use "echo Playing: %i" we run program
+# and the rest are parameters, so if you use "echo Playing: %I" we run program
 # echo (from $PATH) with 2 parameters: 'Playing:' string and the title. Even
 # if the title contains spaces it's still one parameter and it's safe if it
 # contains `rm -rf /`.
 #
 # Examples:
 # ExecCommand1		= "cp %f /mnt/usb_drive"
-# ExecCommand2		= "/home/joe/now_playing %i"
+# ExecCommand2		= "/home/joe/now_playing %I"
 
-# Display the cursor in the line with the selected file. This can be usefu with
+# Display the cursor in the line with the selected file. This can be useful with
 # a braille display.
 # UseCursorSelection	= no
 
 # Set the terminal title when running under xterm.
 #SetXtermTitle		= yes
+
+# Set the terminal title when running under screen.
+SetScreenTitle		= yes
 
 # Display full paths instead of just file names in the playlist.
 #PlaylistFullPaths	= yes
