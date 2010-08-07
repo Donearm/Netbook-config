@@ -108,14 +108,6 @@ function setFont(font, text)
     return '<span font_desc="'..font..'">'..text..'</span>'
 end
 
--- Twitter prompt
-function twitPrompt()
-	awful.prompt.run({ prompt = "Tweet: " },
-	mypromptbox[mouse.screen].widget,
-	function (expr)
-		awful.util.spawn("curl -u user:password -d status=\""..awful.util.escape(expr).."\" -d source=awesomewm -k http://twitter.com/statuses/update.xml"
-	) end)
-end
 
 -- Wifi naughty message
 function wifiMessage(adapter)
@@ -299,6 +291,54 @@ function addCalendar(inc_offset)
     })
 end
 
+function psByCpu(n)
+    if n == 1 then
+        naughty.destroy(cpuPopup)
+        cpuPopup = nil
+    else
+        local r = io.popen("ps -eo pid,user,comm,%cpu --sort=-%cpu | sed -n '1,15p'"):read("*a")
+        cpuPopup = naughty.notify({
+            title = "Cpu Usage",
+            text = r,
+            timeout = 0,
+            hover_timeout = 3,
+            width = 350
+        })
+    end
+end
+
+function psByMemory(n)
+    if n == 1 then
+        naughty.destroy(memoryPopup)
+        memoryPopup = nil
+    else
+        -- memory sorting doesn't work
+        local r = io.popen("ps -eo pid,user,comm,%mem --sort=%mem | sed -n '1,15p'"):read("*a")
+        memoryPopup = naughty.notify({
+            title = "Memory Usage",
+            text = r,
+            timeout = 0,
+            hover_timeout = 3
+        })
+    end
+end
+
+function mocMessage(n)
+	if n == 1 then
+		naughty.destroy(message)
+		message = nil
+	else
+		local i = io.popen("mocp --info"):read("*a")
+
+		message = naughty.notify({
+			title = "Now Playing",
+			text = i,
+			timeout = 0,
+			hover_timeout = 1
+		})
+	end
+end
+
 -- Gmail function
 function getGmailUnread()
     -- check if the network is up by pinging the router
@@ -381,6 +421,8 @@ mylauncher = awful.widget.launcher({ image = image(home .. "/.icons/arch-logo.pn
 cpuicon = widget({ type = "imagebox" })
 cpuicon.image = image(home .. "/.icons/intel_atom.png")
 cpuwidget = widget({ type = "textbox" })
+cpuwidget:add_signal("mouse::enter", function () psByCpu(0) end)
+cpuwidget:add_signal("mouse::leave", function () psByCpu(1) end)
 vicious.register(cpuwidget, vicious.widgets.cpu,
 	' <span color="#fbfbfb">[</span>$2%<span color="#fbfbfb">] [</span>$3%<span color="#fbfbfb">]</span>', 3)
 
@@ -397,6 +439,8 @@ vicious.register(cpuwidget, vicious.widgets.cpu,
 memicon = widget({ type = "imagebox"})
 memicon.image = image(home .. "/.icons/ram_drive.png")
 memwidget = widget({ type = "textbox"})
+--memwidget:add_signal("mouse::enter", function () psByMemory(0) end)
+--memwidget:add_signal("mouse::leave", function () psByMemory(1) end)
 vicious.register(memwidget, vicious.widgets.mem, " $1%", 10)
 
 -- Network widget
@@ -453,6 +497,8 @@ volumewidget = widget({ type = "textbox"})
 -- enable caching
 vicious.cache(vicious.widgets.volume)
 vicious.register(volumewidget, vicious.widgets.volume, "$1%", 7, "Master")
+volumewidget:add_signal("mouse::enter", function () mocMessage(0) end)
+volumewidget:add_signal("mouse::leave", function () mocMessage(1) end)
 volumewidget:buttons(awful.util.table.join(
     awful.button({ }, 4, function() awful.util.spawn(soundRaiseVolume) end),
     awful.button({ }, 5, function() awful.util.spawn(soundLowerVolume) end),
@@ -656,8 +702,6 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
-	-- Twitter post
-	awful.key({ modkey			  }, "F5",	function () twitPrompt() end),
 
     -- Mod4+s set the window sticky; pressing it again leave the window
     -- only on the current tag
