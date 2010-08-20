@@ -1,0 +1,10 @@
+set default_bgcolor	#252525
+set default_fgcolor	#85bdbc
+set statusbar_fgcolor #85bdbc
+set statusbar_ssl_bgcolor #4a77b2
+set completion_g_bgcolor #252525
+set inputbar_fgcolor #85bdbc
+set inputbar_bgcolor #252525
+set tabbar_fgcolor #85bdbc
+set tabbar_focus_fgcolor #ffffff
+set completion_hl_bgcolor #85bdbc
