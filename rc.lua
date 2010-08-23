@@ -492,13 +492,13 @@ vicious.register(cputemp, vicious.widgets.thermal, "$1°C", 40, "thermal_zone0")
 -- Volume widget
 volumeicon = widget({ type = "imagebox"})
 volumeicon.image = image(home .. "/.icons/speaker.png")
+volumeicon:add_signal("mouse::enter", function () mocMessage(0) end)
+volumeicon:add_signal("mouse::leave", function () mocMessage(1) end)
 
 volumewidget = widget({ type = "textbox"})
 -- enable caching
 vicious.cache(vicious.widgets.volume)
 vicious.register(volumewidget, vicious.widgets.volume, "$1%", 7, "Master")
-volumewidget:add_signal("mouse::enter", function () mocMessage(0) end)
-volumewidget:add_signal("mouse::leave", function () mocMessage(1) end)
 volumewidget:buttons(awful.util.table.join(
     awful.button({ }, 4, function() awful.util.spawn(soundRaiseVolume) end),
     awful.button({ }, 5, function() awful.util.spawn(soundLowerVolume) end),
