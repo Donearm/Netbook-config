@@ -441,7 +441,7 @@ memicon.image = image(home .. "/.icons/ram_drive.png")
 memwidget = widget({ type = "textbox"})
 --memwidget:add_signal("mouse::enter", function () psByMemory(0) end)
 --memwidget:add_signal("mouse::leave", function () psByMemory(1) end)
-vicious.register(memwidget, vicious.widgets.mem, " $1%", 10)
+vicious.register(memwidget, vicious.widgets.mem, " $1%", 11)
 
 -- Network widget
 netupicon = widget({ type = "imagebox"})
@@ -467,18 +467,18 @@ wifiicon:buttons(awful.util.table.join(
 wifiwidget = widget({ type = "textbox"})
 vicious.cache(vicious.widgets.wifi)
 vicious.register(wifiwidget, vicious.widgets.wifi, 
-	"${rate}"..'<span color="#fbfbfb">|</span>'.."${link}%", 60, 'wlan0')
+	"${rate}"..'<span color="#fbfbfb">|</span>'.."${link}%", 57, 'wlan0')
 
 -- Battery widget
 batteryicon = widget({ type = "imagebox"})
 batteryicon.image = image(home .. "/.icons/BatteryTicker.png")
 batterywidget = widget({ type = "textbox"})
 --batteryInfo("BAT0")
-vicious.register(batterywidget, vicious.widgets.bat, '$2', 50, 'BAT0')
+vicious.register(batterywidget, vicious.widgets.bat, '$2', 53, 'BAT0')
 
 -- Temperatures
 cputemp = widget({ type = 'textbox'})
-vicious.register(cputemp, vicious.widgets.thermal, "$1°C", 40, "thermal_zone0")
+vicious.register(cputemp, vicious.widgets.thermal, "$1°C", 43, "thermal_zone0")
 
 --mobotemp = widget({ type = 'textbox'})
 --vicious.register(mobotemp, getMoboTemp, "$1", 40)
