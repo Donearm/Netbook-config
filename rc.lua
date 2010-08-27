@@ -33,11 +33,11 @@ editor_cmd = terminal .. " -e " .. editor
 browser_nav = "firefox -P navigation --no-remote"
 browser_mad = "firefox -P maidens --no-remote"
 browser_light = "jumanji"	-- lighter web browser
-music = "gmm" -- my music player of choice
-musicPlay = "gmusicbrowser -remotecmd PlayPause"
-musicStop = "gmusicbrowser -remotecmd Stop"
-musicPrev = "gmusicbrowser -remotecmd PrevSongInPlaylist"
-musicNext = "gmusicbrowser -remotecmd NextSongInPlaylist"
+music = "urxvtc -e mocp" -- my music player of choice
+musicPlay = "mocp -G"
+musicStop = "mocp -s"
+musicPrev = "mocp -r"
+musicNext = "mocp -f"
 soundLowerVolume = "amixer set Master 5%-"
 soundRaiseVolume = "amixer set Master 5%+"
 soundMute = "amixer set Master 0%"
@@ -108,6 +108,36 @@ function setFont(font, text)
     return '<span font_desc="'..font..'">'..text..'</span>'
 end
 
+-- Xprop function
+function xprop(c)
+    f = function (prop, str)
+        return
+        prop and
+        ( str
+        .. ((type(prop)=="boolean") and "" or (" = " .. prop))
+        .. "\n"
+        )
+        or ""
+    end
+
+    naughty.notify({
+        title = "Client info",
+        text = ""
+        .. f(c.class, "class")
+        .. f(c.instance, "instance")
+        .. f(c.name, "name")
+        .. f(c.type, "type")
+        .. f(c.role, "role")
+        .. f(c.pid, "pid")
+        .. f(c.window, "window_id")
+        .. f(c.machine, "machine")
+        .. f(c.skip_taskbar, "skip taskbar")
+        .. f(c.floating, "floating")
+        .. f(c.minimized, "minimized")
+        .. f(c.maximized_horizontal, "maximized horizontal")
+        .. f(c.maximized_vertical, "maximized vertical")
+    })
+end
 
 -- Wifi naughty message
 function wifiMessage(adapter)
@@ -347,7 +377,7 @@ function getGmailUnread()
         -- if no connection available, return 0 
         return spacer .. '0/0'
     else
-        local unread = io.popen(home .. "/Script/imap_check.py")
+        local unread = io.popen("/mnt/documents/Script/imap_check.py")
         local f = unread:read()
         unread:close()
         return spacer .. setFg(beautiful.fg_normal, f)
@@ -356,7 +386,7 @@ end
 
 -- And the function to read the temporary file
 function runGmailCheck()
-    os.execute(home .. "/Script/imap_check.py > /tmp/gmailcheck &")
+    os.execute("/mnt/documents/Script/imap_check.py > /tmp/gmailcheck &")
 end
 
 -- }}}
@@ -679,7 +709,6 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({ alt },               "m",   function () awful.util.spawn(music) end),
-    awful.key({ modkey },            "f",   function () awful.util.spawn(browser_mad) end),
     awful.key({ modkey, alt       }, "f",   function () awful.util.spawn(browser_nav) end),
 	awful.key({ alt },				 "j",   function () awful.util.spawn(browser_light) end),
     awful.key({ none }, "XF86AudioLowerVolume", function () awful.util.spawn(soundLowerVolume) end),
@@ -737,8 +766,8 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
     awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
 	awful.key({ modkey,			  }, "n",	   function (c) c.minimized = not c.minimized    end),
-    awful.key({ modkey,}, "m",
-    awful.key({ modkey }, "t", awful.client.togglemarked),
+    awful.key({ modkey, "Shift"   }, "x",       function (c) xprop(c)						 end),
+    awful.key({ modkey,			  }, "m",
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
