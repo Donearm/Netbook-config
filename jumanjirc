@@ -5,8 +5,15 @@ set download_dir ~
 set download_command urxvtc -e sh -c "wget --load-cookies  ~/.config/jumanji/cookies '%s' -O %s";
 set homepage http://www.google.it
 searchengine ggl http://www.google.com/search?q=%s
+searchengine wiki http://en.wikipedia.org/wiki/Special:Search?search=%s"
+searchengine aur http://aur.archlinux.org/packages.php?K=%s
+searchengine archforum http://bbs.archlinux.org/search.php?action=search&keywords=%s&show_as=topics&sort_dir=DESC
+searchengine map http://maps.google.com/maps?q=%s
+searchengine yt http://www.youtube.com/results?search_query=%s&search_sort=video_view_count
 
 set proxy 127.0.0.1:8118
+
+set auto_save 60
 
 set default_bgcolor	#252525
 set default_fgcolor	#85bdbc
