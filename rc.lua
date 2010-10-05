@@ -42,7 +42,7 @@ soundLowerVolume = "amixer set Master 5%-"
 soundRaiseVolume = "amixer set Master 5%+"
 soundMute = "amixer set Master 0%"
 soundToggleSpeakers = "amixer set Speaker toggle"
-filemanager = "emelfm2"
+filemanager = "pcmanfm"
 mail = "urxvtc -e mutt -y"
 lockScreen = "xscreensaver-command -lock"
 networkManager = "wicd-client -n" -- my network manager of choice
@@ -433,7 +433,7 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, image(home .. "/
                                         { "firefox (navigation)", "firefox -P navigation --no-remote", image("/usr/share/pixmaps/firefox.png") },
                                         { "firefox (maidens)", "firefox -P maidens --no-remote", image("/usr/share/pixmaps/firefox.png") },
 										{ "zathura", "zathura" }, 
-                                        { "emelfm2", filemanager, image("/usr/share/pixmaps/emelfm2.png") },
+                                        { "pcmanfm", filemanager },
                                         --{ "Music", music, image("/usr/share/ario/art/ario.png") },
                                         { "Pidgin", "pidgin", image("/usr/share/icons/hicolor/16x16/apps/pidgin.png") },
                                         { "Skype", "skype", image("/usr/share/pixmaps/skype.png") },
