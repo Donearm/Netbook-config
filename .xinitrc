@@ -14,7 +14,7 @@ xmodmap .Xmodmap
 /mnt/documents/Script/ttytter_screen_startup.sh
 #screen -dm -c ~/.screenrc-ttytter &
 
-exec awesome
+exec dbus-launch ck-launch-session awesome
 #exec openbox-session
 #exec startkde
 # exec gnome-session
