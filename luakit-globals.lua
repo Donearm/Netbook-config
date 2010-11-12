@@ -10,11 +10,11 @@ globals = {
 }
 
 -- Make useragent
-local rv, out, err = luakit.spawn_sync("uname -sm")
-local webkit_version = string.format("WebKitGTK+/%d.%d.%d", luakit.webkit_major_version,
-    luakit.webkit_minor_version, luakit.webkit_micro_version)
-local luakit_version = string.format("luakit/%s", luakit.version)
-globals.useragent = string.format("Mozilla/5.0 (%s) %s %s", string.match(out, "([^\n]*)"), webkit_version, luakit_version)
+local arch = string.match(({luakit.spawn_sync("uname -sm")})[2], "([^\n]*)")
+local lkv  = string.format("luakit/%s", luakit.version)
+local wkv  = string.format("WebKitGTK+/%d.%d.%d", luakit.webkit_major_version, luakit.webkit_minor_version, luakit.webkit_micro_version)
+local awkv = string.format("AppleWebKit/%s.%s+", luakit.webkit_user_agent_major_version, luakit.webkit_user_agent_minor_version)
+globals.useragent = string.format("Mozilla/5.0 (%s) %s %s %s", arch, awkv, wkv, lkv)
 
 -- Search common locations for a ca file which is used for ssl connection validation.
 local ca_files = {luakit.data_dir .. "/ca-certificates.crt",
@@ -39,6 +39,9 @@ search_engines = {
     map         = "http://maps.google.com/maps?q={0}",
     yt          = "http://www.youtube.com/results?search_query={0}&search_sort=video_view_count",
 }
+
+-- Set google as fallback search engine
+search_engines.default = search_engines.google
 
 -- Fake the cookie policy enum here
 cookie_policy = { always = 0, never = 1, no_third_party = 2 }
