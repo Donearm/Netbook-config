@@ -21,6 +21,8 @@ naughty.config.presets.normal.border_color = beautiful.naughty_border_color
 naughty.config.border_width = 2
 -- Define if we want to modify client.opacity
 use_composite = false
+-- parentheses color
+par_color = beautiful.fg_minimize
 
 
 -- This is used later as the default terminal and editor to run.
@@ -184,7 +186,7 @@ function getCpuTemp ()
 	local f = io.popen('cut -b 26-28 /proc/acpi/thermal_zone/TZ00/temperature')
 	local n = f:read()
 	f:close()
-	--return '<span color="#fbfbfb">' .. " " .. n .. '°C </span>'
+	--return '<span color="' .. par_color .. '">' .. " " .. n .. '°C </span>'
     return  setFg(beautiful.fg_normal, ' '..n..'°C')
 end
 
@@ -432,8 +434,8 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, image(home .. "/
                                         { "open terminal", terminal, image("/usr/share/pixmaps/rxvt-unicode.png") },
                                         { "firefox (navigation)", "firefox -P navigation --no-remote", image("/usr/share/pixmaps/firefox.png") },
                                         { "firefox (maidens)", "firefox -P maidens --no-remote", image("/usr/share/pixmaps/firefox.png") },
-										{ "zathura", "zathura" }, 
-                                        { "pcmanfm", filemanager },
+										{ "zathura", "zathura", image(home .. "/.icons/zathura.png") }, 
+                                        { "pcmanfm", filemanager, image(home .. "/.icons/pcmanfm.png") },
                                         --{ "Music", music, image("/usr/share/ario/art/ario.png") },
                                         { "Pidgin", "pidgin", image("/usr/share/icons/hicolor/16x16/apps/pidgin.png") },
                                         { "Skype", "skype", image("/usr/share/pixmaps/skype.png") },
@@ -455,7 +457,7 @@ cpuwidget = widget({ type = "textbox" })
 cpuwidget:add_signal("mouse::enter", function () psByCpu(0) end)
 cpuwidget:add_signal("mouse::leave", function () psByCpu(1) end)
 vicious.register(cpuwidget, vicious.widgets.cpu,
-	' <span color="#fbfbfb">[</span>$2%<span color="#fbfbfb">] [</span>$3%<span color="#fbfbfb">]</span>', 3)
+	' <span color="' .. par_color .. '">[</span>$2%<span color="' .. par_color .. '">] [</span>$3%<span color="' .. par_color .. '">]</span>', 3)
 
 
 -- Motherboard icon
@@ -498,7 +500,7 @@ wifiicon:buttons(awful.util.table.join(
 wifiwidget = widget({ type = "textbox"})
 vicious.cache(vicious.widgets.wifi)
 vicious.register(wifiwidget, vicious.widgets.wifi, 
-	"${rate}"..'<span color="#fbfbfb">|</span>'.."${link}%", 57, 'wlan0')
+	"${rate}"..'<span color="' .. par_color .. '">|</span>'.."${link}%", 57, 'wlan0')
 
 -- Battery widget
 batteryicon = widget({ type = "imagebox"})
