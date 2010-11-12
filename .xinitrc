@@ -15,6 +15,7 @@ xmodmap .Xmodmap
 #screen -dm -c ~/.screenrc-ttytter &
 
 exec dbus-launch ck-launch-session awesome
+#exec awesome
 #exec openbox-session
 #exec startkde
 # exec gnome-session
