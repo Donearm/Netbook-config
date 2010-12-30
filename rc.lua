@@ -34,7 +34,7 @@ editor_cmd = terminal .. " -e " .. editor
 -- Some variables
 browser_nav = "firefox -P navigation --no-remote"
 browser_mad = "firefox -P maidens --no-remote"
-browser_light = "jumanji"	-- lighter web browser
+browser_light = "luakit"	-- lighter web browser
 music = "urxvtc -e mocp" -- my music player of choice
 musicPlay = "mocp -G"
 musicStop = "mocp -s"
