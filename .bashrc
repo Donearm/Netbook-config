@@ -31,18 +31,11 @@ alias ssrsync="rsync -avz --progress --inplace --delete-after --rsh='ssh -p8898'
 # sync ScrapBook folder and other stuff
 alias scrapsync="rsync -avz --progress --inplace --delete-after --rsh='ssh -p8898' kortirion:/mnt/documents/learning/ ."
 
-# Set the keycodes for the extra keys that aren't usually recognized by
-# the kernel
-#setkeycodes e002 131 &	# n°1
-#setkeycodes e003 132 &	# n°2
-#setkeycodes e004 133 &	# n°3
-#setkeycodes e005 134 &	# n°4
-#setkeycodes e006 135 &	# n°5
-#setkeycodes e026 136 &	# ?
-#setkeycodes e059 137 &	# the search icon
-#setkeycodes e00a 138 &	# the book icon
-#setkeycodes e009 139 &	# the exit icon
-#setkeycodes e018 140 &	# the eject icon
+# top 15 most used commands
+topfifteen() {
+	history | awk '{print $4}' | awk 'BEGIN {FS ="|"} {print $1}' \
+		| grep -v topfifteen | sort | uniq -c | sort -rn | head -15
+}
 
 # mkmv - creates a new directory and moves the file into it, in 1 step
 # Usage: mkmv <file> <directory>
