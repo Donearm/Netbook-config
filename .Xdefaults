@@ -65,8 +65,8 @@ URxvt.color14:  #467070
 !LightGrey + White
 URxvt.color7:   #a1a8b0
 URxvt.color15:  #e1e1e1
-URxvt.colorBD:	#e09177
-URxvt.colorUL:	#fcd3c7
+URxvt.colorBD:	#85bdbc
+URxvt.colorUL:	#8dc9cf
 URxvt.colorIT:	    white
 URxvt.scrollBar:    true
 URxvt.scrollColor:  #85bdbc
@@ -81,11 +81,11 @@ URxvt.externalBorder:	0
 URxvt.termName:	    rxvt-unicode
 Urxvt.cutchars:     `"'&()*,;<=>?@[]{|}$`
 URxvt.hold:	    true
-URxvt.urlLauncher:  jumanji
+URxvt.urlLauncher:  luakit
 URxvt.loginShell:   true
 URxvt.perl-ext-common:	    default,matcher,url-select
-URxvt.keysym.M-C-u:		perl:url-select:select_next
 URxvt.underlineURLs:	true
+URxvt.keysym.M-C-u:		perl:url-select:select_next
 !URxvt.perl-ext:	    tabbed,matcher
 !configure here the look of the tab bar
 URxvt.tabbed.tabbar-fg:	7
