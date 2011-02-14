@@ -198,18 +198,17 @@ function getMoboTemp ()
 end
 
 function getGpuTemp ()
-    local f = io.popen(home .. "/.conky/nvidiatemp")
-	--local f = io.popen('nvidia-settings -q GPUCoreTemp | grep Attribute | grep -o "[0-9][0-9*]"')
+	local f = io.popen('export DISPLAY=:0.0 nvidia-settings -q gpucoretemp -t')
 	local n = f:read()
 	f:close()
-    --if (n == nil) then
-    --    return ''
-    --end
-    --if tonumber(n) >= 70 then
-    --    n = setFg("#aadc43", n)
-    --end
-	--return setFg(beautiful.fg_normal, n..'°C ')
-    return n
+    if (n == nil) then
+        return ''
+    end
+    if tonumber(n) >= 70 then
+        n = setFg("#aadc43", n)
+    end
+	return setFg(beautiful.fg_normal, n..'°C ')
+--     return n
 end
 
 function getSdaTemp ()
@@ -407,7 +406,7 @@ tags.setup = {
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
     tags[s] = {}
-    -- Create 4 tags per screen.
+    -- Create 6 tags per screen.
     for i, t in ipairs(tags.setup) do
         tags[s][i] = tag({ name = t.name })
         tags[s][i].screen = s
