@@ -1,12 +1,13 @@
 -- Global variables for luakit
 globals = {
     homepage         = "http://www.google.it",
-    scroll_step      = 20,
+    scroll_step      = 40,
     zoom_step        = 0.1,
     max_cmd_history  = 100,
     max_srch_history = 100,
-    http_proxy       = "127.0.0.1:8118",
+    http_proxy       = "http://localhost:8118",
     download_dir     = luakit.get_special_dir("DOWNLOAD") or (os.getenv("HOME") .. "/downloads"),
+    default_window_size = "1024x600",
 }
 
 -- Make useragent
@@ -38,15 +39,19 @@ search_engines = {
     archforum   = "http://bbs.archlinux.org/search.php?action=search&keywords={0}&show_as=topics&sort_dir=DESC",
     map         = "http://maps.google.com/maps?q={0}",
     yt          = "http://www.youtube.com/results?search_query={0}&search_sort=video_view_count",
+    duck        = "http://duckduckgo.com/?q={0}",
 }
 
 -- Set google as fallback search engine
 search_engines.default = search_engines.google
+-- Use this instead to disable auto-searching
+--search_engines.default = "{0}"
 
 -- Fake the cookie policy enum here
 cookie_policy = { always = 0, never = 1, no_third_party = 2 }
 
 -- Per-domain webview properties
+-- See http://webkitgtk.org/reference/webkitgtk-WebKitWebSettings.html
 domain_props = { --[[
     ["all"] = {
         ["enable-scripts"]          = false,
