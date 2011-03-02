@@ -44,7 +44,7 @@ soundLowerVolume = "amixer set Master 5%-"
 soundRaiseVolume = "amixer set Master 5%+"
 soundMute = "amixer set Master 0%"
 soundToggleSpeakers = "amixer set Speaker toggle"
-filemanager = "pcmanfm"
+filemanager = "ranger"
 mail = "urxvtc -e mutt -y"
 lockScreen = "xscreensaver-command -lock"
 networkManager = "wicd-client -n" -- my network manager of choice
@@ -434,7 +434,7 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, image(home .. "/
                                         { "firefox (navigation)", "firefox -P navigation --no-remote", image("/usr/share/pixmaps/firefox.png") },
                                         { "firefox (maidens)", "firefox -P maidens --no-remote", image("/usr/share/pixmaps/firefox.png") },
 										{ "zathura", "zathura", image(home .. "/.icons/zathura.png") }, 
-                                        { "pcmanfm", filemanager, image(home .. "/.icons/pcmanfm.png") },
+										{ "Ranger", filemanager },
                                         --{ "Music", music, image("/usr/share/ario/art/ario.png") },
                                         { "Pidgin", "pidgin", image("/usr/share/icons/hicolor/16x16/apps/pidgin.png") },
                                         { "Skype", "skype", image("/usr/share/pixmaps/skype.png") },
@@ -713,6 +713,7 @@ globalkeys = awful.util.table.join(
     awful.key({ alt },               "m",   function () awful.util.spawn(music) end),
     awful.key({ modkey, alt       }, "f",   function () awful.util.spawn(browser_nav) end),
 	awful.key({ alt },				 "j",   function () awful.util.spawn(browser_light) end),
+	awful.key({ alt },				 "f",	function () awful.util.spawn(filemanager) end),
     awful.key({ none }, "XF86AudioLowerVolume", function () awful.util.spawn(soundLowerVolume) end),
     awful.key({ none }, "XF86AudioRaiseVolume", function () awful.util.spawn(soundRaiseVolume) end),
     awful.key({ none }, "XF86AudioMute",    function () awful.util.spawn(soundMute) end),
