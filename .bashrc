@@ -30,6 +30,8 @@ alias svim="sudo vim"
 alias ssrsync="rsync -avz --progress --inplace --delete-after --rsh='ssh -p8898'"
 # sync ScrapBook folder and other stuff
 alias scrapsync="rsync -avz --progress --inplace --delete-after --rsh='ssh -p8898' kortirion:/mnt/documents/learning/ ."
+# sync Tiddlywiki
+alias tiddlysync="rsync -avz --progress --inplace --delete-after --rsh='ssh -p8898' kortirion:/home/gianluca/.tiddlywiki/ /home/gianluca/.tiddlywiki/"
 
 # top 15 most used commands
 topfifteen() {
