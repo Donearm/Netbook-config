@@ -17,6 +17,7 @@ alias email_it="mutt -f imap://imapmail.email.it/INBOX"
 alias alsamixer="alsamixer -V all"
 alias feh="feh --fontpath /usr/share/fonts/TTF/"
 alias chrome="google-chrome -proxy-server=http://127.0.0.1:8118"
+alias ntpdate_eur="ntpdate 0.europe.pool.ntp.org"
 # Skype using gtk instead of qt
 alias skype="skype --disable-cleanlooks -style GTK"
 # Mplayer using 2 threads/cpu by default 
