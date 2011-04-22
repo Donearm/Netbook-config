@@ -1,0 +1,16 @@
+ansi=1
+avatar=feh %U
+# no foursquare tweets please...
+filter="count,/^I'm\sat/ || /http:\/\/4sq\.com/"
+notifies=dm,reply,default
+urlopen=luakit -u %U -n 2> /dev/null
+hold=1
+keyf=-donearm
+readline="@Giovannadarco28 @thebemagazine @nenadsuperzmaj @freakazoid1988"
+slowpost=6
+ssl=1
+pause=auto
+wrap=79
+lat=40.85134
+long=14.332103
+location=0
