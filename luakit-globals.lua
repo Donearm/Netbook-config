@@ -54,7 +54,9 @@ search_engines = {
     ggl         = "http://google.com/search?q=%s",
     wiki        = "http://en.wikipedia.org/wiki/Special:Search?search=%s",
     aur         = "http://aur.archlinux.org/packages.php?K=%s",
-    archforum   = "http://bbs.archlinux.org/search.php?action=search&keywords=%s&show_as=topics&sort_dir=DESC",
+    -- archlinux forum search has changed, using duckduckgo !bang syntax
+--     archforum   = "http://bbs.archlinux.org/search.php?action=search&keywords=%s&show_as=topics&sort_dir=DESC",
+    archforum   = "http://duckduckgo.com/?q=!archlinux %s",
     map         = "http://maps.google.com/maps?q=%s",
     yt          = "http://www.youtube.com/results?search_query=%s&search_sort=video_view_count",
     duck        = "http://duckduckgo.com/?q=%s",
