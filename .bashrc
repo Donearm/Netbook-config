@@ -9,12 +9,11 @@ alias bash="/bin/bash --login"
 alias konsole="konsole --ls"
 alias slrn="slrn --kill-log $HOME/.slrn/kill_log.log"
 alias startx="startx -- -nolisten tcp -deferglyphs 16 -dpi 96 2> /tmp/startx.log ; exit"
-alias fetf="fetchmail -F pop.mail.yahoo.it popmail.email.it pop3.live.com" 
+alias fetf="fetchmail -F pop.mail.yahoo.it pop3.live.com" 
 alias fetco="fetchmail -c"
 alias gmail="mutt -f imaps://forod.g@imap.gmail.com:993"
 alias gmail2="mutt -f imaps://fioregianluca@imap.gmail.com:993"
 alias bajkal="mutt -f imap://in.virgilio.it"
-alias email_it="mutt -f imap://imapmail.email.it/INBOX"
 alias alsamixer="alsamixer -V all"
 alias feh="feh --fontpath /usr/share/fonts/TTF/"
 alias chrome="google-chrome -proxy-server=http://127.0.0.1:8118"
@@ -92,36 +91,6 @@ if [[ `whoami` == "root" ]]; then
 else
 	export PS1=".:\$(date +%d/%m/%Y):. \w \n >: "
 fi
-
-# cgroup stuff
-if [ "$PS1" ] ; then
-	mkdir -m 0700 /cgroup/$$
-	echo $$ > /cgroup/$$/tasks
-	echo 1 > /cgroup/$$/notify_on_release
-fi
-
-#if [ "$TERM" = "linux" ]
-#then
-    #export PS1='\[\e[1;34;40m\][\[\e[31;40m\]\u\[\e[34;40m\]@\[\e[31;40m\]\H\[\e[34;40m\] \W]\[\e[36;40m\]$ \[\e[0m\]' # scritte rosse, sfondo nero, directories blu
-#    export PS1="${bBlue}[${bRed}\u${bnc}@${bRed}\H ${bBlue}\W${bBlue}]$ ${bnc}"
-#elif [[ "$TERM" = "screen" || "$TERM" = "screen-256color" ]]
-#then
-
-#elif [[ "$TERM" = "rxvt-unicode" || "$TERM" = "rxvt" ]]
-#then
-    #export PS1='\u@\w \n >: '
-#    if [[ `whoami` == "root" ]]; then
-#		export PS1=".:\$(date +%d/%m/%Y):. \w \n ${bred} >: ${bnc}"
-#    else
-#		export PS1=".:\$(date +%d/%m/%Y):. \w \n >: "
-#    fi
-    #export TITLEBAR='\[\e]0;\u | term | \w\007\]'
-# Let's try
-#    export TITLEBAR='\[\e]0;\u  $BASH_COMMAND\007'
-#    export COLORTERM='rxvt-unicode'
-#else
-#    export PS1='[\u@\H \W ]\$ '
-#fi
 
 export BROWSER="/usr/bin/firefox"
 export EDITOR="vim"
