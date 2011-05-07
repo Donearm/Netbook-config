@@ -61,6 +61,7 @@ search_engines = {
     yt          = "http://www.youtube.com/results?search_query=%s&search_sort=video_view_count",
     duck        = "http://duckduckgo.com/?q=%s",
     git         = "https://github.com/search?q=%s&type=Everything&repo=&langOverride=&start_value=1",
+    stack       = "http://stackoverflow.com/search?q=%s",
 }
 
 -- Set google as fallback search engine
