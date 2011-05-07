@@ -430,9 +430,9 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, image(home .. "/.icons/archlinux-wm-awesome.png") },
-                                        { "open terminal", terminal, image("/usr/share/pixmaps/rxvt-unicode.png") },
-                                        { "firefox (navigation)", "firefox -P navigation --no-remote", image("/usr/share/pixmaps/firefox.png") },
-                                        { "firefox (maidens)", "firefox -P maidens --no-remote", image("/usr/share/pixmaps/firefox.png") },
+                                        { "open terminal", terminal, image(home .. "/.icons/fugue/icons/terminal.png") },
+                                        { "firefox (navigation)", "firefox -P navigation --no-remote", image("/usr/share/icons/hicolor/24x24/apps/firefox.png") },
+                                        { "firefox (maidens)", "firefox -P maidens --no-remote", image("/usr/share/icons/hicolor/24x24/apps/firefox.png") },
 										{ "zathura", "zathura", image(home .. "/.icons/zathura.png") }, 
 										{ "Ranger", filemanager },
                                         --{ "Music", music, image("/usr/share/ario/art/ario.png") },
@@ -886,7 +886,7 @@ autorunApps =
     --"xscreensaver",
     "xbindkeys",
     --"xcompmgr -c -C -r10 -o.70 -D5 &",
-	"cairo-compmgr &",
+	--"cairo-compmgr &",
     "xset m 1 2",
     "urxvtd -q -o -f",
 }
