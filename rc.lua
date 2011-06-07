@@ -436,7 +436,6 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, image(home .. "/
 										{ "zathura", "zathura", image(home .. "/.icons/zathura.png") }, 
 										{ "Ranger", filemanager },
                                         --{ "Music", music, image("/usr/share/ario/art/ario.png") },
-                                        { "Pidgin", "pidgin", image("/usr/share/icons/hicolor/16x16/apps/pidgin.png") },
                                         { "Skype", "skype", image("/usr/share/pixmaps/skype.png") },
                                         { "HP Toolbox", "hp-toolbox", image("/usr/share/hplip/data/images/32x32/hp_logo.png") },
                                         --{ "Avidemux", "avidemux2_gtk", image("/usr/share/pixmaps/avidemux.png") },
