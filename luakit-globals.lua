@@ -1,13 +1,14 @@
 -- Global variables for luakit
 globals = {
-    homepage         = "http://www.google.it",
-    scroll_step      = 40,
-    zoom_step        = 0.1,
-    max_cmd_history  = 100,
-    max_srch_history = 100,
-    http_proxy       = "http://localhost:8118",
-    download_dir     = luakit.get_special_dir("DOWNLOAD") or (os.getenv("HOME") .. "/downloads"),
+    homepage            = "http://www.google.it",
+ -- homepage            = "http://github.com/mason-larobina/luakit",
+    scroll_step         = 40,
+    zoom_step           = 0.1,
+    max_cmd_history     = 100,
+    max_srch_history    = 100,
+    http_proxy          = "http://localhost:8118",
     default_window_size = "1024x600",
+    download_dir     = luakit.get_special_dir("DOWNLOAD") or (os.getenv("HOME") .. "/downloads"),
 
  -- Disables loading of hostnames from /etc/hosts (for large host files)
  -- load_etc_hosts      = false,
