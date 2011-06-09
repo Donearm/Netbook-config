@@ -344,7 +344,7 @@ function psByMemory(n)
         memoryPopup = nil
     else
         -- memory sorting doesn't work
-        local r = io.popen("ps -eo pid,user,comm,%mem --sort=%mem | sed -n '1,15p'"):read("*a")
+        local r = io.popen("ps -eo pid,pmem,user,comm,rss --sort -rss | sed -n '1,15p'"):read("*a")
         memoryPopup = naughty.notify({
             title = "Memory Usage",
             text = r,
@@ -470,8 +470,8 @@ vicious.register(cpuwidget, vicious.widgets.cpu,
 memicon = widget({ type = "imagebox"})
 memicon.image = image(home .. "/.icons/ram_drive.png")
 memwidget = widget({ type = "textbox"})
---memwidget:add_signal("mouse::enter", function () psByMemory(0) end)
---memwidget:add_signal("mouse::leave", function () psByMemory(1) end)
+memwidget:add_signal("mouse::enter", function () psByMemory(0) end)
+memwidget:add_signal("mouse::leave", function () psByMemory(1) end)
 vicious.register(memwidget, vicious.widgets.mem, " $1%", 11)
 
 -- Network widget
