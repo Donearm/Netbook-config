@@ -35,7 +35,7 @@ editor_cmd = terminal .. " -e " .. editor
 browser_nav = "firefox -P navigation --no-remote"
 browser_mad = "firefox -P maidens --no-remote"
 browser_light = "luakit"	-- lighter web browser
-music = "urxvtc -e mocp" -- my music player of choice
+music = terminal .. " -e mocp" -- my music player of choice
 musicPlay = "mocp -G"
 musicStop = "mocp -s"
 musicPrev = "mocp -r"
@@ -44,10 +44,10 @@ soundLowerVolume = "amixer set Master 5%-"
 soundRaiseVolume = "amixer set Master 5%+"
 soundMute = "amixer set Master 0%"
 soundToggleSpeakers = "amixer set Speaker toggle"
-filemanager = "ranger"
-mail = "urxvtc -e mutt -y"
+filemanager = terminal .. " -e ranger"
+mail = terminal .. " -e mutt -y"
 lockScreen = "xscreensaver-command -lock"
-networkManager = "wicd-client -n" -- my network manager of choice
+networkManager = "wicd-gtk" -- my network manager of choice
 spacer = " " -- well, just a spacer
 
 -- Alt is Mod1
