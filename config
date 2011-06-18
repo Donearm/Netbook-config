@@ -1,7 +1,58 @@
 # This is a configuration file for the MOC player. It should be named 'config'
 # and placed in the directory ~/.moc/
+
+#
 # Comments begin with '#'.
 # You can use quotes and escape ('\') in parameters.
+#
+# You can have variable values substituted by enclosing the variable name
+# as "${...}".  (This only applies to the portion of the option following
+# the '='.)  Variables are substituted first from the environment then,
+# if not found, from the configuration options.  (Note that the value of
+# a configuration option substituted is that which it has at the time the
+# substitution variable is encountered.)  If there is a naming conflict
+# between an environment and configuration variable, you may be able to
+# resolve it by using lowercase as the environment variable matches are
+# case-sensitive whereas the configuration variables are not.
+#
+# You can also use the form "${...:-...}" where the value in the second
+# position will be substituted if the variable name given in the first
+# position is unset or null.
+#
+# So, for example:
+#
+#     MusicDir = /music/${USER:-public}
+#     Fastdir1 = ${MusicDir}/mp3/rock
+#     Fastdir2 = ${MusicDir}/mp3/electronic
+#     Fastdir3 = ${MusicDir}/mp3/rap
+#     Fastdir4 = ${MusicDir}/mp3/etc
+#
+# Variable names are limited to those accepted by the BASH shell; that
+# is, those comprising the upper- and lowercase ASCII characters, digits
+# and the underscore.
+#
+# If you need to use the "${" sequence for any other purpose, write "$${"
+# and it will be replaced by "${" and not treated as a substitution.
+#
+# Some options take lists of strings as their values.  The strings are
+# separated by colons.  Additional strings can be appended to the list
+# using "+=" in place of a plain "=" to assign the value.  For an example,
+# see the XTerms option.
+#
+# You can override any configuration option when you run MOC using the
+# '-O' command line option:
+#
+#     mocp -O AutoNext=no -O messagelingertime=1 -O XTerms+=xxt:xwt
+#
+# This command line option can be repeated as many times as needed and
+# the configuration option name is not case sensitive.  (Note that MOC
+# does not perform variable substitution on the value of such overridden
+# configuration options.)  Most option values are set before the
+# configuration file is processed (which allows the new values to be
+# picked up by substitutions), however list-valued options are overridden
+# afterwards (which gives the choice of whether the configured values are
+# replaced or added to).
+#
 
 
 # Show file titles (title, author, album) instead of file names.
@@ -38,7 +89,7 @@ AutoNext		= yes
 # %A - Album
 # %t - Title
 # %(X:TRUE:FALSE) - ternary expression - if X exists, do TRUE, otherwise
-#                   FALSE. '\' - escape character (must be double, because of 
+#                   FALSE. '\' - escape character (must be double, because of
 #                   config interpreter). man zshmisc for more info.
 FormatString		= "%(n:%n :)%(a:%a - :)%(t:%t:)%(A: \(%A\):)"
 
@@ -58,10 +109,11 @@ Prebuffering		= 64
 # environment variables http_proxy and ALL_PROXY will be used if present.
 #HTTPProxy		= my_proxy:port
 
-# Sound driver - OSS, ALSA, JACK, or null (only for debugging).
-# You can enter more than one driver separated by a comma. The first working
-# driver will be used.
-SoundDriver		= JACK, ALSA, OSS
+# Sound driver - OSS, ALSA, JACK, SNDIO (on OpenBSD) or null (only for
+# debugging).
+# You can enter more than one driver as a colon-separated list.  The first
+# working driver will be used.
+SoundDriver		= JACK:ALSA:OSS
 
 # Jack output settings.
 JackOutLeft		= "alsa_pcm:playback_1"
@@ -90,7 +142,7 @@ AlsaDevice		= default
 
 # Save software mixer state?
 # If enabled, a file 'softmixer' will
-# be created in '~/.moc/' storing the 
+# be created in '~/.moc/' storing the
 # mixersetting set when the server is shut-down.
 # Note that there is a 'hidden' 'Amplification'
 # setting in that file.
@@ -129,6 +181,17 @@ ShowFormat		= yes
 # time only when it was read before (often works faster).
 ShowTime		= IfAvailable
 
+# Show time played as a percentage in the time progress bar.
+#ShowTimePercent	= no
+
+# Values of the TERM environment variable which are deemed to be xterms.
+XTerms = xterm
+XTerms += xterm-colour:xterm-color
+XTerms += xterm-256colour:xterm-256color
+XTerms += rxvt:rxvt-unicode
+XTerms += rxvt-unicode-256colour:rxvt-unicode-256color
+XTerms += eterm
+
 # Theme file. This can be absolute path or relative to
 # /usr/share/moc/themes/ (depends on installation prefix) or ~/.moc/themes/
  Theme			= nightly_theme 
@@ -164,6 +227,17 @@ UseMmap			= no
 # Use librcc to filenames and directory names encoding.
 #UseRCCForFilesystem			= yes
 
+# When this option is set the player assumes that if the encoding of ID3v2
+# is set to ISO-8859-1 then the ID3v1TagsEncoding is actually that and
+# applies appropriate conversion.
+#EnforceTagsEncoding	= no
+
+# Enable the conversion of filenames from the local encoding to UTF8.
+#FileNamesIconv		= no
+
+# Enable the conversion of the xterm title from UTF8 to the local encoding.
+#NonUTFXterm		= no
+
 # Remember the playlist after exit?
 SavePlaylist		= yes
 
@@ -185,11 +259,11 @@ ASCIILines		= no
 #Fastdir2 = /mp3/electronic
 #Fastdir3 = /mp3/rap
 #Fastdir4 = /mp3/etc
-#Fastdir5 = 
-#Fastdir6 = 
-#Fastdir7 = 
-#Fastdir8 = 
-#Fastdir9 = 
+#Fastdir5 =
+#Fastdir6 =
+#Fastdir7 =
+#Fastdir8 =
+#Fastdir9 =
 #Fastdir10 =
 
 # How fast to seek? Number of seconds per key stroke.
@@ -235,7 +309,8 @@ ASCIILines		= no
 # a bug in MOC will freeze your computer.
 #UseRealtimePriority	= no
 
-# Size of the in-memory cache for file tags in KB.
+# The number of audio files for which MOC will cache tags.  When this limit
+# is reached, file tags are discarded on a least recently used basis.
 TagsCacheSize		= 256
 
 # Number items in the playlist.
@@ -327,3 +402,147 @@ SetScreenTitle		= yes
 
 # Display full paths instead of just file names in the playlist.
 #PlaylistFullPaths	= yes
+
+# The following setting describes to how block markers are displayed
+# in the play time progress bar.  Its value is a string of exactly three
+# characters.  The first character is displayed in a position which
+# corresponds to the time marked as the start of a block and the last
+# character to the time marked as the end of the block.  The middle
+# character is displayed instead if both the start and the end of the block
+# would fall in the same position (within the resolution of the interface).
+# You can turn off the displaying of these block marker positions by using
+# three space characters.
+#BlockDecorators	= "`\"'"
+
+# How long (in seconds) to leave a message displayed on the screen.
+# Setting this to a high value allows you to scroll through the messages
+# using the 'hide_message' key.  Setting it to zero means you'll have to
+# be quick to see any message at all.  Any new messages will queued up
+# and displayed after the current message's linger time expires.
+#MessageLingerTime	= 3
+
+# Does MOC display a prefix on delayed messages indicating
+# the number of queued messages still to be displayed?
+#PrefixQueuedMessages	= yes
+
+# String to append to the queued message count if any
+# error messages are still waiting to be displayed.
+#ErrorMessagesQueued	= "!"
+
+# Enable oversampling (yes/no).
+#ModPlug_Oversampling = yes
+# Enable noise reduction (yes/no).
+#ModPlug_NoiseReduction = yes
+# Enable reverb (yes/no).
+#ModPlug_Reverb = no
+# Enable mega-bass (yes/no).
+#ModPlug_MegaBass = no
+# Enable surround (yes/no).
+#ModPlug_Surround = no
+# Resampling mode. One of FIR/SPLINE/LINEAR/NEAREST:
+# FIR :      8 tap fir filter (extremely high quality).
+# SPLINE :   Cubic spline interpolation (high quality).
+# LINEAR :   Linear interpolation (fast, good quality).
+# NEAREST :  No interpolation (very fast, extremely bad sound quality).
+#ModPlug_ResamplingMode = FIR
+# Number of channles (1 or 2).
+#ModPlug_Channels = 2
+# Bits per sample (8,16,32). 32 Bits seems to be buggy...
+#ModPlug_Bits = 16
+# Sampling rate (11025, 22050, 44100, 48000).
+#ModPlug_Frequency = 44100
+# Reverb level 0(quiet)-100(loud).
+#ModPlug_ReverbDepth = 0
+# Reverb delay in ms, usually 40-200ms.
+#ModPlug_ReverbDelay = 0
+# Bass level 0(quiet)-100(loud).
+#ModPlug_BassAmount = 0
+# Bass cutoff in Hz (10-100).
+#ModPlug_BassRange = 10
+# Surround level 0(quiet)-100(heavy).
+#ModPlug_SurroundDepth = 0
+# Surround delay in ms, usually 5-40ms.
+#ModPlug_SurroundDelay = 0
+# Number of times to loop. Zero prevents looping. -1 loops forever.
+#ModPlug_LoopCount = 0
+
+#TiMidity-Options.
+# Rate must be in between 8000 and 48000.
+#TiMidity_Rate = 44100
+# Bitrate is 8 or 16.
+#TiMidity_Bits = 16
+# Channels is 1 or 2.
+#TiMidity_Channels = 2
+# Volume-Range is 0-800.
+#TiMidity_Volume = 100
+# You can setup a TiMidity-Config-File here.
+# Leave it unset to use library defaults (/etc/timidity.cfg mostly).
+# Setting it to 'yes' also uses the library defaults.
+# Set it to 'no' if you don't have any configuration file.
+# Otherwise set it to the name of a specific file.
+#TiMidity_Config =
+
+
+# SidPlay2-Options.
+# Default length of a song if not in database (seconds).
+#SidPlay2_DefaultSongLength = 180
+# Play at least a specific time if song is shorter (seconds).
+#SidPlay2_MinimumSongLength = 0
+# Set path to a HVSC-compatible database (if not set, database is disabled).
+#SidPlay2_Database
+# Sampling Frequency (4000-48000Hz).
+#SidPlay2_Frequency = 44100
+# Sampling Resolution (8/16).
+#SidPlay2_Bits = 16
+# Playback Mode:
+# "M": Mono (best for many SIDs).
+# "S": Stereo.
+# "L"/"R": Left / Right.
+#SidPlay2_PlayMode = "M"
+# Optimisation-level (0-2), 0 is best quality.
+#SidPlay2_Optimisation = 0
+# Use start-song information from SID (1) or start at first song (0).
+# Songs before the start-song won't be played.
+#SidPlay2_StartAtStart = 1
+# Play sub-tunes.
+#SidPlay2_PlaySubTunes = 1
+
+# OnSongChange.
+# Specify the full path (i.e. no ~) of an executable to run.
+# Arguments will be passed, and you can use the following escapes:
+#  %a artist
+#  %r album
+#  %f filename
+#  %t title
+#  %n track
+#  %d file duration in XX:YY form
+#  %D file duration, number of seconds
+#
+# No pipes/redirects can be used directly, but writing a shell
+# script can do the job.
+#
+# Example:
+#
+#OnSongChange = "/home/jack/.moc/myscript %a %r"
+
+# RepeatSongChange.
+# If 'yes' then MOC will execute the 'OnSongChange' command every time a
+# song starts playing regardless of whether or not it is just repeating.
+# Otherwise the command will only be executed when a different song is
+# started.
+#RepeatSongChange = no
+
+# OnStop.
+# Run the following command (full path, no arguments) when MOC changes state
+# to stopped (when user stopped playing or changes a song).
+#
+#OnStop = "/home/jack/.moc/myscript_on_stop"
+
+# This options determines what song to play after finishing all the songs in
+# queue. Setting this to 'yes' causes MOC to play the song which follows the
+# song played before playing the queue. If set to 'no', MOC will play the song
+# after the last song in the queue if it was in the playlist. The default is
+# 'yes' because this is the way other players usually behave. (Note that this
+# option previously took the values 1 and 0; these are now deprecated in
+# favour of 'yes' and 'no'.)
+#QueueNextSongReturn = yes
