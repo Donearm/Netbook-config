@@ -74,15 +74,15 @@ search_engines.default = search_engines.google
 -- See http://webkitgtk.org/reference/webkitgtk-WebKitWebSettings.html
 domain_props = { --[[
     ["all"] = {
-        ["enable-scripts"]          = false,
-        ["enable-plugins"]          = false,
+--        ["enable-scripts"]          = false,
+--         ["enable-plugins"]          = false,
         ["enable-private-browsing"] = false,
         ["user-stylesheet-uri"]     = "",
     },
-    ["youtube.com"] = {
-        ["enable-scripts"] = true,
-        ["enable-plugins"] = true,
-    },
+--     ["youtube.com"] = {
+--         ["enable-scripts"] = true,
+--         ["enable-plugins"] = true,
+--     },
     ["bbs.archlinux.org"] = {
         ["user-stylesheet-uri"]     = "file://" .. luakit.data_dir .. "/styles/dark.css",
         ["enable-private-browsing"] = true,
