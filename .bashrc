@@ -18,6 +18,9 @@ alias alsamixer="alsamixer -V all"
 alias feh="feh --fontpath /usr/share/fonts/TTF/"
 alias chrome="google-chrome -proxy-server=http://127.0.0.1:8118"
 alias ntpdate_eur="sudo ntpdate 0.europe.pool.ntp.org"
+# two openssl aliases to encode/decode files
+alias ssl_dec="openssl aes-256-cbc -d"
+alias ssl_enc="openssl aes-256-cbc -salt"
 # Skype using gtk instead of qt
 alias skype="skype --disable-cleanlooks -style GTK"
 # Mplayer using 2 threads/cpu by default 
