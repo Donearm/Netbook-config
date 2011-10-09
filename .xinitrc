@@ -11,7 +11,8 @@
 xmodmap .Xmodmap
 
 # start ttytter inside screen but only if it's not already running
-/mnt/documents/Script/ttytter_screen_startup.sh
+#/mnt/documents/Script/ttytter_screen_startup.sh
+/mnt/documents/Script/ttytter_startup.sh
 #screen -dm -c ~/.screenrc-ttytter &
 
 exec dbus-launch ck-launch-session awesome
