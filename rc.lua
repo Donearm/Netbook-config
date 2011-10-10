@@ -143,7 +143,7 @@ end
 
 -- Wifi naughty message
 function wifiMessage(adapter)
-    local f = io.open("/sys/class/net/"..adapter.."/wireless/link")
+    local f = io.open("cat /sys/class/net/"..adapter.."/wireless/link")
     local wifiStrength = f:read()
     f:close()
     if wifiStrength == "0" then
@@ -416,11 +416,8 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, image(home .. "/
                                         { "firefox (maidens)", "firefox -P maidens --no-remote", image("/usr/share/icons/hicolor/24x24/apps/firefox.png") },
 										{ "zathura", "zathura", image(home .. "/.icons/zathura.png") }, 
 										{ "Ranger", filemanager },
-                                        --{ "Music", music, image("/usr/share/ario/art/ario.png") },
                                         { "Skype", "skype", image("/usr/share/pixmaps/skype.png") },
                                         { "HP Toolbox", "hp-toolbox", image("/usr/share/hplip/data/images/32x32/hp_logo.png") },
-                                        --{ "Avidemux", "avidemux2_gtk", image("/usr/share/pixmaps/avidemux.png") },
-                                        --{ "Gimp", "gimp", image("/usr/share/gimp/2.0/images/gimp-logo.png") },
                                         { "Gcolor", "gcolor2", image("/usr/share/pixmaps/gcolor2/icon.png") },
                                         { "Gtkam", "gtkam", image("/usr/share/pixmaps/gtkam.png") }
                                       }
@@ -517,16 +514,6 @@ volumewidget:buttons(awful.util.table.join(
     awful.button({ }, 3, function() awful.util.spawn(soundMute) end),
 	awful.button({ }, 1, function() awful.util.spawn(soundToggleSpeakers) end)
     ))
-
--- Gmail widget
---gmailicon = widget({ type = "imagebox"})
---gmailicon.image = image(home .. "/.icons/gmail-black.png")
---gmailwidget = widget({ type = "textbox" })
---gmailwidget.text = getGmailUnread
---vicious.register(gmailwidget, getGmailUnread, nil, 600)
---
--- login infos should be in ~/.netrc
---vicious.register(gmailwidget, vicious.widgets.gmail, "${count}", 181)
 
 -- {{{ Wibox
 -- Set the default text in textbox
@@ -627,8 +614,6 @@ for s = 1, screen.count() do
 			datebox,
 			batterywidget,
 			batteryicon,
-			--gmailwidget,
-			--gmailicon,
 			volumewidget,
 			volumeicon,
 			wifiwidget,
@@ -834,8 +819,6 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gcolor2" },
       properties = { floating = true } },
-    --{ rule = { class = "Ario" },
-      --properties = { floating = true } },
 	{ rule = { name = "musicmanager" },
 	  properties = { floating = true } },
     { rule = { class = "Firefox:Dialog" },
@@ -861,7 +844,6 @@ awful.rules.rules = {
 autorun = true
 autorunApps =
 {
-    --"xscreensaver",
     "xbindkeys",
     --"xcompmgr -c -C -r10 -o.70 -D5 &",
 	--"cairo-compmgr &",
@@ -963,11 +945,6 @@ end)
 --timer60 = timer { timeout = 60 }
 --timer60:add_signal("timeout", function() datebox.text = os.date(" %a %b %d, %H:%M ")
 --timer60:start()
---
--- Timer for imap_check.py, 10min
--- mailtimer = timer { timeout = 600 }
--- mailtimer:add_signal("timeout", runGmailCheck())
--- mailtimer:start()
 --
 -- Timer for batteryInfo
 --batterytimer = timer { timeout = 60 }
