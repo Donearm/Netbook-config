@@ -46,7 +46,7 @@ soundMute = "amixer set Master 0%"
 soundToggleSpeakers = "amixer set Speaker toggle"
 filemanager = terminal .. " -e ranger"
 mail = terminal .. " -e mutt -y"
-lockScreen = "xscreensaver-command -lock"
+lockScreen = "slock"
 networkManager = "wicd-gtk" -- my network manager of choice
 spacer = " " -- well, just a spacer
 
@@ -713,13 +713,11 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, alt       }, "f",   function () awful.util.spawn(browser_nav) end),
 	awful.key({ alt },				 "j",   function () awful.util.spawn(browser_light) end),
 	awful.key({ alt },				 "f",	function () awful.util.spawn(filemanager) end),
-    awful.key({ none }, "XF86AudioLowerVolume", function () awful.util.spawn(soundLowerVolume) end),
-    awful.key({ none }, "XF86AudioRaiseVolume", function () awful.util.spawn(soundRaiseVolume) end),
-    awful.key({ none }, "XF86AudioMute",    function () awful.util.spawn(soundMute) end),
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
     awful.key({ modkey, "Control" }, "m", function() moveMouse(safeCoords.x, safeCoords.y) end),
+	awful.key({ modkey,			  }, "Delete", function() io.popen(lockScreen) end),
     -- Win+z: stop any widget but battery and wifi, Win+Shift+z:
     -- reactivate all widgets
     awful.key({ modkey,           }, "z", function() io.popen(home .. "/Script/awesome_widgets.sh stop") end),
