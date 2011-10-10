@@ -370,25 +370,6 @@ function mocMessage(n)
 	end
 end
 
--- Gmail function
-function getGmailUnread()
-    -- check if the network is up by pinging the router
-    local eth0up = os.execute("ping -c 1 192.168.0.1")
-    if eth0up == nil then
-        -- if no connection available, return 0 
-        return spacer .. '0/0'
-    else
-        local unread = io.popen("/mnt/documents/Script/imap_check.py")
-        local f = unread:read()
-        unread:close()
-        return spacer .. setFg(beautiful.fg_normal, f)
-    end
-end
-
--- And the function to read the temporary file
-function runGmailCheck()
-    os.execute("/mnt/documents/Script/imap_check.py > /tmp/gmailcheck &")
-end
 
 -- }}}
 
