@@ -16,7 +16,7 @@ alias bajkal="mutt -f imap://in.virgilio.it"
 alias alsamixer="alsamixer -V all"
 alias feh="feh --fontpath /usr/share/fonts/TTF/"
 alias chrome="google-chrome -proxy-server=http://127.0.0.1:8118"
-alias ntpdate_eur="sudo ntpdate 0.europe.pool.ntp.org"
+alias ntpdate_eur="sudo ntpd -qg &"
 # two openssl aliases to encode/decode files
 alias ssl_dec="openssl aes-256-cbc -d"
 alias ssl_enc="openssl aes-256-cbc -salt"
