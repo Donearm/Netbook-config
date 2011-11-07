@@ -63,6 +63,8 @@ search_engines = {
     duck        = "http://duckduckgo.com/?q=%s",
     git         = "https://github.com/search?q=%s&type=Everything&repo=&langOverride=&start_value=1",
     stack       = "http://stackoverflow.com/search?q=%s",
+    port        = "http://michaelis.uol.com.br/moderno/ingles/index.php?lingua=portugues-ingles&palavra=%s",
+    span        = "http://www.spanishdict.com/translate/%s",
 }
 
 -- Set google as fallback search engine
