@@ -1,12 +1,12 @@
 ansi=1
 avatar=feh %U
 # no foursquare and other annoying tweets...
-filter="count,/^I'm\sat/ || /http:\/\/4sq\.com/ || /^I\sjust\sbecame\sthe\smajor/ || /^Latoya/"
+filter="count,/^I'm\sat/ || /http:\/\/4sq\.com/ || /^I\sjust\sbecame\sthe\sma[jy]or/ || /^Latoya/ || /^I\sjust\sousted/"
 notifies=dm,reply,default
 urlopen=luakit -u %U -n 2> /dev/null
 hold=1
 keyf=-donearm
-readline="@Giovannadarco28 @nenadsuperzmaj @freakazoid1988 @MrSkimpole"
+readline="@Giovannadarco28 @nenadsuperzmaj @freakazoid1988 @MrSkimpole @dany79v"
 slowpost=6
 ssl=1
 pause=auto
