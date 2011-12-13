@@ -786,6 +786,19 @@ for i = 1, keynumber do
                           end
                       end
                    end)
+		awful.key({ modkey, "Shift" }, "n",
+			function ()
+				local allclients = client.get(mouse.screen)
+				for _,c in pairs(allclients) do
+					if c.minimized and c:tags()[mouse.screen] == awful.tag.selected(mouse.screen)
+						then
+							c.minimized = false
+							client.focus = c
+							c:raise()
+							return
+						end
+					end
+				end)
 end
 
 clientbuttons = awful.util.table.join(
