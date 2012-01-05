@@ -675,10 +675,10 @@ globalkeys = awful.util.table.join(
         end),
 
     -- Standard program
-    awful.key({ alt },               "m",   function () awful.util.spawn(music) end),
+    awful.key({ modkey, alt },       "m",   function () awful.util.spawn(music) end),
     awful.key({ modkey, alt       }, "f",   function () awful.util.spawn(browser_nav) end),
-	awful.key({ alt },				 "j",   function () awful.util.spawn(browser_light) end),
-	awful.key({ alt },				 "f",	function () awful.util.spawn(filemanager) end),
+	awful.key({ modkey, alt },		 "j",   function () awful.util.spawn(browser_light) end),
+	awful.key({ modkey, alt },		 "r",	function () awful.util.spawn(filemanager) end),
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
