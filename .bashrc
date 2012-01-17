@@ -33,8 +33,6 @@ alias orphans="pacman -Qtdq"
 alias svim="sudo vim"
 # rsync alias to sync with kortirion over ssh
 alias ssrsync="rsync -avz --progress --inplace --delete-after --rsh='ssh -p8898'"
-# sync ScrapBook folder and other stuff
-alias scrapsync="rsync -avz --progress --inplace --delete-after --rsh='ssh -p8898' kortirion:/mnt/documents/learning/ ."
 # sync Tiddlywiki
 alias tiddlysync="rsync -avz --progress --inplace --delete-after --rsh='ssh -p8898' kortirion:/home/gianluca/.tiddlywiki/ /home/gianluca/.tiddlywiki/"
 
