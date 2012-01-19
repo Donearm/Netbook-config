@@ -1,5 +1,6 @@
 ansi=1
 avatar=feh %U
+dostream=1
 # no foursquare and other annoying tweets...
 filter="count,/^I'm\sat/ || /http:\/\/4sq\.com/ || /^I\sjust\sbecame\sthe\sma[jy]or/ || /^Latoya/ || /^I\sjust\sousted/"
 notifies=dm,reply,default
