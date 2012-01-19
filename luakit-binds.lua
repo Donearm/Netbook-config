@@ -111,10 +111,10 @@ add_binds("normal", {
 
     key({},          "i",           function (w) w:set_mode("insert")  end),
     key({},          ":",           function (w) w:set_mode("command") end),
-        -- Download and play flash videos
-        key({},          "v",           function (w) local uri = (w:get_current() or {}).uri if uri then
-                                            luakit.spawn("urxvt -e get_flash_videos -y -r high -p '" .. uri .. "'") end
-                                        end),
+    -- Download and play flash videos
+    key({},          "v",           function (w) local uri = (w:get_current() or {}).uri if uri then
+                                        luakit.spawn("urxvt -e get_flash_videos -y -r high -p '" .. uri .. "'") end
+                                    end),
 
     -- Scrolling
     key({},          "j",           function (w) w:scroll_vert(more)  end),
