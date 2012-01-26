@@ -410,25 +410,25 @@ myawesomemenu = {
    { "reboot", "sudo reboot"}
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, image(home .. "/.icons/archlinux-wm-awesome.png") },
-                                        { "open terminal", terminal, image(home .. "/.icons/fugue/icons/terminal.png") },
-                                        { "firefox (navigation)", "firefox -P navigation --no-remote", image("/usr/share/icons/hicolor/24x24/apps/firefox.png") },
-                                        { "firefox (maidens)", "firefox -P maidens --no-remote", image("/usr/share/icons/hicolor/24x24/apps/firefox.png") },
-										{ "zathura", "zathura", image(home .. "/.icons/zathura.png") }, 
+mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, image(beautiful.awesomemenu_image) },
+                                        { "open terminal", terminal, image(beautiful.terminal_image) },
+                                        { "firefox (navigation)", "firefox -P navigation --no-remote", image(beautiful.firefox_image) },
+                                        { "firefox (maidens)", "firefox -P maidens --no-remote", image(beautiful.firefox_image) },
+										{ "zathura", "zathura", image(beautiful.zathura_image) }, 
 										{ "Ranger", filemanager },
-                                        { "Skype", "skype", image("/usr/share/pixmaps/skype.png") },
-                                        { "HP Toolbox", "hp-toolbox", image("/usr/share/hplip/data/images/32x32/hp_logo.png") },
-                                        { "Gcolor", "gcolor2", image("/usr/share/pixmaps/gcolor2/icon.png") },
-                                        { "Gtkam", "gtkam", image("/usr/share/pixmaps/gtkam.png") }
+                                        { "Skype", "skype", image(beautiful.skype_image) },
+                                        { "HP Toolbox", "hp-toolbox", image(beautiful.hp_image) },
+                                        { "Gcolor", "gcolor2", image(beautiful.gcolor_image) },
+                                        { "Gtkam", "gtkam", image(beautiful.gtkam_image) }
                                       }
                             })
 
 -- Launchbox
-mylauncher = awful.widget.launcher({ image = image(home .. "/.icons/arch-logo.png"),
+mylauncher = awful.widget.launcher({ image = image(beautiful.archlinux_image),
                                      menu = mymainmenu })
 -- Cpu widget
 cpuicon = widget({ type = "imagebox" })
-cpuicon.image = image(home .. "/.icons/intel_atom.png")
+cpuicon.image = image(beautiful.atomcpu_image)
 cpuwidget = widget({ type = "textbox" })
 cpuwidget:add_signal("mouse::enter", function () psByCpu(0) end)
 cpuwidget:add_signal("mouse::leave", function () psByCpu(1) end)
@@ -438,15 +438,15 @@ vicious.register(cpuwidget, vicious.widgets.cpu,
 
 -- Motherboard icon
 --moboicon = widget({ type = "imagebox", name = "moboicon", align = "right" })
---moboicon.image = image(home .. "/.icons/motherboard.png")
+--moboicon.image = image(beautiful.mobo_image)
 
 -- Gpu icon
 --gpuicon = widget({ type = "imagebox", name = "gpuicon", align = "right" })
---gpuicon.image = image(home .. "/.icons/nvidia-black.png")
+--gpuicon.image = image(beautiful.nvidia_image)
 
 -- Memory widget
 memicon = widget({ type = "imagebox"})
-memicon.image = image(home .. "/.icons/ram_drive.png")
+memicon.image = image(beautiful.ram_image)
 memwidget = widget({ type = "textbox"})
 memwidget:add_signal("mouse::enter", function () psByMemory(0) end)
 memwidget:add_signal("mouse::leave", function () psByMemory(1) end)
@@ -454,9 +454,9 @@ vicious.register(memwidget, vicious.widgets.mem, " $1%", 11)
 
 -- Network widget
 netupicon = widget({ type = "imagebox"})
-netupicon.image = image(home .. "/.icons/up_arrow.png")
+netupicon.image = image(beautiful.up_arrow_image)
 netdownicon = widget({ type = "imagebox" })
-netdownicon.image = image(home .. "/.icons/down_arrow.png")
+netdownicon.image = image(beautiful.down_arrow_image)
 netupwidget = widget({ type = "textbox"})
 vicious.cache(vicious.widgets.net)
 -- the last 3 options are interval-in-seconds, properties-name, padding
@@ -468,7 +468,7 @@ vicious.register(netdownwidget, vicious.widgets.net,
 
 -- Wifi widget
 wifiicon = widget({ type = "imagebox"})
-wifiicon.image = image(home .. "/.icons/WiFiTrack.png")
+wifiicon.image = image(beautiful.wifi_image)
 wifiicon:buttons(awful.util.table.join(
     awful.button({ }, 1, function () awful.util.spawn(networkManager) end),
     awful.button({ }, 3, function () awful.util.spawn(networkManager) end)
@@ -480,7 +480,7 @@ vicious.register(wifiwidget, vicious.widgets.wifi,
 
 -- Battery widget
 batteryicon = widget({ type = "imagebox"})
-batteryicon.image = image(home .. "/.icons/BatteryTicker.png")
+batteryicon.image = image(beautiful.battery_image)
 batterywidget = widget({ type = "textbox"})
 --batteryInfo("BAT0")
 vicious.register(batterywidget, vicious.widgets.bat, '$2', 53, 'BAT0')
@@ -500,7 +500,7 @@ vicious.register(cputemp, vicious.widgets.thermal, "$1°C", 43, "thermal_zone0")
 
 -- Volume widget
 volumeicon = widget({ type = "imagebox"})
-volumeicon.image = image(home .. "/.icons/speaker.png")
+volumeicon.image = image(beautiful.volume_image)
 volumeicon:add_signal("mouse::enter", function () mocMessage(0) end)
 volumeicon:add_signal("mouse::leave", function () mocMessage(1) end)
 
@@ -584,7 +584,6 @@ for s = 1, screen.count() do
 				naughty.notify({ text = awful.layout.getname(awful.layout.get(1))}) end),
 			awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
 			awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
-    mylayoutbox[s].image = image("/usr/share/awesome/themes/default/layouts/tilew.png")
 
     -- Create a taglist widget
     mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.label.all, mytaglist.buttons)

@@ -4,6 +4,8 @@
 
 theme = {}
 
+home                = os.getenv("HOME")
+
 theme.font          = "DejaVu Sans 8"
 
 theme.bg_normal     = "#252525"
@@ -87,6 +89,25 @@ theme.layout_tiletop = "/usr/share/awesome/themes/default/layouts/tiletopw.png"
 
 theme.awesome_icon = "/usr/share/awesome/icons/awesome16.png"
 
+-- Custom icons
+theme.awesomemenu_image = home .. "/.icons/archlinux-wm-awesome.png"
+theme.terminal_image = home .. "/.icons/fugue/icons/terminal.png"
+theme.firefox_image = "/usr/share/icons/hicolor/24x24/apps/firefox.png"
+theme.zathura_image = home .. "/.icons/zathura.png"
+theme.skype_image = "/usr/share/pixmaps/skype.png"
+theme.hp_image = "/usr/share/hplip/data/images/32x32/hp_logo.png"
+theme.gcolor_image = "/usr/share/pixmaps/gcolor2/icon.png"
+theme.gtkam_image = "/usr/share/pixmaps/gtkam.png"
+theme.archlinux_image = home .. "/.icons/arch-logo.png"
+theme.atomcpu_image = home .. "/.icons/intel_atom.png"
+theme.mobo_image = home .. "/.icons/motherboard.png"
+theme.nvidia_image = home .. "/.icons/nvidia-black.png"
+theme.ram_image = home .. "/.icons/ram_drive.png"
+theme.up_arrow_image = home .. "/.icons/up_arrow.png"
+theme.down_arrow_image = home .. "/.icons/down_arrow.png"
+theme.wifi_image = home .. "/.icons/WiFiTrack.png"
+theme.battery_image = home .. "/.icons/BatteryTicker.png"
+theme.volume_image = home .. "/.icons/speaker.png"
 
 
 return theme
