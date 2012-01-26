@@ -144,7 +144,7 @@ end
 -- Wifi naughty message
 function wifiMessage(adapter)
     local f = io.open("cat /sys/class/net/"..adapter.."/wireless/link")
-    local wifiStrength = f:read()
+    local wifiStrength = f:read("*a")
     f:close()
     if wifiStrength == "0" then
         naughty.notify({ title = "Wifi message",
@@ -433,7 +433,14 @@ cpuwidget = widget({ type = "textbox" })
 cpuwidget:add_signal("mouse::enter", function () psByCpu(0) end)
 cpuwidget:add_signal("mouse::leave", function () psByCpu(1) end)
 vicious.register(cpuwidget, vicious.widgets.cpu,
-	' <span color="' .. par_color .. '">[</span>$2%<span color="' .. par_color .. '">] [</span>$3%<span color="' .. par_color .. '">]</span>', 3)
+	function (widget, args)
+		if args[2] > 60 or args[3] > 60 then
+			return setFg(par_color, '[') .. setFg(beautiful.fg_urgent, args[2] .. '%') .. setFg(par_color, '] [') .. setFg(beautiful.fg_urgent, args[3]) .. setFg(par_color, ']'), nil, nil, 3
+		else
+			return setFg(par_color, '[') .. args[2] .. '%' .. setFg(par_color, '] [') .. args[3] .. '%' .. setFg(par_color, ']'), nil, nil, 3
+		end
+	end
+)
 
 
 -- Motherboard icon
@@ -450,7 +457,15 @@ memicon.image = image(beautiful.ram_image)
 memwidget = widget({ type = "textbox"})
 memwidget:add_signal("mouse::enter", function () psByMemory(0) end)
 memwidget:add_signal("mouse::leave", function () psByMemory(1) end)
-vicious.register(memwidget, vicious.widgets.mem, " $1%", 11)
+vicious.register(memwidget, vicious.widgets.mem, 
+	function (widget, args)
+		if args[1] > 60 then
+			return setFg(beautiful.fg_urgent, ' ' .. args[1] .. '%'), 11
+		else
+			return ' ' .. args[1] .. '%', 11
+		end
+	end
+)
 
 -- Network widget
 netupicon = widget({ type = "imagebox"})
@@ -460,11 +475,25 @@ netdownicon.image = image(beautiful.down_arrow_image)
 netupwidget = widget({ type = "textbox"})
 vicious.cache(vicious.widgets.net)
 -- the last 3 options are interval-in-seconds, properties-name, padding
-vicious.register(netupwidget, vicious.widgets.net,
-	'${wlan0 up_kb}', nil, nil, 2)
+vicious.register(netupwidget, vicious.widgets.net,	'${wlan0 up_kb}', nil, nil, 2)
+--	function (widget, args)
+--		if tonumber(args["{wlan0 up_kb}"]) > 80 then
+--			return setFg(beautiful.fg_urgent, args["{wlan0 up_kb}"]), nil, nil, 2
+--		else
+--			return '${wlan0 up_kb}', nil, nil, 2
+--		end
+--	end
+--)
 netdownwidget = widget({ type = "textbox"})
-vicious.register(netdownwidget, vicious.widgets.net,
-	'${wlan0 down_kb}', nil, nil, 2)
+vicious.register(netdownwidget, vicious.widgets.net, '${wlan0 down_kb}', nil, nil, 2)
+--	function (widget, args)
+--		if tonumber(args["{wlan0 down_kb}"]) > 200 then
+--			return setFg(beautiful.fg_urgent, args["{wlan0 down_kb}"]), nil, nil, 2
+--		else 
+--			return '${wlan0 down_kb}', nil, nil, 2
+--		end
+--	end
+--)
 
 -- Wifi widget
 wifiicon = widget({ type = "imagebox"})
