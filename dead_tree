@@ -13,10 +13,9 @@ theme.bg_focus      = "#85bdbc"
 theme.bg_urgent     = "#4a77b2"
 theme.bg_minimize   = "#444444"
 
---theme.fg_normal     = "#848484"
 theme.fg_normal     = "#85bdbc"
 theme.fg_focus      = "#252525"
-theme.fg_urgent     = "#252525"
+theme.fg_urgent     = "#d975ef"
 theme.fg_minimize   = "#ffffff"
 
 theme.border_width  = "0"
