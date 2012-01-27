@@ -998,8 +998,8 @@ end)
 --wifitimer:start()
 
 -- Timer for wifi signal
-wifisignal = timer { timeout = 90 }
-wifisignal:add_signal("timeout", function() wifiMessage("wlan0") end)
-wifisignal:start()
+--wifisignal = timer { timeout = 90 }
+--wifisignal:add_signal("timeout", function() wifiMessage("wlan0") end)
+--wifisignal:start()
 		
 -- vim: set filetype=lua tabstop=4 shiftwidth=4:
