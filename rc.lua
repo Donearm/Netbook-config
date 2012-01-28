@@ -22,7 +22,7 @@ naughty.config.border_width = 2
 -- Define if we want to modify client.opacity
 use_composite = false
 -- parentheses color
-par_color = beautiful.bg_focus
+par_color = beautiful.fg_focus
 
 
 -- This is used later as the default terminal and editor to run.
