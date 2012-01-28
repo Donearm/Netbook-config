@@ -12,7 +12,7 @@ require("vicious")
 -- Home directory
 home = os.getenv("HOME")
 -- Themes define colours, icons, and wallpapers
-theme_path = home .. "/.config/awesome/themes/dead_tree"
+theme_path = home .. "/.config/awesome/themes/schroedinger_deadalive"
 -- Actually load theme
 beautiful.init(theme_path)
 -- Define if we want to see naughty notifications
@@ -22,7 +22,7 @@ naughty.config.border_width = 2
 -- Define if we want to modify client.opacity
 use_composite = false
 -- parentheses color
-par_color = beautiful.fg_minimize
+par_color = beautiful.bg_focus
 
 
 -- This is used later as the default terminal and editor to run.

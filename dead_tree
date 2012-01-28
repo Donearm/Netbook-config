@@ -90,7 +90,7 @@ theme.awesome_icon = "/usr/share/awesome/icons/awesome16.png"
 
 -- Custom icons
 theme.awesomemenu_image = home .. "/.icons/archlinux-wm-awesome.png"
-theme.terminal_image = home .. "/.icons/fugue/icons/terminal.png"
+theme.terminal_image = home .. "/.icons/terminal-prompt.png"
 theme.firefox_image = "/usr/share/icons/hicolor/24x24/apps/firefox.png"
 theme.zathura_image = home .. "/.icons/zathura.png"
 theme.skype_image = "/usr/share/pixmaps/skype.png"
