@@ -439,8 +439,12 @@ cpuwidget:add_signal("mouse::enter", function () psByCpu(0) end)
 cpuwidget:add_signal("mouse::leave", function () psByCpu(1) end)
 vicious.register(cpuwidget, vicious.widgets.cpu,
 	function (widget, args)
-		if args[2] > 60 or args[3] > 60 then
+		if args[2] > 60 and args[3] > 60 then
 			return setFg(par_color, '[') .. setFg(beautiful.fg_urgent, args[2] .. '%') .. setFg(par_color, '] [') .. setFg(beautiful.fg_urgent, args[3] .. '%') .. setFg(par_color, ']'), nil, nil, 3
+		elseif args[2] > 60 and args[3] <= 60 then
+			return setFg(par_color, '[') .. setFg(beautiful.fg_urgent, args[2] .. '%') .. setFg(par_color, '] [') .. args[3] .. '%' .. setFg(par_color, ']'), nil, nil, 3
+		elseif args[3] > 60 and args[2] <= 60 then
+			return setFg(par_color, '[') .. args[2] .. '%' .. setFg(par_color, '] [') .. setFg(beautiful.fg_urgent, args[3] .. '%') .. setFg(par_color, ']'), nil, nil, 3
 		else
 			return setFg(par_color, '[') .. args[2] .. '%' .. setFg(par_color, '] [') .. args[3] .. '%' .. setFg(par_color, ']'), nil, nil, 3
 		end
