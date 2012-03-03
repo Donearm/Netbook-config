@@ -65,6 +65,7 @@ search_engines = {
     stack       = "http://stackoverflow.com/search?q=%s",
     port        = "http://michaelis.uol.com.br/moderno/ingles/index.php?lingua=portugues-ingles&palavra=%s",
     span        = "http://www.spanishdict.com/translate/%s",
+    fork        = "http://punchfork.com/search/%s",
 }
 
 -- Set google as fallback search engine
