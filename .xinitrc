@@ -13,7 +13,7 @@ xmodmap .Xmodmap
 # start ttytter inside screen but only if it's not already running
 /mnt/documents/Script/ttytter_startup.sh
 
-exec dbus-launch ck-launch-session awesome
+exec ck-launch-session awesome
 #exec openbox-session
 #exec startkde
 # exec gnome-session
