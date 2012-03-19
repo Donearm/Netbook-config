@@ -8,6 +8,16 @@ require("beautiful")
 require("naughty")
 require("vicious")
 
+-- {{{ Error handling
+-- Check if awesome encountered an error during startup and fell back to
+-- another config (This code will only ever execute for the fallback config)
+if awesome.startup_errors then
+    naughty.notify({ preset = naughty.config.presets.critical,
+                     title = "Oops, there were errors during startup!",
+                     text = awesome.startup_errors })
+end
+-- }}}
+
 -- {{{ Variable definitions
 -- Home directory
 home = os.getenv("HOME")
@@ -138,11 +148,17 @@ function xprop(c)
         .. f(c.pid, "pid")
         .. f(c.window, "window_id")
         .. f(c.machine, "machine")
-        .. f(c.skip_taskbar, "skip taskbar")
-        .. f(c.floating, "floating")
-        .. f(c.minimized, "minimized")
-        .. f(c.maximized_horizontal, "maximized horizontal")
-        .. f(c.maximized_vertical, "maximized vertical")
+        .. f(c.floating, "Is floating")
+        .. f(c.minimized, "Is minimized")
+        .. f(c.fullscreen, "Is fullscreen")
+        .. f(c.maximized_horizontal, "Is maximized horizontal")
+        .. f(c.maximized_vertical, "Is maximized vertical")
+        .. f(c.urgent, "Is urgent")
+        .. f(c.focused, "Has focus")
+        .. f(c.sticky, "Is sticky")
+        .. f(c.ontop, "Is ontop")
+        .. f(c.above, "Is set above")
+        .. f(c.below, "Is set below")
     })
 end
 
@@ -408,8 +424,8 @@ end
 -- Create a laucher widget and a main menu
 myawesomemenu = {
    { "manual", terminal .. " -e man awesome" },
-   { "lock screen", "xscreensaver-command -lock" },
-   { "edit config", editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua" },
+   { "lock screen", lockScreen },
+   { "edit config", editor_cmd .. " " .. awesome.conffile },
    { "restart", awesome.restart },
    { "quit", awesome.quit },
    { "reboot", "sudo reboot"}
@@ -586,11 +602,17 @@ mytaglist.buttons = awful.util.table.join(
 mytasklist = {}
 mytasklist.buttons = awful.util.table.join(
                      awful.button({ }, 1, function (c)
-                                              if not c:isvisible() then
-                                                  awful.tag.viewonly(c:tags()[1])
-                                              end
-                                              client.focus = c
-                                              c:raise()
+											if c == client.focus then
+												c.minimized = true
+											else
+												if not c:isvisible() then
+													awful.tag.viewonly(c:tags()[1])
+												end
+                                                -- This will also un-minimize
+                                                -- the client, if needed
+                                                client.focus = c
+												c:raise()
+											end
                                           end),
                      awful.button({ }, 3, function ()
                                               if instance then
@@ -610,6 +632,8 @@ mytasklist.buttons = awful.util.table.join(
                                           end))
 
 for s = 1, screen.count() do
+    -- Set a screen margin for borders
+    awful.screen.padding(screen[s], { top = 0 })
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
@@ -712,20 +736,11 @@ globalkeys = awful.util.table.join(
         end),
 
     -- Standard program
-    awful.key({ modkey, alt },       "m",   function () awful.util.spawn(music) end),
-    awful.key({ modkey, alt       }, "f",   function () awful.util.spawn(browser_nav) end),
-	awful.key({ modkey, alt },		 "j",   function () awful.util.spawn(browser_light) end),
-	awful.key({ modkey, alt },		 "r",	function () awful.util.spawn(filemanager) end),
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
-    awful.key({ modkey, "Control" }, "m", function() moveMouse(safeCoords.x, safeCoords.y) end),
-	awful.key({ modkey,			  }, "Delete", function() io.popen(lockScreen) end),
-    -- Win+z: stop any widget but battery and wifi, Win+Shift+z:
-    -- reactivate all widgets
-    awful.key({ modkey,           }, "z", function() io.popen(home .. "/Script/awesome_widgets.sh stop") end),
-    awful.key({ modkey, "Shift"   }, "z", function() io.popen(home .. "/Script/awesome_widgets.sh start") end),
-	
+
+
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
     awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
@@ -735,6 +750,19 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
+	awful.key({ modkey, "Control" }, "n",	awful.client.restore),
+
+    awful.key({ modkey, alt },       "m",   function () awful.util.spawn(music) end),
+    awful.key({ modkey, alt       }, "f",   function () awful.util.spawn(browser_nav) end),
+	awful.key({ modkey, alt },		 "j",   function () awful.util.spawn(browser_light) end),
+	awful.key({ modkey, alt },		 "r",	function () awful.util.spawn(filemanager) end),
+    awful.key({ modkey, "Control" }, "m", function() moveMouse(safeCoords.x, safeCoords.y) end),
+	awful.key({ modkey,			  }, "Delete", function() io.popen(lockScreen) end),
+    -- Win+z: stop any widget but battery and wifi, Win+Shift+z:
+    -- reactivate all widgets
+    awful.key({ modkey,           }, "z", function() io.popen(home .. "/Script/awesome_widgets.sh stop") end),
+    awful.key({ modkey, "Shift"   }, "z", function() io.popen(home .. "/Script/awesome_widgets.sh start") end),
+	
     -- Mod4+s set the window sticky; pressing it again leave the window
     -- only on the current tag
     awful.key({ modkey },            "s",     function ()
@@ -762,14 +790,20 @@ globalkeys = awful.util.table.join(
 
 -- Client awful tagging: this is useful to tag some clients and then do stuff like move to tag on them
 clientkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
-    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
-    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
-    awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
-    awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
-	awful.key({ modkey,			  }, "n",	   function (c) c.minimized = not c.minimized    end),
-    awful.key({ modkey, "Shift"   }, "x",       function (c) xprop(c)						 end),
+    awful.key({ modkey,           }, "f",		function (c) c.fullscreen = not c.fullscreen	end),
+    awful.key({ modkey, "Shift"   }, "c",		function (c) c:kill()							end),
+    awful.key({ modkey, "Control" }, "space",	awful.client.floating.toggle                    ),
+    awful.key({ modkey, "Control" }, "Return",	function (c) c:swap(awful.client.getmaster())	end),
+    awful.key({ modkey,           }, "o",		awful.client.movetoscreen						),
+    awful.key({ modkey, "Shift"   }, "r",		function (c) c:redraw()							end),
+	awful.key({ modkey,			  }, "t",		function (c) c.ontop = not c.ontop				end),
+    awful.key({ modkey, "Shift"   }, "x",       function (c) xprop(c)							end),
+    awful.key({ modkey,             }, "n",
+        function (c)
+            -- The client currently has the input focus, so it cannot be
+            -- minimized, since minimized clients can't have the focus.
+            c.minimized = true
+        end),
     awful.key({ modkey,			  }, "m",
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
@@ -910,14 +944,14 @@ end
 -- Signal function to execute when a new client appears.
 client.add_signal("manage", function (c, startup)
     -- add a titlebar to each floating client
-    if awful.client.floating.get(c)
-    or awful.layout.get(c.screen) == awful.layout.suit.floating then
+--    if awful.client.floating.get(c)
+--    or awful.layout.get(c.screen) == awful.layout.suit.floating then
     --    if not c.titlebar and c.class ~= "Xmessage" then
     --        awful.titlebar.add(c, { modkey = modkey })
     --    end
         -- floating clients are always on top
-        c.above = true
-    end
+--        c.above = true
+--   end
 
     -- Enable sloppy focus
     c:add_signal("mouse::enter", function(c)
@@ -927,7 +961,6 @@ client.add_signal("manage", function (c, startup)
         end
     end)
  
-    -- client placement
     if not startup then
         -- Set the windows at the slave,
         -- i.e. put it at the end of others instead of setting it master.
@@ -943,6 +976,19 @@ client.add_signal("manage", function (c, startup)
     end
     -- honor size hints
     c.size_hints_honor = false
+
+    -- I want Mplayer sticky in all tags
+    -- well better not I guess, can't reduce to icon
+    --if c.name:find("MPlayer") then
+    --    for s = 1, screen.count() do
+    --        tagtable = screen[s]:tags()
+    --        for k,t in pairs(tagtable) do
+    --            if t ~= awful.tag.selected() then
+    --                awful.client.toggletag(t, c)
+    --            end
+    --        end
+    --    end
+    --end
 end)
 
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
@@ -960,37 +1006,7 @@ end)
 
 
 -- }}}
-    -- I want Mplayer sticky in all tags
-    -- well better not I guess, can't reduce to icon
-    --if c.name:find("MPlayer") then
-    --    for s = 1, screen.count() do
-    --        tagtable = screen[s]:tags()
-    --        for k,t in pairs(tagtable) do
-    --            if t ~= awful.tag.selected() then
-    --                awful.client.toggletag(t, c)
-    --            end
-    --        end
-    --    end
-    --end
     
-
-    -- Check application->screen/tag mappings.
-
-    -- Do this after tag mapping, so you don't see it on the wrong tag for a split second.
---    client.focus = c
-
-    -- Set key bindings
---    c:keys(clientkeys)
-
-    -- Set the windows at the slave,
-    -- i.e. put it at the end of others instead of setting it master.
-    -- awful.client.setslave(c)
-
-    -- Honor size hints: if you want to drop the gaps between windows, set this to false.
---    c.size_hints_honor = false
---end)
-
-
 -- Hook called every minute
 --timer60 = timer { timeout = 60 }
 --timer60:add_signal("timeout", function() datebox.text = os.date(" %a %b %d, %H:%M ")
