@@ -1,140 +1,72 @@
-# Task program configuration file.
-# For more documentation, see http://taskwarrior.org
+data.location=~/.task
+locking=on
 
-# Files
-data.location=/home/gianluca//.task
-locking=on                             # Use file-level locking
+curses=on
+defaultwidth=80
 
-# Terminal
-curses=on                              # Use ncurses library to determine terminal width
-#defaultwidth=80                       # Without ncurses, assumed width
-#editor=vi                             # Preferred text editor
+confirmation=yes
+next=4
+bulk=2
+due=7
+search.case.sensitive=no
+active.indicator=*
+tag.indicator=+
+recurrence.indicator=R
+recurrence.limit=1
 
-# Miscellaneous
-confirmation=yes                       # Confirmation on delete, big changes
-echo.command=yes                       # Details on command just run
-next=2                                 # How many tasks per project in next report
-bulk=2                                 # > 2 tasks considered 'a lot', for confirmation
-nag=You have higher priority tasks.    # Nag message to keep you honest
+dateformat=d/m/Y
+dateformat.holiday=YMD
+dateformat.report=d/m/Y
+dateformat.annotation=d/m/Y
+weekstart=Monday
+monthsperline=1
 
-# Dates
-dateformat=d/m/Y                       # Preferred input and display date format
-weekstart=Monday                      # Sunday or Monday only
-displayweeknumber=yes                  # Show week numbers on calendar
-due=7                                  # Task is considered due in 7 days
-#monthsperline=2                       # Number of calendar months on a line
+calendar.legend=yes
+calendar.details=full
+calendar.holidays=sparse
 
-# Color controls.
-color=on                               # Use color
-color.overdue=bold_red                 # Color of overdue tasks
-color.due=bold_yellow                  # Color of due tasks
-color.pri.H=bold                       # Color of priority:H tasks
-#color.pri.M=on_yellow                 # Color of priority:M tasks
-#color.pri.L=on_green                  # Color of priority:L tasks
-#color.pri.none=white on_blue          # Color of priority:  tasks
-color.active=bold_cyan                 # Color of active tasks
-color.tagged=yellow                    # Color of tagged tasks
-#color.tag.bug=yellow                  # Color of +bug tasks
-#color.project.garden=on_green         # Color of project:garden tasks
-#color.keyword.car=on_blue             # Color of description.contains:car tasks
-#color.recurring=on_red                # Color of recur.any: tasks
-#color.header=bold_green               # Color of header messages
-#color.footnote=bold_green             # Color of footnote messages
+color=on
+color.header=color3
+color.overdue=bold red
+color.due=on bright red
+color.pri.H=on red
+color.pri.M=on yellow
+color.pri.L=on green
+color.pri.none=
+color.history.add=on red
+color.history.done=on green
+color.history.delete=on gray9
+color.active=bold cyan
+color.alternate=
+color.tagged=yellow
+color.tag.bug=yellow
+color.tag.linux=bold black on white
+color.tag.script=black on green
+color.tag.os=bold blue on black
+color.tag.eeepc=bold black on cyan
+color.tag.music=bold yellow on gray
+color.tag.android=green on white
+color.tag.freebsd=red on white
+color.project.pyimagedownloader=on blue
+color.project.pyimageuploader=on blue
+color.project.travel=yellow on black
+color.project.portuguese=bold green on gray
+color.project.spanish=bold red on gray
 
-#shadow.file=/tmp/shadow.txt           # Location of shadow file
-#shadow.command=list                   # Task command for shadow file
-#shadow.notify=on                      # Footnote when updated
+#shadow.file=~/.task/shadow.txt
+#shadow.command=list
+#shadow.notify=on
 
-#default.project=foo                   # Unless otherwise specified
-#default.priority=M                    # Unless otherwise specified
-default.command=list                   # Unless otherwise specified
+default.command=tagpro
+list.all.projects=yes
+list.all.tags=yes
+shell.prompt=task >:
 
-# Fields: id,uuid,project,priority,entry,start,due,recur,recur_ind,age,
-#          age_compact,active,tags,description,description_only
-# Description:   This report is ...
-# Sort:          due+,priority-,project+
-# Filter:        pro:x pri:H +bug limit:10
-
-# task long
-report.long.description=Lists all task, all data, matching the specified criteria
-report.long.columns=id,project,priority,entry,start,due,recur,age,tags,description
-report.long.labels=ID,Project,Pri,Added,Started,Due,Recur,Age,Tags,Description
-report.long.sort=due+,priority-,project+
-report.long.filter=status:pending
-
-# task list
-report.list.description=Lists all tasks matching the specified criteria
-report.list.columns=id,project,priority,due,active,age,description
-report.list.labels=ID,Project,Pri,Due,Active,Age,Description
-report.list.sort=due+,priority-,project+
-report.list.filter=status:pending
-
-# task ls
-report.ls.description=Minimal listing of all tasks matching the specified criteria
-report.ls.columns=id,project,priority,description
-report.ls.labels=ID,Project,Pri,Description
-report.ls.sort=priority-,project+
-report.ls.filter=status:pending
-
-# task newest
-report.newest.description=Shows the newest tasks
-report.newest.columns=id,project,priority,due,active,age,description
-report.newest.labels=ID,Project,Pri,Due,Active,Age,Description
-report.newest.sort=id-
-report.newest.filter=status:pending limit:10
-
-# task oldest
-report.oldest.description=Shows the oldest tasks
-report.oldest.columns=id,project,priority,due,active,age,description
-report.oldest.labels=ID,Project,Pri,Due,Active,Age,Description
-report.oldest.sort=id+
-report.oldest.filter=status:pending limit:10
-
-# task overdue
-report.overdue.description=Lists overdue tasks matching the specified criteria
-report.overdue.columns=id,project,priority,due,active,age,description
-report.overdue.labels=ID,Project,Pri,Due,Active,Age,Description
-report.overdue.sort=due+,priority-,project+
-report.overdue.filter=status:pending due.before:today
-
-# task active
-report.active.description=Lists active tasks matching the specified criteria
-report.active.columns=id,project,priority,due,active,age,description
-report.active.labels=ID,Project,Pri,Due,Active,Age,Description
-report.active.sort=due+,priority-,project+
-report.active.filter=status:pending start.any:
-
-# task completed
-report.completed.description=Lists completed tasks matching the specified criteria
-report.completed.columns=end,project,priority,age,description
-report.completed.labels=Complete,Project,Pri,Age,Description
-report.completed.sort=end+,priority-,project+
-report.completed.filter=status:completed
-
-# task recurring
-report.recurring.description=Lists recurring tasks matching the specified criteria
-report.recurring.columns=id,project,priority,due,recur,active,age,description
-report.recurring.labels=ID,Project,Pri,Due,Recur,Active,Age,Description
-report.recurring.sort=due+,priority-,project+
-report.recurring.filter=status:pending parent.any:
-
-# task waiting
-report.waiting.description=Lists all waiting tasks matching the specified criteria
-report.waiting.columns=id,project,priority,wait,age,description
-report.waiting.labels=ID,Project,Pri,Wait,Age,Description
-report.waiting.sort=wait+,priority-,project+
-report.waiting.filter=status:waiting
-
-# task all
-report.all.description=Lists all tasks matching the specified criteria
-report.all.columns=id,project,priority,due,active,age,description
-report.all.labels=ID,Project,Pri,Due,Active,Age,Description
-report.all.sort=due+,priority-,project+
-
-# task next
-report.next.description=Lists the most urgent tasks
-report.next.columns=id,project,priority,due,active,age,description
-report.next.labels=ID,Project,Pri,Due,Active,Age,Description
-report.next.sort=due+,priority-,project+
-report.next.filter=status:pending
-
+report.tagpro.description=List tasks with only tags and projects
+report.tagpro.columns=id,project,tags,description
+report.tagpro.sort=tags+,project+
+report.tagpro.filter=status:pending
+report.veryminimal.description=List only tasks descriptions and id (useful for scripts)
+report.veryminimal.columns=id,description
+report.veryminimal.sort=id+
+report.veryminimal.filter=status:pending
