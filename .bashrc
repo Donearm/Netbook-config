@@ -174,5 +174,8 @@ export MOZ_DISABLE_PANGO=1
 # improve intel graphic performance
 export INTEL_BATCH=1
 
+# auto completion
+source /etc/bash_completion.d/git
+source /usr/share/bash-completion/completions/task
 
 clear # clear the screen if something is on it
