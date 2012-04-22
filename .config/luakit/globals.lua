@@ -76,7 +76,7 @@ search_engines.default = search_engines.google
 -- See http://webkitgtk.org/reference/WebKitWebSettings.html
 domain_props = {
     ["all"] = {
-        enable_scripts          = false,
+        enable_scripts          = true,
         enable_plugins          = false,
         enable_private_browsing = false,
         user_stylesheet_uri     = "",
