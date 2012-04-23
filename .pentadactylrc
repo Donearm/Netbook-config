@@ -7,6 +7,9 @@ set editor="gvim -f +<line> <file>"
 set maxitems=12
 set cpt=sl
 set newtab=all
+set downloadsort='-time'
+set pageinfo=gefms
+set shell='/bin/bash'
 
 " set color scheme
 :colorscheme schroedinger
@@ -42,6 +45,17 @@ set passkeys+='twitter\.com':jkn<CR>\.\?,gh,gr
 " use Ctrl+Esc for enabling passthrough mode
 map <C-v> <Nop>
 map <C-Esc> <pass-all-keys>
+
+" Ctr+hjkl navigation
+cnoremap <C-j> <down>
+cnoremap <C-k> <up>
+cnoremap <C-l> <END>
+nnoremap <C-h> <NOP>
+nnoremap <C-j> <down>
+nnoremap <C-k> <up>
+
+" recent history "jumps"
+nnoremap <leader>j :jumps<CR>
 
 " faster scrolling
 nmap -b j 5j
