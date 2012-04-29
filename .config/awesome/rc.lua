@@ -43,7 +43,6 @@ editor_cmd = terminal .. " -e " .. editor
 
 -- Some variables
 browser_nav = "firefox -P navigation --no-remote"
-browser_mad = "firefox -P maidens --no-remote"
 browser_light = "luakit"	-- lighter web browser
 music = terminal .. " -e mocp" -- my music player of choice
 musicPlay = "mocp -G"
@@ -434,7 +433,6 @@ myawesomemenu = {
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, image(beautiful.awesomemenu_image) },
                                         { "open terminal", terminal, image(beautiful.terminal_image) },
                                         { "firefox (navigation)", "firefox -P navigation --no-remote", image(beautiful.firefox_image) },
-                                        { "firefox (maidens)", "firefox -P maidens --no-remote", image(beautiful.firefox_image) },
 										{ "zathura", "zathura", image(beautiful.zathura_image) }, 
 										{ "Ranger", filemanager },
                                         { "Skype", "skype", image(beautiful.skype_image) },
