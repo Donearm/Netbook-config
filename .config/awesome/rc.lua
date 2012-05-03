@@ -433,7 +433,7 @@ myawesomemenu = {
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, image(beautiful.awesomemenu_image) },
                                         { "open terminal", terminal, image(beautiful.terminal_image) },
                                         { "firefox (navigation)", "firefox -P navigation --no-remote", image(beautiful.firefox_image) },
-										{ "zathura", "zathura", image(beautiful.zathura_image) }, 
+										{ "epdfview", "epdfview", image(beautiful.epdfview_image) }, 
 										{ "Ranger", filemanager },
                                         { "Skype", "skype", image(beautiful.skype_image) },
                                         { "HP Toolbox", "hp-toolbox", image(beautiful.hp_image) },
