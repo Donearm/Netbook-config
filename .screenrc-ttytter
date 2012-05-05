@@ -1,35 +1,3 @@
-defscrollback 10000
-defshell -bash
-term screen-256color
-
-shelltitle '$ |bash'
-
-hardcopydir $HOME
-multiuser off
-defscrollback 25000
-defflow off
-hardstatus off
-bell_msg ""
-vbell off
-vbell_msg ""
-altscreen on
-startup_message off
-activity "Things happening in %"
-hardcopy_append off
-# Enable utf8
-defutf8 on
-# Use F1 and F2 to move between the next and previous window
-bindkey -k k1 prev
-bindkey -k k2 next 
-# Use the \ key instead of "C-a"
-#escape ^\\\
-
-termcapinfo rxvt 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen\007'
-termcapinfo xterm ti@:te@
-termcapinfo xterm 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen\007'
-
-
-caption always "%{=b dm}%{-b km}:%{+b km}: %{-b km}%D %d.%m %c %{+b km}:%{-b km}:%= %{=m km}%-w%{+u km}%n %h %t%{-}%{=m km}%+w " 
-
+source ~/.screenrc
 # Run ttytter at start
 screen -t TTYtter 0 ttytter -rc=-donearm
