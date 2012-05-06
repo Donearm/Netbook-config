@@ -332,12 +332,14 @@ webview.scroll_parse_funcs = {
     end,
 
     -- Abs "10p" (pages)
-    ["^(%d+%.?%d*)p$"] = function (s, axis, p)
+--    ["^(%d+%.?%d*)p$"] = function (s, axis, p)
+    ["^(%d+[.,]?%d*)p$"] = function (s, axis, p)
         return math.ceil(s[axis.."page_size"] * p)
     end,
 
     -- Rel "+10p" (pages)
-    ["^([-+]%d+%.?%d*)p$"] = function (s, axis, p)
+--    ["^([-+]%d+%.?%d*)p$"] = function (s, axis, p)
+    ["^([-+]%d+[.,]?%d*)p$"] = function (s, axis, p)
         return s[axis] + math.ceil(s[axis.."page_size"] * p)
     end,
 }
@@ -350,16 +352,16 @@ function webview.methods.scroll(view, w, new)
         else
             for pat, func in pairs(webview.scroll_parse_funcs) do
                 local n = string.match(val, pat)
-                --if n then scroll[axis] = func(scroll, axis, tonumber(n)) end
-                if n then
-                    local num = tonumber(n)
-                    if not num then
-                        -- we obviously got some non-dot float point locale
-                        local num_str, match_times = string.gsub(n, "([-+]%d+)[,.]?(%d+)", "%1,%2")
-                        num = tonumber(num_str)
-                    end
-                    scroll[axis] = func(scroll, axis, num)
-                end
+                if n then scroll[axis] = func(scroll, axis, tonumber(n)) end
+--                if n then
+--                    local num = tonumber(n)
+--                    if not num then
+--                        -- we obviously got some non-dot float point locale
+--                        local num_str, match_times = string.gsub(n, "([-+]%d+)[,.]?(%d+)", "%1,%2")
+--                        num = tonumber(num_str)
+--                    end
+--                    scroll[axis] = func(scroll, axis, num)
+--                end
             end
         end
     end
