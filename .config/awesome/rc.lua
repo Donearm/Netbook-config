@@ -438,7 +438,7 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, image(beautiful.
 										{ "Ranger", filemanager },
                                         { "Skype", "skype", image(beautiful.skype_image) },
                                         { "HP Toolbox", "hp-toolbox", image(beautiful.hp_image) },
-                                        { "Gcolor", "gcolor2", image(beautiful.gcolor_image) },
+										{ "Gimp", "gimp", "/usr/share/icons/hicolor/48x48/apps/gimp.png" },
                                         { "Gtkam", "gtkam", image(beautiful.gtkam_image) }
                                       }
                             })
