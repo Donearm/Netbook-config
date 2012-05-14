@@ -124,6 +124,17 @@ function setFont(font, text)
     return '<span font_desc="'..font..'">'..text..'</span>'
 end
 
+-- Show clipboard contents
+function show_clipboard()
+    local paste = selection()
+    paste = naughty.notify({
+        text = paste,
+        timeout = 3,
+        hover_timeout = 3,
+        width = 300,
+    })
+end
+
 -- Xprop function
 function xprop(c)
     f = function (prop, str)
@@ -755,6 +766,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, alt       }, "f",   function () awful.util.spawn(browser_nav) end),
 	awful.key({ modkey, alt },		 "j",   function () awful.util.spawn(browser_light) end),
 	awful.key({ modkey, alt },		 "r",	function () awful.util.spawn(filemanager) end),
+	awful.key({ modkey			  }, "p",	function () show_clipboard() end),
     awful.key({ modkey, "Control" }, "m", function() moveMouse(safeCoords.x, safeCoords.y) end),
 	awful.key({ modkey,			  }, "Delete", function() io.popen(lockScreen) end),
     -- Win+z: stop any widget but battery and wifi, Win+Shift+z:
