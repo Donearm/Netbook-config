@@ -73,7 +73,7 @@ search_engines.default = search_engines.google
 --search_engines.default = "%s"
 
 -- Per-domain webview properties
--- See http://webkitgtk.org/reference/WebKitWebSettings.html
+-- See http://webkitgtk.org/reference/webkitgtk/stable/WebKitWebSettings.html
 domain_props = {
     ["all"] = {
         enable_scripts          = true,
@@ -82,6 +82,10 @@ domain_props = {
         user_stylesheet_uri     = "",
     },
     ["youtube.com"] = {
+        enable_scripts = true,
+        enable_plugins = true,
+    },
+    ["grooveshark.com"] = {
         enable_scripts = true,
         enable_plugins = true,
     },
