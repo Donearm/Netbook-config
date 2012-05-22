@@ -177,5 +177,7 @@ export INTEL_BATCH=1
 # auto completion
 source /etc/bash_completion.d/git
 source /usr/share/bash-completion/completions/task
+# using udisks_functions aliases as udisks wrapper
+source /mnt/documents/Script/utilities/udisks_functions
 
 clear # clear the screen if something is on it
