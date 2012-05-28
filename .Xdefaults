@@ -21,10 +21,10 @@ Urxvt.depth:	    32
 URxvt.geometry:	    80x24+0+0
 !URxvt.font:	    -*-candara-*-*-*-*-*-*-*-*-*-*-iso10646-1
 !URxvt.font:		-*-dejavu sans mono-*-*-*-*-*-*-*-*-*-*-iso10646-1
-URxvt.font:			xft:Inconsolata:pixelsize=15:antialias=true
-URxvt.boldFont:	    xft:Inconsolata:bold:pixelsize=15:antialias=true
-Urxvt.italicFont:   xft:Inconsolata:italic:pixelsize=15:antialias=true
-Urxvt.boldItalicFont:	xft:Inconsolata:bold:italic:pixelsize=15:antialias=true
+URxvt.font:			xft:DejaVu Sans Mono:pixelsize=12:antialias=true
+URxvt.boldFont:	    xft:DejaVu Sans Mono:bold:pixelsize=12:antialias=true
+Urxvt.italicFont:   xft:DejaVu Sans Mono:italic:pixelsize=12:antialias=true
+Urxvt.boldItalicFont:	xft:DejaVu Sans Mono:bold:italic:pixelsize=12:antialias=true
 !urxvt.background:   rgba:0000/0000/0000/cccc
 urxvt.background:   #444444
 urxvt.foreground:   #fefefe
