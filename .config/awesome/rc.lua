@@ -565,8 +565,6 @@ vicious.register(cputemp, vicious.widgets.thermal, "$1°C", 43, "thermal_zone0")
 -- Volume widget
 volumeicon = widget({ type = "imagebox"})
 volumeicon.image = image(beautiful.volume_image)
-volumeicon:add_signal("mouse::enter", function () mocMessage(0) end)
-volumeicon:add_signal("mouse::leave", function () mocMessage(1) end)
 
 volumewidget = widget({ type = "textbox"})
 -- enable caching
