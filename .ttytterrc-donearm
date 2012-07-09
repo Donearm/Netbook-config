@@ -7,7 +7,7 @@ notifies=dm,reply,default
 urlopen=luakit -u %U -n 2> /dev/null
 hold=1
 keyf=-donearm
-readline="@Giovannadarco28 @nenadsuperzmaj @freakazoid1988 @MrSkimpole @LaVladina"
+readline="@Giovannadarco28 @nenadsuperzmaj @MrSkimpole @LaVladina @al3hex @dottorblaster"
 slowpost=6
 ssl=1
 pause=auto
@@ -15,3 +15,6 @@ wrap=79
 lat=40.85134
 long=14.332103
 location=0
+# WOEID: italy and worldwide
+woeid=23424853
+#woeid=1
