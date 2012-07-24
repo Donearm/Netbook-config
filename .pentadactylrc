@@ -1,7 +1,5 @@
 " vim: set ft=vim fdm=marker tw=0:
 
-map , <Leader>
-
 set titlestring=Firefox
 set editor="gvim -f +<line> <file>"
 set maxitems=12
@@ -41,29 +39,30 @@ set passkeys+='google\.com/reader':jkovASNPO<Space>?
 set passkeys+='twitter\.com':jkn<CR>\.\?,gh,gr
 
 " Add the current url as a task for taskwarrior.org
-:map <C-S-t> -js io.run("task", ["add", buffer.URL], false); dactyl.echomsg("Added task for " + buffer.URL);
+map <C-S-t> -js io.run("task", ["add", buffer.URL], false); dactyl.echomsg("Added task for " + buffer.URL);
 " use Ctrl+Esc for enabling passthrough mode
 map <C-v> <Nop>
 map <C-Esc> <pass-all-keys>
 
 " Ctr+hjkl navigation
-cnoremap <C-j> <down>
-cnoremap <C-k> <up>
-cnoremap <C-l> <END>
-nnoremap <C-h> <NOP>
-nnoremap <C-j> <down>
-nnoremap <C-k> <up>
+map <C-j> <down>
+map <C-k> <up>
+map <C-l> <END>
+map <C-h> <NOP>
+map <C-j> <down>
+map <C-k> <up>
 
 " recent history "jumps"
-nnoremap <leader>j :jumps<CR>
+map <Leader>j :jumps<CR>
 
+map , <Leader>
 " faster scrolling
-nmap -b j 5j
-nmap -b k 5k
+map -b j 5j
+map -b k 5k
 " focus first input by default with just i
 map i gi
 " view native size of image without clicking it
-nmap <Leader>z :js window.content.document.toggleImageSize();<CR>
+map <Leader>z :js window.content.document.toggleImageSize();<CR>
 
 " customized next and previous patterns
 set nextpattern=^>$,[Nn]ext,[Mm]ore,([Ss]ucc|[Ss]uccessiva),([Pp]ross|[Pp]rossima),([Aa]vanti),^(>>|»)$,^(>|»),(>|»)$
