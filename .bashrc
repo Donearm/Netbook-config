@@ -231,5 +231,7 @@ source /usr/share/bash-completion/completions/task
 source /usr/share/bash-completion/completions/rc.d
 # using udisks_functions aliases as udisks wrapper
 source /mnt/documents/Script/utilities/udisks_functions
+# git-prompt
+source /usr/share/git/git-prompt.sh
 
 clear # clear the screen if something is on it
