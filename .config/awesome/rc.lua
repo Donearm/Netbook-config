@@ -916,6 +916,8 @@ awful.rules.rules = {
 	  properties = { floating = true } },
     { rule = { class = "Firefox:Dialog" },
       properties = { floating = true } },
+	{ rule = { class = "Plugin-container" },
+	  properties = { floating = true, fullscreen = true } },
 	{ rule = { class = "<unknown>" },
 	  properties = { floating = true } },
     { rule = { class = "Skype" },
