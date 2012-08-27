@@ -22,7 +22,6 @@ local lkv = string.match(luakit.version, "^(%d+.%d+.%d+)")
 --globals.useragent = string.format("Mozilla/5.0 (%s) AppleWebKit/%s+ (KHTML, like Gecko) WebKitGTK+/%s luakit%s",
 --    string.sub(arch, 1, -2), luakit.webkit_user_agent_version,
 --    luakit.webkit_version, (lkv and ("/" .. lkv)) or "")
-globals.useragent = string.format("Mozilla/5.0 (X11; Linux i686; rv:13.0) Gecko/20100101 Firefox/13.0.1")
 
 -- Search common locations for a ca file which is used for ssl connection validation.
 local ca_files = {
@@ -76,7 +75,7 @@ search_engines.default = search_engines.google
 
 -- Per-domain webview properties
 -- See http://webkitgtk.org/reference/webkitgtk/stable/WebKitWebSettings.html
-domain_props = {
+domain_props = { --[[
     ["all"] = {
         enable_scripts          = true,
         enable_plugins          = false,
@@ -98,7 +97,7 @@ domain_props = {
     ["bbs.archlinux.org"] = {
         user_stylesheet_uri     = "file://" .. luakit.data_dir .. "/styles/dark.css",
         enable_private_browsing = true,
-    },
+    }, ]]
 }
 
 -- vim: et:sw=4:ts=8:sts=4:tw=80
