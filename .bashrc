@@ -225,7 +225,6 @@ shopt -s checkwinsize
 shopt -s cdspell
 
 # auto completion
-source /etc/bash_completion.d/git
 source /usr/share/git/completion/git-completion.bash
 source /usr/share/bash-completion/completions/task
 source /usr/share/bash-completion/completions/rc.d
