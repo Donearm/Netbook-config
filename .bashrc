@@ -227,7 +227,6 @@ shopt -s cdspell
 # auto completion
 source /usr/share/git/completion/git-completion.bash
 source /usr/share/bash-completion/completions/task
-source /usr/share/bash-completion/completions/rc.d
 # using udisks_functions aliases as udisks wrapper
 source /mnt/documents/Script/utilities/udisks_functions
 # git-prompt
