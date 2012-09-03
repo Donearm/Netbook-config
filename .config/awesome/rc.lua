@@ -438,8 +438,8 @@ myawesomemenu = {
    { "edit config", editor_cmd .. " " .. awesome.conffile },
    { "restart", awesome.restart },
    { "quit", awesome.quit },
-   { "reboot", "sudo reboot"},
-   { "hibernate", "sudo pm-hibernate"}
+   { "reboot", "sudo systemctl reboot"},
+   { "hibernate", "sudo systemctl hibernate"}
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, image(beautiful.awesomemenu_image) },
