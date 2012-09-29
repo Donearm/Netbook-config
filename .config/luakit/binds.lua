@@ -269,32 +269,25 @@ add_binds("normal", {
     key({}, "p", [[Open a URL based on the current primary selection contents
         in the current tab.]],
         function (w)
-            local uri = assert(luakit.selection.primary, "Empty selection.")
+            local uri = luakit.selection.primary
+            if not uri then w:notify("No primary selection...") return end
             w:navigate(w:search_open(uri))
         end),
 
     key({}, "P", [[Open a URL based on the current primary selection contents
         in `[count=1]` new tab(s).]],
         function (w, m)
-            local uri = assert(luakit.selection.primary, "Empty selection.")
+            local uri = luakit.selection.primary
+            if not uri then w:notify("No primary selection...") return end
             for i = 1, m.count do w:new_tab(w:search_open(uri)) end
         end, {count = 1}),
 
     -- Yanking
-    buf("^yy$", "Yank current URI to primary selection.",
+    key({}, "y", "Yank current URI to primary selection.",
         function (w)
             local uri = string.gsub(w.view.uri or "", " ", "%%20")
             luakit.selection.primary = uri
-            luakit.selection.clipboard = uri
             w:notify("Yanked uri: " .. uri)
-        end),
-
-    buf("^yt$", "Yank current page title to primary selection.",
-        function (w)
-            local title = w.view.title
-            luakit.selection.primary = title
-            luakit.selection.clipboard = uri
-            w:notify("Yanked title: " .. title)
         end),
 
     -- Commands
