@@ -6,7 +6,7 @@ globals = {
     zoom_step           = 0.1,
     max_cmd_history     = 100,
     max_srch_history    = 100,
-    http_proxy          = "http://localhost:8118",
+--    http_proxy          = "http://localhost:8118",
     default_window_size = "1024x600",
 
  -- Disables loading of hostnames from /etc/hosts (for large host files)
