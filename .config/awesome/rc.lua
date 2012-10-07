@@ -445,12 +445,11 @@ myawesomemenu = {
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, image(beautiful.awesomemenu_image) },
                                         { "open terminal", terminal, image(beautiful.terminal_image) },
                                         { "firefox (navigation)", "firefox -P navigation --no-remote", image(beautiful.firefox_image) },
-										{ "epdfview", "epdfview", image(beautiful.epdfview_image) }, 
 										{ "Ranger", filemanager, image(beautiful.ranger_image) },
                                         { "Skype", "skype", image(beautiful.skype_image) },
                                         { "HP Toolbox", "hp-toolbox", image(beautiful.hp_image) },
-										{ "Gimp", "gimp", "/usr/share/icons/hicolor/48x48/apps/gimp.png" },
-                                        { "Gtkam", "gtkam", image(beautiful.gtkam_image) }
+										{ "Gimp", "gimp", image(beautiful.gimp_image) },
+										{ "Digikam", "digikam", image(beautiful.digikam_image) }
                                       }
                             })
 
