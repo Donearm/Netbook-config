@@ -4,7 +4,8 @@ dostream=1
 # no foursquare and other annoying tweets...
 filter="count,/^I'm\sat/ || /http:\/\/4sq\.com/ || /^I\sjust\sbecame\sthe\sma[jy]or/ || /^Latoya/ || /^I\sjust\sunlocked/ || /^I\sjust\sousted/ || /^Was\sout\srunning/"
 notifies=dm,reply,default
-urlopen=luakit -u %U -n 2> /dev/null
+#urlopen=luakit -u %U -n 2> /dev/null
+urlopen=firefox -new-tab %U 2> /dev/null
 hold=1
 keyf=-donearm
 readline="@Giovannadarco28 @nenadsuperzmaj @MrSkimpole @LaVladina @al3hex @dottorblaster"

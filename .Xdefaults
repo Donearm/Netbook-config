@@ -83,7 +83,7 @@ URxvt.loginShell:   true
 URxvt.perl-ext-common:	default,matcher,url-select
 URxvt.keysym.M-C-u:		perl:url-select:select_next
 URxvt.url-select.autocopy: true
-URxvt.url-select.launcher:	luakit
+URxvt.url-select.launcher:	firefox
 URxvt.url-select.underline:	true
 !URxvt.perl-ext:	    tabbed,matcher
 !configure here the look of the tab bar
