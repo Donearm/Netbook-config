@@ -42,7 +42,7 @@ editor_cmd = terminal .. " -e " .. editor
 
 
 -- Some variables
-browser_nav = "firefox -P navigation --no-remote"
+browser_nav = "firefox" -- main web browser
 browser_light = "luakit"	-- lighter web browser
 music = terminal .. " -e mocp" -- my music player of choice
 musicPlay = "mocp -G"
