@@ -96,5 +96,5 @@ class DeleteImgTags(Command):
     Remove exif tags from every images in current directory
     """
     def execute(self):
-        self.fm.run('find . -iregex ".*.[jgtp][pin]e?[gf]f?" -type f -exec /mnt/documents/Script/imgtags.py -i {} -d \;', flags='ds')
+        self.fm.run('find . -maxdepth 1 -iregex ".*.[jgtp][pin]e?[gf]f?" -type f -exec /mnt/documents/Script/imgtags.py -i {} -d \;', flags='ds')
         self.fm.notify("Tags cleared!")
