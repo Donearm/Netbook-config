@@ -223,6 +223,8 @@ export OOO_FORCE_DESKTOP=gnome
 export MOZ_DISABLE_PANGO=1
 # improve intel graphic performance
 export INTEL_BATCH=1
+# Make Qt use Gtk2 themes
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
 # Check terminal size
 shopt -s checkwinsize
