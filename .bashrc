@@ -37,7 +37,8 @@ alias ssl_dec="openssl aes-256-cbc -d"
 
 # top 15 most used commands
 topfifteen() {
-	history | awk '{print $4}' | awk 'BEGIN {FS ="|"} {print $1}' \
+	history | awk '{print $4}' | \
+		awk 'BEGIN {FS ="|"} {if ($1 == "sudo") {print $2} else {print $1}}' \
 		| grep -v topfifteen | sort | uniq -c | sort -rn | head -15
 }
 # mkmv - creates a new directory and moves the file into it, in 1 step
@@ -103,20 +104,18 @@ bgwhite="\033[47m"
 txtreset="\033[0m" # text reset
 
 
-#export PATH=/usr/X11R6/bin:/usr/sbin:/sbin/:/usr/local/sbin/:/usr/local/bin:/opt/kde/bin:/usr/lib/python2.5/:/opt/gnome/bin:/lib/splash/bin:/opt/xfce4/bin/:/opt/texlive/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 
 # Bash Prompts
 if [ "$TERM" = "linux" ]
 then
-    #PS1='\[\e[1;34;40m\][\[\e[31;40m\]\u\[\e[34;40m\]@\[\e[31;40m\]\H\[\e[34;40m\] \W]\[\e[36;40m\]$ \[\e[0m\]' # scritte rosse, sfondo nero, directories blu
     PS1="${bBlue}\[[${bRed}\u${bnc}@${bRed}\H ${bBlue}\W${bBlue}]\]$ ${bnc}"
 elif [[ "$TERM" = "screen" || "$TERM" = "screen-256color" ]]
 then
     if [[ `whoami` == "root" ]]; then
-		PS1=".:\$(date +%d/%m/%Y):. :${WINDOW}: \w \n${bred} >: ${bnc}"
+		PS1="${bMagenta}«${bnc} \$(date +%d/%m/%Y) ${bMagenta}»${bnc} \w \n${bred} >: ${bnc}"
     else
-		PS1=".:\$(date +%d/%m/%Y):. :${WINDOW}: \w \n >: "
+		PS1="${bMagenta}«${bnc} \$(date +%d/%m/%Y) ${bMagenta}»${bnc} \w \n >: "
     fi
 elif [[ "$TERM" = "rxvt-unicode" || "$TERM" = "rxvt" || "$TERM" = "rxvt-256color" ]]
 then
@@ -129,9 +128,9 @@ then
 		fi
 	fi
     if [[ `whoami` == "root" ]]; then
-		PS1=".:\$(date +%d/%m/%Y):. \w \n${bred} >: ${bnc}"
+		PS1="${bMagenta}«${bnc} \$(date +%d/%m/%Y) ${bMagenta}»${bnc} \w \n${bred} >: ${bnc}"
     else
-		PS1=".:\$(date +%d/%m/%Y) \$(__git_ps1 [%s]):. \w \n >: "
+		PS1="${bMagenta}«${bnc} \$(date +%d/%m/%Y) \$(__git_ps1 [%s]) ${bMagenta}»${bnc} \w \n >: "
     fi
     #export TITLEBAR='\[\e]0;\u | term | \w\007\]'
 # Let's try
@@ -139,9 +138,9 @@ then
     export COLORTERM='rxvt-unicode'
 else
     if [[ `whoami` == "root" ]]; then
-		PS1=".:\$(date +%d/%m/%Y):. \w \n${bred} >: ${bnc}"
+		PS1="${bMagenta}«${bnc} \$(date +%d/%m/%Y) ${bMagenta}»${bnc} \w \n${bred} >: ${bnc}"
     else
-		PS1=".:\$(date +%d/%m/%Y):. \w \n >: "
+		PS1="${bMagenta}«${bnc} \$(date +%d/%m/%Y) ${bMagenta}»${bnc} \w \n >: "
     fi
 fi
 
