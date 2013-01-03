@@ -37,8 +37,8 @@ alias ssl_dec="openssl aes-256-cbc -d"
 
 # top 15 most used commands
 topfifteen() {
-	history | awk '{print $4}' | \
-		awk 'BEGIN {FS ="|"} {if ($1 == "sudo") {print $2} else {print $1}}' \
+	history | awk '{if ($4 == "sudo") {print $5} else {print $4}}' | \
+		awk 'BEGIN {FS ="|"} {print $1}' \
 		| grep -v topfifteen | sort | uniq -c | sort -rn | head -15
 }
 # mkmv - creates a new directory and moves the file into it, in 1 step
