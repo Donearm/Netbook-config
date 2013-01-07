@@ -628,18 +628,12 @@ awful.rules.rules = {
 
 -- {{{ Autorun apps
 autorun = true
-autorunApps =
-{
-    --"xbindkeys",
-    --"xcompmgr -c -C -r10 -o.70 -D5 &",
-	--"cairo-compmgr &",
-    "xset m 1 2",
-    "urxvtd -q -o -f",
-}
 if autorun then
-    for app = 1, #autorunApps do
-        awful.util.spawn(autorunApps[app]) 
-     end
+	run_once("xset", "m 1 2")
+	run_once("urxvtd", "-q -o -f")
+--    for app = 1, #autorunApps do
+--        awful.util.spawn(autorunApps[app]) 
+--     end
 end
 		
 -- {{{ Signals
