@@ -2,20 +2,21 @@ ansi=1
 avatar=feh %U
 dostream=1
 # no foursquare and other annoying tweets...
-filter="count,/^I'm\sat/ || /http:\/\/4sq\.com/ || /^I\sjust\sbecame\sthe\sma[jy]or/ || /^Latoya/ || /^I\sjust\sunlocked/ || /^I\sjust\sousted/ || /^Was\sout\srunning/"
+filter="count,/^I'm\sat/ || /http\:\/\/4sq\.com/ || /^I\sjust\sbecame\sthe\sma[yj]or/ || /^Latoya/ || /^I\sjust\sunlocked/ || /^I\sjust\sousted/ || /^Was\sout\srunning/ || /^I\sunlocked/ || /getglue/ || /http\:\/\/ask\.fm/"
+hold=1
 notifies=dm,reply,default
 #urlopen=luakit -u %U -n 2> /dev/null
 urlopen=firefox -new-tab %U &
 hold=1
 keyf=-donearm
 readline="@Giovannadarco28 @nenadsuperzmaj @MrSkimpole @LaVladina @al3hex @dottorblaster"
-slowpost=6
+slowpost=8
 ssl=1
 pause=auto
 wrap=79
 lat=40.85134
 long=14.332103
 location=0
-# WOEID: italy and worldwide
+# WOEID: italy and worldwide
 woeid=23424853
 #woeid=1
