@@ -236,7 +236,7 @@ function removeCalendar()
     end
 end
 
-function addCalendar(inc_offset)
+function addCalendar(inc_offset, pos)
     local save_offset = offset
     removeCalendar()
     offset = save_offset + inc_offset
@@ -250,7 +250,8 @@ function addCalendar(inc_offset)
         timeout = 0,
         hover_timeout = 0.5,
         width = 150,
-        position = "bottom_right",
+		position = pos
+--        position = "bottom_right",
     })
 end
 
