@@ -169,14 +169,6 @@ vicious.register(cpuwidget, vicious.widgets.cpu,
 )
 
 
--- Motherboard icon
---moboicon = widget({ type = "imagebox", name = "moboicon", align = "right" })
---moboicon.image = image(beautiful.mobo_image)
-
--- Gpu icon
---gpuicon = widget({ type = "imagebox", name = "gpuicon", align = "right" })
---gpuicon.image = image(beautiful.nvidia_image)
-
 -- Memory widget
 memicon = widget({ type = "imagebox"})
 memicon.image = image(beautiful.ram_image)
@@ -243,15 +235,6 @@ vicious.register(batterywidget, vicious.widgets.bat, '$2', 53, 'BAT0')
 -- Temperatures
 cputemp = widget({ type = 'textbox'})
 vicious.register(cputemp, vicious.widgets.thermal, "$1°C", 43, "thermal_zone0")
-
---mobotemp = widget({ type = 'textbox'})
---vicious.register(mobotemp, getMoboTemp, "$1", 40)
-
---gputemp = widget({ type = 'textbox'})
---vicious.register(gputemp, getGpuTemp, "$1", 40)
- 
---sdatemp = widget({ type = 'textbox'})
---vicious.register(sdatemp, getSdaTemp, "$1", 40)
 
 -- Volume widget
 volumeicon = widget({ type = "imagebox"})
@@ -458,10 +441,6 @@ globalkeys = awful.util.table.join(
 	awful.key({ modkey			  }, "p",	function () show_clipboard() end),
     awful.key({ modkey, "Control" }, "m", function() moveMouse(safeCoords.x, safeCoords.y) end),
 	awful.key({ modkey,			  }, "Delete", function() io.popen(lockScreen) end),
-    -- Win+z: stop any widget but battery and wifi, Win+Shift+z:
-    -- reactivate all widgets
-    awful.key({ modkey,           }, "z", function() io.popen(home .. "/Script/awesome_widgets.sh stop") end),
-    awful.key({ modkey, "Shift"   }, "z", function() io.popen(home .. "/Script/awesome_widgets.sh start") end),
 	
     -- Mod4+s set the window sticky; pressing it again leave the window
     -- only on the current tag
