@@ -1,5 +1,4 @@
 Collection of config files I'm using on my netbook. Separated from the desktop ones because I have to adapt to the low performances of the Eeepc and because github repo are cheap ;)
 
 (c) Gianluca Fiore
-All code is licensed under the GNU GPL version 3 License unless the
-program source code says otherwise.
+All code is licensed under the GNU GPL version 3 License unless the single file says otherwise.
