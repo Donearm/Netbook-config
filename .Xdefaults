@@ -20,7 +20,7 @@ URxvt.bitdepth:	    32
 Urxvt.depth:	    32
 URxvt.geometry:	    80x24+0+0
 !URxvt.font:	    -*-candara-*-*-*-*-*-*-*-*-*-*-iso10646-1
-!URxvt.font:		-*-dejavu sans mono-*-*-*-*-*-*-*-*-*-*-iso10646-1
+!URxvt.font:		-misc-dejavu sans-medium-r-normal--11-0-0-0-p-0-iso8859-16
 URxvt.font:			xft:DejaVu Sans Mono:pixelsize=12:antialias=true
 URxvt.boldFont:	    xft:DejaVu Sans Mono:bold:pixelsize=12:antialias=true
 Urxvt.italicFont:   xft:DejaVu Sans Mono:italic:pixelsize=12:antialias=true
