@@ -13,7 +13,7 @@ xmodmap .Xmodmap
 # start ttytter inside screen but only if it's not already running
 #/mnt/documents/Script/ttytter_startup.sh
 
-#exec /home/gianluca/mstatusbar/monsterbar.sh
+#exec /mnt/documents/Pacchetti/repos/mstatusbar/monsterbar.sh
 exec awesome
 #exec openbox-session
 #exec startkde
