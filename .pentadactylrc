@@ -12,9 +12,6 @@ set shell='/bin/bash'
 " set color scheme
 :colorscheme schroedinger
 
-" Duckduckgo default search
-set defsearch=duckduckgo
-
 " show pattern matches as you type
 set incfind
 
@@ -32,11 +29,15 @@ command -description "News reader" rss :open www.google.com/reader/view/
 
 " passkeys for various sites
 set passkeys=
-set passkeys+='https://duckduckgo\.com':jkv
-set passkeys+='mail\.google\.com':c/jkhnpouelxsfra#`[]z?\*nrtgidIU+-=<Tab><Return>
-set passkeys+='plus\.google\.com':jk
-set passkeys+='google\.com/reader':jkovASNPO<Space>?
-set passkeys+='twitter\.com':jkn<CR>\.\?,gh,gr
+set passkeys+=https://duckduckgo.com:jkv
+set passkeys+=mail.google.com:!#*+-./<C-Down><C-s><Enter>?INU[]acefjklmnopqrsuvxyz\',*a,*n,*r,*s,*t,*u,ga,gc,gd,gi,gl,gs,gt,yo
+set passkeys+=plus.google.com:jk
+set passkeys+=google.com/reader:jkovASNPO<Space>?
+set passkeys+=https://twitter.com:jkn<CR>\.\?,gh,gr,gd,gp,gf,gl,gm,gs,gu,ga,gc
+set passkeys+=getprismatic.com:jkobsd,gh,gd,gs,gg
+
+" set laissez-fair focus to allow passkeys sites to grab focus
+set strictfocus=google.com:laissez-faire,duckduckgo.com:laissez-faire,twitter.com:laissez-faire,getprismatic.com:laissez-faire,'chrome:*':laissez-faire,*:moderate
 
 " Add the current url as a task for taskwarrior.org
 map <C-S-t> -js io.run("task", ["add", buffer.URL], false); dactyl.echomsg("Added task for " + buffer.URL);
@@ -44,26 +45,30 @@ map <C-S-t> -js io.run("task", ["add", buffer.URL], false); dactyl.echomsg("Adde
 map <C-v> <Nop>
 map <C-Esc> <pass-all-keys>
 
-" Ctr+hjkl navigation
-map <C-j> <down>
-map <C-k> <up>
-map <C-l> <END>
-map <C-h> <NOP>
-map <C-j> <down>
-map <C-k> <up>
-
-" recent history "jumps"
-map <Leader>j :jumps<CR>
-
-map , <Leader>
 " faster scrolling
 map -b j 5j
 map -b k 5k
+
+" Ctrl+hjkl navigation
+map -b <C-j> <down>
+map -b <C-k> <up>
+map -b <C-l> <END>
+map -b <C-h> <NOP>
+
+map , <Leader>
+" recent history "jumps"
+map <Leader>j :jumps<CR>
+
 " focus first input by default with just i
 map i gi
 " view native size of image without clicking it
 map <Leader>z :js window.content.document.toggleImageSize();<CR>
 
-" customized next and previous patterns
-set nextpattern=^>$,[Nn]ext,[Mm]ore,([Ss]ucc|[Ss]uccessiva),([Pp]ross|[Pp]rossima),([Aa]vanti),^(>>|»)$,^(>|»),(>|»)$
-set previouspattern=^<$,([Pp]rev|[Pp]revious),([Pp]re|[Pp]recedente),([Ii]ndietro),^(<<|«)$,^(<|«),(<|«)$
+" qmarks
+qmark k file:///home/gianluca/.tiddlywiki/kortirion_tiddlywiki.html
+qmark v file:///home/gianluca/.tiddlywiki/viaggi.html
+qmark d http://donearm.github.com/
+
+" customized next and previous patterns
+set nextpattern=^>$,[Nn]ext,[Mm]ore,([Ss]ucc|[Ss]uccessiva),([Pp]ross|[Pp]rossima),([Aa]vanti),^(>>|»)$,^(>|»),(>|»)$
+set previouspattern=^<$,([Pp]rev|[Pp]revious),([Pp]re|[Pp]recedente),([Ii]ndietro),^(<<|«)$,^(<|«),(<|«)$
