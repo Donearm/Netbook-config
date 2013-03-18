@@ -1,0 +1,7 @@
+# Switch to italian
+"setxkbmap it"
+Control + F10
+
+# Switch to russian
+"setxkbmap ru"
+Control + F11
