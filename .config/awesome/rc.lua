@@ -608,6 +608,7 @@ awful.rules.rules = {
 -- {{{ Autorun apps
 autorun = true
 if autorun then
+	run_once("xbindkeys")
 	run_once("xset", "m 1 2")
 	run_once("urxvtd", "-q -o -f")
 --    for app = 1, #autorunApps do
