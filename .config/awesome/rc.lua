@@ -242,15 +242,24 @@ vicious.register(netdownwidget, vicious.widgets.net,
     end, nil, nil, 3
 )
 
--- Maildir widget
-maildiricon = wibox.widget.imagebox()
-maildiricon:set_image(beautiful.mail_icon)
-maildirwidget = wibox.widget.textbox()
-vicious.register(maildirwidget, vicious.widgets.mdir, '$1 ', 300, { maildir })
+-- Wifi widget
+wifiicon = wibox.widget.imagebox()
+wifiicon:set_image(beautiful.wifi_image)
+wifiicon:buttons(awful.util.table.join(
+	awful.button({ }, 1, function() awful.util.spawn(networkManager) end),
+	awful.button({ }, 3, function() awful.util.spawn(networkManager) end)
+))
+wifiwidget = wibox.widget.textbox()
+vicious.cache(vicious.widgets.wifi)
+vicious.register(wifiwidget, vicious.widgets.wifi,
+	"${rate}" .. '<span color="' .. beautiful.fg_divisions .. '">|</span>' .. "${link}%", 57, 'wlan0')
 
+-- Battery widget
+batteryicon = wibox.widget.imagebox()
+batteryicon:set_image(beautiful.battery_image)
+batterywidget = wibox.widget.textbox()
+vicious.register(batterywidget, vicious.widgets.bat, '$2', 53, 'BAT0')
  
--- Bottom Statusbar widgets
-
 -- Task widget
 taskicon = wibox.widget.imagebox()
 taskicon:set_image(beautiful.taskwarrior_image)
@@ -266,7 +275,7 @@ volumeicon = wibox.widget.imagebox()
 volumeicon:set_image(beautiful.speaker_icon)
 -- enable caching
 vicious.cache(vicious.widgets.volume)
-vicious.register(volumewidget, vicious.widgets.volume, "$1% ", 1, "Master")
+vicious.register(volumewidget, vicious.widgets.volume, "$1% ", 7, "Master")
 volumewidget:buttons(awful.util.table.join(
     awful.button({ }, 4, function() awful.util.spawn(soundRaiseVolume) end),
     awful.button({ }, 5, function() awful.util.spawn(soundLowerVolume) end),
@@ -298,7 +307,6 @@ mysystray = wibox.widget.systray()
 
 -- Create a wibox for each screen and add it
 topwibox = {}
-bottomwibox = {}
 mypromptbox = {}
 mylayoutbox = {}
 mytaglist = {}
@@ -386,8 +394,14 @@ for s = 1, screen.count() do
     topwibox_right:add(netupwidget)
     topwibox_right:add(netdownicon)
     topwibox_right:add(netdownwidget)
-    topwibox_right:add(maildiricon)
-    topwibox_right:add(maildirwidget)
+	topwibox_right:add(wifiicon)
+	topwibox_right:add(wifiwidget)
+	topwibox_right:add(batteryicon)
+	topwibox_right:add(batterywidget)
+    topwibox_right:add(volumeicon)
+    topwibox_right:add(volumewidget)
+    topwibox_right:add(datebox)
+	topwibox_right:add(mylayoutbox[s])
     topwibox_right:add(mysystray)
 
     local topwibox_layout = wibox.layout.align.horizontal()
@@ -395,27 +409,6 @@ for s = 1, screen.count() do
     topwibox_layout:set_right(topwibox_right)
     topwibox_layout:set_middle(mytasklist[s]) -- tasklist, alone, occupies the remaining space in the middle
     topwibox[s]:set_widget(topwibox_layout)
-
-    -- Create the bottom wibox
-    bottomwibox[s] = awful.wibox({
-        position = "bottom",
-        screen = s,
-        fg = beautiful.fg_normal,
-        bg = beautiful.bg_normal,
-        height = 15 })
-        
-    local bottomwibox_left = wibox.layout.fixed.horizontal()
-    bottomwibox_left:add(mylayoutbox[s])
-
-    local bottomwibox_right = wibox.layout.fixed.horizontal()
-    bottomwibox_right:add(volumeicon)
-    bottomwibox_right:add(volumewidget)
-    bottomwibox_right:add(datebox)
-
-    local bottomwibox_layout = wibox.layout.align.horizontal()
-    bottomwibox_layout:set_left(bottomwibox_left)
-    bottomwibox_layout:set_right(bottomwibox_right)
-    bottomwibox[s]:set_widget(bottomwibox_layout)
 end
 -- }}}
 
